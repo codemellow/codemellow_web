@@ -8,11 +8,11 @@ var client = new elasticsearch.Client({
 
 
 
-
+/*
+this is elastic status module made by ChunSeong Park
+*/
 exports.elastic_status = function(req, res){
-  /*
-  this is elastic status module made by ChunSeong Park
-  */
+
 
   res.send("Elastic Status");
   client.cluster.health(function (err, resp) {
@@ -25,16 +25,16 @@ exports.elastic_status = function(req, res){
 
 };
 
-
+/*
+this is code search module made by ChunSeong Park
+Search by req.query.search_text
+from page_num*size
+size can be changed
+*/
 exports.code_search = function(req, res){
   
   console.log(req.query)
-  /*
-  this is code search module made by ChunSeong Park
-  Search by req.query.search_text
-  from page_num*size
-  size can be changed
-  */
+
   var page_num =req.query.page_num;
   var search_text =req.query.search_text;
   var size=15;
@@ -63,38 +63,38 @@ exports.code_search = function(req, res){
 };
 
 
-
+/* 
+this is issues search module made by ChunSeong Park
+Search by req.query.search_text
+from page_num*size
+size can be changed
+*/
 exports.issues_search = function(req, res){
-  /* 
-  this is issues search module made by ChunSeong Park
-  Search by req.query.search_text
-  from page_num*size
-  size can be changed
-  */
+  
   
 
   res.send("issues Search");
 };
 
-
+/* 
+this is users search module made by ChunSeong Park
+Search by req.query.search_text
+from page_num*size
+size can be changed
+*/
 exports.users_search = function(req, res){
-  /* 
-  this is users search module made by ChunSeong Park
-  Search by req.query.search_text
-  from page_num*size
-  size can be changed
-  */
+  
   res.send("Users Search");
 };
 
-
+/* 
+this is repositories search module made by ChunSeong Park
+Search by req.query.search_text
+from page_num*size
+size can be changed
+*/
 exports.repositories_search = function(req, res){
-  /* 
-  this is repositories search module made by ChunSeong Park
-  Search by req.query.search_text
-  from page_num*size
-  size can be changed
-  */
+
   res.send("Repositories Search");
 };
 
