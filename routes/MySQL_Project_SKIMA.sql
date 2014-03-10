@@ -1,4 +1,7 @@
+drop database project;
 create database project;
+
+use project;
 
 create table info(
 	id int(10) unsigned not null auto_increment primary key,
@@ -16,7 +19,7 @@ create table info(
 	issue_count int(10) default 0
 );
 
-#project_name indexing because one project has many issues
+#--project_name indexing because one project has many issues
 create table issues(
 	id int(10) unsigned not null auto_increment primary key,
 	project_name varchar(50) not null,
@@ -28,7 +31,8 @@ create table issues(
 	INDEX(project_name(50))
 );
 
-#project_name indexing because one project has many commits
+
+#--project_name indexing because one project has many commits
 create table commits(
 	id int(10) unsigned not null auto_increment primary key,
 	project_name varchar(50) not null,
@@ -40,7 +44,7 @@ create table commits(
 	INDEX(project_name(50))
 );
 
-#project_name indexing because one project has many commits
+#--project_name indexing because one project has many commits
 create table contributors(
 	id int(10) unsigned not null auto_increment primary key,
 	project_name varchar(50) not null,
