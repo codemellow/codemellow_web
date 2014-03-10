@@ -106,7 +106,7 @@ getUser = function(username, password, repo) {
       return userObject;
     }
   }
-  return false*/;
+  return false*/
 };
 
 repos.on('fetch', function (fetch) {
