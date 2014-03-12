@@ -2,26 +2,21 @@ var elasticsearch = require('elasticsearch');
 
 var client;
 switch(process.env.NODE_ENV){
-        case 'development':
-            return {
-		client=new elasticsearch.Client({
-  			host: ['localhost:9200','localhost:9201'] //connect with multiple nodes
-		});
-
-	};
-
-        case 'production':
-            return {
-		client=new elasticsearch.Client({
-                        host: ['cow1.codemellow.net:9200','cow1.codemellow.net:9201'] //connect with multiple nodes
-                });
-
-	};
-
-        default:
-            return {
-
-	};
+  case 'development':
+    client=new elasticsearch.Client({
+  		host: ['localhost:9200','localhost:9201'] //connect with multiple nodes
+    });
+    break;
+  case 'production':
+    client=new elasticsearch.Client({
+        host: ['cow1.codemellow.net:9200','cow1.codemellow.net:9201'] //connect with multiple nodes
+    });
+    break;
+  default:
+    client=new elasticsearch.Client({
+      host: ['cow1.codemellow.net:9200','cow1.codemellow.net:9201'] //connect with multiple nodes
+    });
+    break;
 }
 
 

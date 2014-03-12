@@ -4,19 +4,9 @@
 var elasticsearch = require('elasticsearch');
 
 var pushover = require('pushover');
-var client = new elasticsearch.Client({
+var elastic_search_handler=require('./elastic_search_handler');
+var mysql_handler=require('./mysql_handler');
 
-  host: ['localhost:9200','localhost:9201'] //connect with multiple nodes
-});
-
-
-var mysql = require('mysql');
- var dbconn = mysql.createConnection({
-    host     : 'localhost', // 3306
-    user     : 'root',
-    password : 'ehowlsus14'
-});
-dbconn.connect();
 
 function dateFormat (date, fstr, utc) {
   utc = utc ? 'getUTC' : 'get';
@@ -34,8 +24,6 @@ function dateFormat (date, fstr, utc) {
     return ('0' + m).slice (-2);
   });
 }
-
-
 /* 
 this is make project module made by ChunSeong Park
 make project should create git repository automatically
@@ -45,22 +33,16 @@ exports.make_project = function(req, res){
   var username=req.body.username;
   var password=req.body.password;
   var project_name=req.body.project_name;
-  
+  mysql_handler.is_project_exist(project_name,function(flag){
+    if(flag!=true){
 
-  /* check project */
- 
-  dbconn.query("use project");
-  dbconn.query("select * from info where project_name='"+project_name+"'",function(err,rows,cols){
-    if(err) throw err;
-    if(rows.length==0){
-      dbconn.query("insert into info (project_name,project_maintatiner,create_date) values ('"+project_name+"','"+username+"','"+dateFormat(new Date (), "%Y-%m-%d %H:%M:%S", true)+"')")
-      
       var repos = pushover('/tmp/repos',{autoCreate:false});
       repos.create(project_name,function(err){
         if(err)
           console.log(err)
+        else
+          mysql_handler.insert_new_project(project_name,username)
       })
-      
       console.log("Making project"); 
       res.send("Making project")
       res.end()
@@ -69,8 +51,8 @@ exports.make_project = function(req, res){
       res.send("project already exist")
       res.end()
     }
-
-  });
+  })
+  
 };
 
 
