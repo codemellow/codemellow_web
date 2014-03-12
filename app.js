@@ -5,9 +5,6 @@
 
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
-var search = require('./routes/elastic_search_handler');
-var project = require('./routes/project');
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
@@ -32,9 +29,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
-app.get('/search/code', search.code_search);
-app.post('/project', project.make_project);
+app.get('/search/code', routes.elastic_code_search);
+app.post('/project', routes.make_project);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
