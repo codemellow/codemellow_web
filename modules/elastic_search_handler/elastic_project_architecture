@@ -1,17 +1,22 @@
-curl -XPOST 'http://localhost:9200/codemellow/project/1' -d '{
-"project":{
-"project_name":"ccooccoo",
-"file_name":"b.js",
-"file_path":"ccooccoo/src/b.js",
-"code":"int main(void){ return 0; }"
-}
+curl -XPOST 'http://localhost:9200/project/project_info/project_name' -d '{
+	project_name:project_name,
+	project_language:"",
+	project_maintatiner:username,
+	project_discription:project_discription,
+	create_date :date,
+	commit_count :1,
+	branch_count :0,
+	release_count :0,
+	contributor_count :1,
+	pull_request_count :0,
+	issue_count :0
 }'
 
 
 
 
-curl -XPOST 'http://localhost:9200/project/code/ccooccoo' -d '{
-"project":{
+curl -XPOST 'http://localhost:9200/project/code/ccooccoo/src/b.js' -d '{
+
 "project_name":"ccooccoo",
 "project_language":"java",
 "project_contributors":["park","kim"],
@@ -19,11 +24,9 @@ curl -XPOST 'http://localhost:9200/project/code/ccooccoo' -d '{
 "file_name":"b.js",
 "file_path":"ccooccoo/src/b.js",
 "code":"int main(void){ return 0; }"
-}
 }'
 
 curl -XPOST 'http://localhost:9200/project/issues/ccooccoo' -d '{
-"project":{
 "project_name":"ccooccoo",
 "project_language":"java",
 "project_contributors":["park","kim"],
@@ -31,5 +34,4 @@ curl -XPOST 'http://localhost:9200/project/issues/ccooccoo' -d '{
 "file_name":"b.js",
 "file_path":"ccooccoo/src/b.js",
 "issues":"int main(void){ return 0; }"
-}
 }'

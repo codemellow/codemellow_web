@@ -31,28 +31,34 @@ make project should create git repository automatically
 exports.make_project = function(req, res){
   
   var username=req.body.username;
-  var password=req.body.password;
+  var project_discription=req.body.project_discription;
   var project_name=req.body.project_name;
-  mysql_handler.is_project_exist(project_name,function(flag){
-    if(flag!=true){
+  if(project_name!=null&&project_name.toString()!=""){
+    mysql_handler.is_project_exist(project_name,function(flag){
+      if(flag!=true){
 
-      var repos = pushover('/tmp/repos',{autoCreate:false});
-      repos.create(project_name,function(err){
-        if(err)
-          console.log(err)
-        else
-          mysql_handler.insert_new_project(project_name,username)
-      })
-      console.log("Making project"); 
-      res.send("Making project")
-      res.end()
-    }else{
-      console.log("project already exist");
-      res.send("project already exist")
-      res.end()
-    }
-  })
-  
+        var repos = pushover('/tmp/repos',{autoCreate:false});
+        repos.create(project_name,function(err){
+          if(err)
+            console.log(err)
+          else{
+            var date=dateFormat(new Date (), "%Y-%m-%d %H:%M:%S", true);
+
+            mysql_handler.insert_new_project(project_name,username,project_discription,date);
+            elastic_search_handler.insert_new_project(project_name,username,project_discription,date);
+          }
+            
+        })
+        console.log("Making project"); 
+        res.send("Making project")
+        res.end()
+      }else{
+        console.log("project already exist");
+        res.send("project already exist")
+        res.end()
+      }
+    })
+  }
 };
 
 
