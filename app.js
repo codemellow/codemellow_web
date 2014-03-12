@@ -66,6 +66,7 @@ var processSecurity = function(gitObject, method, repo) {
     return permissableMethod(creds[0], creds[1], method, repo, gitObject);
   }
 };
+
 var permissableMethod = function(username, password, method, repo, gitObject) {
   var user, _ref;
   console.log(username, 'is trying to', method, 'on repo:', repo, '...');
@@ -84,6 +85,7 @@ var permissableMethod = function(username, password, method, repo, gitObject) {
     }
   }
 };
+
 checkTriggers = function(method, repo, gitObject) {
   var _base;
   if (repo.onSuccessful != null) {
@@ -93,6 +95,7 @@ checkTriggers = function(method, repo, gitObject) {
     }
   }
 };
+
 getUser = function(username, password, repo) {
 
   //change this should be auth in DB
@@ -126,22 +129,24 @@ console.log('Rejected - Repo', fetch.repo, 'doesnt exist');
 return fetch.reject(500, 'This repo doesnt exist');
 }*/
 });
+
 repos.on('push', function (push) {
-var repo;
-console.log('Got a PUSH call for', push.repo);
-repo = push.repo;
-var data = {
-  status: push.status,
-  repo: push.repo,
-  service: push.service,
-  cwd: push.cwd,
-  last: push.last,
-  commit: push.commit,
-  evName: push.evName,
-  branch: push.branch
-}
-console.log(data)
+  var repo;
+  console.log('Got a PUSH call for', push.repo);
+  repo = push.repo;
+  var data = {
+    status: push.status,
+    repo: push.repo,
+    service: push.service,
+    cwd: push.cwd,
+    last: push.last,
+    commit: push.commit,
+    evName: push.evName,
+    branch: push.branch
+  }
+  console.log(data);
 //repo.last_commit = data;
+
 if (repo !== false) {
   return processSecurity(push, 'push', repo);
 } else {
@@ -149,6 +154,7 @@ if (repo !== false) {
   return push.reject(500, 'This repo doesnt exist');
 }
 });
+
 repos.on('info', function (fetch) {
   var repo;
   console.log('Got a INFO call for', fetch.repo);
@@ -171,5 +177,7 @@ repos.on('info', function (fetch) {
   fetch.accept();
 
 });
+
 repos.handle(req, res);
+
 }).listen(7000);
