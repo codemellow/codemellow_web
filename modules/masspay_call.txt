@@ -1,0 +1,50 @@
+/*
+
+
+//https://api-3t.sandbox.paypal.com/2.0/
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:xsi= "  http://www.w3.org/2001/XMLSchema-instance"
+xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+><SOAP-ENV:Header>
+  <RequesterCredentials xmlns="urn:ebay:api:PayPalAPI">
+    
+    <Credentials xmlns="urn:ebay:apis:eBLBaseComponents">
+        <Username>rlagoaptl-facilitator_api1.nate.com</Username>
+        <Password>1390784578</Password>
+        <Signature>AiPC9BjkCyDFQXbSkoZcgqH3hpacAyX0N0lmWDN56uNsgLi-DGIm6-Hj</Signature>
+        <Environment>sandbox</Environment>
+    </Credentials>
+
+  </RequesterCredentials>
+</SOAP-ENV:Header>
+
+
+<SOAP-ENV:Body>
+  <MassPayReq xmlns="urn:ebay:api:PayPalAPI">
+  <MassPayRequest>
+    <Version xmlns="urn:ebay:apis:eBLBaseComponents">1</Version>
+    
+    
+    <ReceiverType xsi:type="xs:string">EmailAddress</ReceiverType>
+    
+    <EmailSubject xsi:type="ebl:ReceiverInfoCodeType">wow</EmailSubject>
+    
+    <MassPayItem xsi:type="ebl:MassPayItemType">
+      <ReceiverEmail xsi:type="ebl:EmailAddressType">guest1@nate.com</ReceiverEmail>
+      <Amount xsi:type="ebl:BasicAmountType">1</Amount>
+        
+    </MassPayItem>
+
+  </MassPayRequest>
+  </MassPayReq>
+</SOAP-ENV:Body>
+
+</SOAP-ENV:Envelope>
+
+
+*/
