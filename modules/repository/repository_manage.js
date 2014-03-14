@@ -1,5 +1,8 @@
 
 
+var git = require('../git_handler/git_handler');
+
+console.log('hi', git);
 var processSecurity = function(gitObject, method, repo) {
 
   var auth, creds, plain_auth, req, res;
@@ -68,6 +71,8 @@ var getUser = function(username, password, repo) {
 
 module.exports = {
 
+	git: git,
+	
 	repos_init: function(repos){
 
 		repos.on('push', function (push) {
