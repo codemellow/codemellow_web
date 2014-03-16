@@ -2,16 +2,31 @@
 /*
  * GET home page.
  */
+
+var path = require('path');
+var fs= require('fs')
 var project=require('../modules/project/project');
 //var mysql_handler=require('../mysql_handler/mysql_handler');
 var elastic_search_handler=require('../modules/elastic_search_handler/elastic_search_handler');
 
 
 
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+exports.market_index = function(req, res){
+  fs.readFile(path.resolve(__dirname,'..','views')+'/index.html', function(error, data){
+  	if(error)
+  		console.log(error)
+	res.writeHead(200, {'Content-Type':'text/html'});
+	res.end(data)
+  })
 };
-
+exports.dev_index = function(req, res){
+  fs.readFile(path.resolve(__dirname,'..','views')+'/dev_main.html', function(error, data){
+  	if(error)
+  		console.log(error)
+	res.writeHead(200, {'Content-Type':'text/html'});
+	res.end(data)
+  })
+};
 exports.elastic_code_search = function(req, res){
   elastic_search_handler.code_search(req,res);
 };

@@ -29,7 +29,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get('/market', routes.market_index);
+app.get('/dev', routes.dev_index);
 app.get('/search/code', routes.elastic_code_search);
 app.post('/project', routes.make_project);
 
