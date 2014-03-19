@@ -29,7 +29,6 @@ this is make project module made by ChunSeong Park
 make project should create git repository automatically
 */
 exports.make_project = function(req, res){
-  
   var username=req.body.username;
   var project_discription=req.body.project_discription;
   var project_name=req.body.project_name;
@@ -44,10 +43,9 @@ exports.make_project = function(req, res){
           else{
             var date=dateFormat(new Date (), "%Y-%m-%d %H:%M:%S", true);
 
-            mysql_handler.insert_new_project(project_name,username,project_discription,date);
-            elastic_search_handler.insert_new_project(project_name,username,project_discription,date);
+            // mysql_handler.insert_new_project(project_name,username,project_discription,date);
+            // elastic_search_handler.insert_new_project(project_name,username,project_discription,date);
           }
-            
         })
         console.log("Making project"); 
         res.send("Making project")

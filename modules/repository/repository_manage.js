@@ -1,8 +1,9 @@
 
 
 var git = require('../git_handler/git_handler');
+var current_user = "";
+var current_proejct = "";
 
-console.log('hi', git);
 var processSecurity = function(gitObject, method, repo) {
 
   var auth, creds, plain_auth, req, res;
@@ -26,20 +27,25 @@ var processSecurity = function(gitObject, method, repo) {
 var permissableMethod = function(username, password, method, repo, gitObject) {
   var user, _ref;
   console.log(username, 'is trying to', method, 'on repo:', repo, '...');
+	current_user = null;
+	current_proejct = null;
+
   user = getUser(username, password, repo);
   if (user === false) {
     console.log(username, 'was rejected as this user doesnt exist, or password is wrong');
     return gitObject.reject(500, 'Wrong username or password');
-  } else {
-  	// return gitObject.accept();
-    if (_ref = this.permMap[method], __indexOf.call(user.permissions, _ref) >= 0) {
-      console.log(username, 'Successfully did a', method, 'on', repo);
-      checkTriggers(method, repo, gitObject);
-      return gitObject.accept();
-    } else {
-      console.log(username, 'was rejected, no permission to', method, 'on', repo);
-      return gitObject.reject(500, "You dont have these permissions");
-    }
+  } else {	
+	current_user = username;
+	current_proejct = repo.split('.git')[0];
+  	return gitObject.accept();
+    // if (_ref = this.permMap[method], __indexOf.call(user.permissions, _ref) >= 0) {
+    //   console.log(username, 'Successfully did a', method, 'on', repo);
+    //   checkTriggers(method, repo, gitObject);
+    //   return gitObject.accept();
+    // } else {
+    //   console.log(username, 'was rejected, no permission to', method, 'on', repo);
+    //   return gitObject.reject(500, "You dont have these permissions");
+    // }
   }
 };
 
@@ -72,10 +78,14 @@ var getUser = function(username, password, repo) {
 module.exports = {
 
 	git: git,
-	
+
 	repos_init: function(repos){
 
+		var self = this;
+		this.git.init(repos);
+
 		repos.on('push', function (push) {
+
 		    console.log('push ' + push.repo + '/' + push.commit
 		        + ' (' + push.branch + ')'
 		    );
@@ -91,10 +101,19 @@ module.exports = {
 				last: push.last,
 				commit: push.commit,
 				evName: push.evName,
-				branch: push.branch
+				branch: push.branch,
+				repo_dir: current_proejct
 			}
 			
-			console.log(data);
+			if(data.branch !== current_proejct + '_' + current_user){
+				push.reject(500, 'Cannot push this branch');
+				// data.new_branch = current_proejct + '_' + current_user;
+				self.git.new_branch(data, current_proejct + '_' + current_user);
+				self.git.checkout_branch(data, current_proejct + '_' + current_user);
+				self.git.push(data, current_proejct + '_' + current_user);
+			}
+
+			// console.log(data);
 			//repo.last_commit = data;
 		    // push.accept();
 			if (repo !== false) {
@@ -118,6 +137,20 @@ module.exports = {
 		  console.log('Got a INFO call for', fetch.repo);
 		  console.log(fetch.url)
 		  repo = fetch.repo;
+
+			var data = {
+				status: fetch.status,
+				repo: fetch.repo,
+				service: fetch.service,
+				cwd: fetch.cwd,
+				last: fetch.last,
+				commit: fetch.commit,
+				evName: fetch.evName,
+				branch: fetch.branch
+			}
+			
+			console.log(data);		
+
 		  if(fetch.url.indexOf('receive-pack')>=0)
 		  { //originally push if receive-pack
 		    if (repo !== false) {
@@ -135,50 +168,6 @@ module.exports = {
 		  fetch.accept();
 
 		});
-
-		// repos.on('fetch', function (fetch) {
-		//   var repo;
-		//   console.log('Got a FETCH call for', fetch.repo);
-		//   repo = fetch.repo;
-		//   fetch.accept();
-		// /*if (repo !== false) {
-		// if (repo.anonRead === true) {
-		// checkTriggers('fetch', repo);
-		// return fetch.accept();
-		// } else {
-		// return processSecurity(fetch, 'fetch', repo);
-		// }
-		// } else {
-		// console.log('Rejected - Repo', fetch.repo, 'doesnt exist');
-		// return fetch.reject(500, 'This repo doesnt exist');
-		// }*/
-		// });
-
-		// repos.on('push', function (push) {
-		//   var repo;
-		//   console.log('Got a PUSH call for', push.repo);
-		//   repo = push.repo;
-		//   var data = {
-		//     status: push.status,
-		//     repo: push.repo,
-		//     service: push.service,
-		//     cwd: push.cwd,
-		//     last: push.last,
-		//     commit: push.commit,
-		//     evName: push.evName,
-		//     branch: push.branch
-		//   }
-		//   console.log(data);
-		// //repo.last_commit = data;
-
-		// if (repo !== false) {
-		//   return processSecurity(push, 'push', repo);
-		// } else {
-		//   console.log('Rejected - Repo', push.repo, 'doesnt exist');
-		//   return push.reject(500, 'This repo doesnt exist');
-		// }
-		// });
-
 
 	}
 }
