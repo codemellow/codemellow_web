@@ -12,7 +12,7 @@ var elastic_search_handler=require('../modules/elastic_search_handler/elastic_se
 
 
 exports.market_index = function(req, res){
-  fs.readFile(path.resolve(__dirname,'..','views')+'/index.html', function(error, data){
+  fs.readFile(path.resolve(__dirname,'..','views')+'/market_main.html', function(error, data){
   	if(error)
   		console.log(error)
 	res.writeHead(200, {'Content-Type':'text/html'});
