@@ -3,13 +3,13 @@
 var git = require('../git_handler/git_handler');
 var current_user = "";
 var current_proejct = "";
+var	projects_dir = '/home/pcs/test';
 
 var processSecurity = function(gitObject, method, repo) {
 
   var auth, creds, plain_auth, req, res;
   req = gitObject.request;
   res = gitObject.response;
-  console.log(req.headers)
   auth = req.headers['authorization'];
   console.log(auth)
   if (auth === void 0) {
@@ -37,6 +37,16 @@ var permissableMethod = function(username, password, method, repo, gitObject) {
   } else {	
 	current_user = username;
 	current_proejct = repo.split('.git')[0];
+	if(method == 'push'){
+		var log_data = {
+			project: current_proejct,
+			user : current_user,
+			method : 'push',
+			date : new Date()
+		}
+		
+		this.logging(log_data);
+	}
   	return gitObject.accept();
     // if (_ref = this.permMap[method], __indexOf.call(user.permissions, _ref) >= 0) {
     //   console.log(username, 'Successfully did a', method, 'on', repo);
@@ -75,6 +85,11 @@ var getUser = function(username, password, repo) {
   return false*/
 };
 
+var	logging = function(data){
+	console.log('LOG : ', data);
+	
+}
+
 module.exports = {
 
 	git: git,
@@ -93,29 +108,7 @@ module.exports = {
 			var repo;
 			console.log('Got a PUSH call for', push.repo);
 			repo = push.repo;
-			var data = {
-				status: push.status,
-				repo: push.repo,
-				service: push.service,
-				cwd: push.cwd,
-				last: push.last,
-				commit: push.commit,
-				evName: push.evName,
-				branch: push.branch,
-				repo_dir: current_proejct
-			}
-			
-			if(data.branch !== current_proejct + '_' + current_user){
-				push.reject(500, 'Cannot push this branch');
-				// data.new_branch = current_proejct + '_' + current_user;
-				self.git.new_branch(data, current_proejct + '_' + current_user);
-				self.git.checkout_branch(data, current_proejct + '_' + current_user);
-				self.git.push(data, current_proejct + '_' + current_user);
-			}
 
-			// console.log(data);
-			//repo.last_commit = data;
-		    // push.accept();
 			if (repo !== false) {
 				return processSecurity(push, 'push', repo);
 			} else {
@@ -127,7 +120,7 @@ module.exports = {
 
 		repos.on('fetch', function (fetch) {
 		    console.log('fetch ' + fetch.commit);
-			console.log('Got a INFO call for', fetch.repo);
+			console.log('Got a FECTH call for', fetch.repo);
 			console.log(fetch.url)
 		    fetch.accept();
 		});
@@ -168,6 +161,6 @@ module.exports = {
 		  fetch.accept();
 
 		});
+	},
 
-	}
 }
