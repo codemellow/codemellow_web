@@ -2,19 +2,19 @@ var elasticsearch = require('elasticsearch');
 
 var client;
 switch(process.env.NODE_ENV){
-  case 'development':
+  case 'dev':
     client=new elasticsearch.Client({
   		host: ['localhost:9200','localhost:9201'] //connect with multiple nodes
     });
     break;
-  case 'production':
+  case 'pro':
     client=new elasticsearch.Client({
-        host: ['cow1.codemellow.net:9200','cow1.codemellow.net:9201'] //connect with multiple nodes
+        host: ['database.codemellow.net:9200','database.codemellow.net:9201'] //connect with multiple nodes
     });
     break;
   default:
     client=new elasticsearch.Client({
-      host: ['cow1.codemellow.net:9200','cow1.codemellow.net:9201'] //connect with multiple nodes
+      host: ['database.codemellow.net:9200','database.codemellow.net:9201'] //connect with multiple nodes
     });
     break;
 }
@@ -27,17 +27,13 @@ this is elastic status module made by ChunSeong Park
 */
 exports.elastic_status = function(callback){
   client.cluster.health(function (err, resp) {
-  if (err) {
-    console.error(err.message);
-  } else {
-    callback(resp)
-  }
+    callback(err,resp)
   });
 };
 /*
 this is elastic insert_new_project module made by ChunSeong Park
 */
-exports.insert_new_project = function(project_name,username,project_discription,date){
+exports.insert_new_project = function(project_name,username,project_discription,date,callback){
   client.index({
     index:'project',
     type:'project_info',
@@ -55,7 +51,63 @@ exports.insert_new_project = function(project_name,username,project_discription,
       pull_request_count :0,
       issue_count :0
     }
+  },function (error, response) {
+    callback(error, response)
   })
+};
+/*
+this is elastic delete_code module made by ChunSeong Park
+source path should be passed to index name by encoded base64
+*/
+exports.delete_code = function(project_name,source_code_path,callback){
+   client.index({
+    index:'project',
+    type:'code',
+    id:new Buffer(project_name+"/"+source_code_path, 'base64')
+  },function (error, response) {
+    callback(error, response)
+  })
+};
+/*
+this is elastic insert_code module made by ChunSeong Park
+source path should be passed to index name by encoded base64
+*/
+exports.insert_code = function(project_name,code_author,source_code_path,source_code,date,callback){
+   client.index({
+    index:'project',
+    type:'code',
+    id:new Buffer(project_name+"/"+source_code_path, 'base64'),
+    body:{
+      project_name:project_name,
+      project_maintatiner:code_author,
+      create_date :date,
+      code: 'Updated',
+      update_author:code_author,
+      update_date:date
+    }
+  },function (error, response) {
+    callback(error, response)
+  })
+};
+/*
+this is elastic update_code module made by ChunSeong Park
+source path should be passed to index name by encoded base64
+*/
+exports.update_code = function(project_name,code_author,source_code_path,source_code,date,callback){
+  client.update({
+    index: 'project',
+    type: 'code',
+    id: new Buffer(project_name+"/"+source_code_path, 'base64'),
+    body: {
+      doc: {
+        code: 'Updated',
+        update_author:code_author,
+        update_date:date
+      }
+    }
+  },function (error, response) {
+    callback(error, response)
+  });
 };
 
 /*
@@ -64,7 +116,7 @@ Search by search_text
 from page_num*size
 size can be changed
 */
-exports.code_search = function(page_num, search_text){
+exports.code_search = function(page_num, search_text,callback){
   var size=15;
   var from=page_num*size;
   client.search({
@@ -79,14 +131,8 @@ exports.code_search = function(page_num, search_text){
         }
       }
     }
-  }).then(function (resp) {
-    console.log("hit result")
-    var hits = resp.hits;
-    var hits_count=resp.hits.total;
-    var hits_arr=resp.hits.hits;
-    for(var i in hits_arr){
-      console.log(hits_arr[i]._source.project)
-    }
+  },function (error, response) {
+    callback(error, response)
   });
 };
 
@@ -97,7 +143,7 @@ Search by req.query.search_text
 from page_num*size
 size can be changed
 */
-exports.issues_search = function(page_num, search_text){
+exports.issues_search = function(page_num, search_text,callback){
   var size=15;
   var from=page_num*size;
   client.search({
@@ -112,14 +158,8 @@ exports.issues_search = function(page_num, search_text){
         }
       }
     }
-  }).then(function (resp) {
-    console.log("hit result")
-    var hits = resp.hits;
-    var hits_count=resp.hits.total;
-    var hits_arr=resp.hits.hits;
-    for(var i in hits_arr){
-      console.log(hits_arr[i]._source.project)
-    }
+  },function (error, response) {
+    callback(error, response)
   });
 };
 
@@ -129,7 +169,7 @@ Search by req.query.search_text
 from page_num*size
 size can be changed
 */
-exports.users_search = function(page_num, search_text){
+exports.users_search = function(page_num, search_text,callback){
   var size=15;
   var from=page_num*size;
   client.search({
@@ -144,14 +184,8 @@ exports.users_search = function(page_num, search_text){
         }
       }
     }
-  }).then(function (resp) {
-    console.log("hit result")
-    var hits = resp.hits;
-    var hits_count=resp.hits.total;
-    var hits_arr=resp.hits.hits;
-    for(var i in hits_arr){
-      console.log(hits_arr[i]._source.project)
-    }
+  },function (error, response) {
+    callback(error, response)
   });
 };
 
@@ -161,7 +195,7 @@ Search by req.query.search_text
 from page_num*size
 size can be changed
 */
-exports.repositories_search = function(page_num, search_text){
+exports.repositories_search = function(page_num, search_text,callback){
   var size=15;
   var from=page_num*size;
   client.search({
@@ -176,14 +210,8 @@ exports.repositories_search = function(page_num, search_text){
         }
       }
     }
-  }).then(function (resp) {
-    console.log("hit result")
-    var hits = resp.hits;
-    var hits_count=resp.hits.total;
-    var hits_arr=resp.hits.hits;
-    for(var i in hits_arr){
-      console.log(hits_arr[i]._source.project)
-    }
+  },function (error, response) {
+    callback(error, response)
   });
 };
 

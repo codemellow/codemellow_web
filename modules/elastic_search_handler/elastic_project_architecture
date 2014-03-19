@@ -17,13 +17,13 @@ curl -XPOST 'http://localhost:9200/project/project_info/project_name' -d '{
 
 curl -XPOST 'http://localhost:9200/project/code/ccooccoo/src/b.js' -d '{
 
-"project_name":"ccooccoo",
-"project_language":"java",
-"project_contributors":["park","kim"],
-"project_maintainer":"park",
-"file_name":"b.js",
-"file_path":"ccooccoo/src/b.js",
-"code":"int main(void){ return 0; }"
+	project_name:project_name,/* this can be used to give project info, we don;t have to store all info search by project_name and maintainer and then show it*/
+	project_maintatiner:username,
+
+	create_date :date,
+	code: 'Updated',
+	update_author:username,
+	update_date:date
 }'
 
 curl -XPOST 'http://localhost:9200/project/issues/ccooccoo' -d '{

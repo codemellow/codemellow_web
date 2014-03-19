@@ -4,14 +4,14 @@ var mysql = require('mysql');
 
 var dbconn;
 switch(process.env.NODE_ENV){
-  case 'development':
+  case 'dev':
 	dbconn=mysql.createConnection({
 	    host     : 'localhost', // 3306
 	    user     : 'root',
 	    password : 'ehowlsus14'
 	});
   	break;
-  case 'production':
+  case 'pro':
     dbconn=mysql.createConnection({
 	    host     : 'database.codemellow.net', // 3306
 	    user     : 'root',
