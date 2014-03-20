@@ -4,9 +4,8 @@
 var elasticsearch = require('elasticsearch');
 
 var pushover = require('pushover');
-var elastic_search_handler=require('../elastic_search_handler/elastic_search_handler');
-var mysql_handler=require('../mysql_handler/mysql_handler');
-
+var elastic_search_handler = require('../elastic_search_handler/elastic_search_handler');
+var mysql_handler = require('../mysql_handler/mysql_handler');
 
 function dateFormat (date, fstr, utc) {
   utc = utc ? 'getUTC' : 'get';
@@ -24,6 +23,7 @@ function dateFormat (date, fstr, utc) {
     return ('0' + m).slice (-2);
   });
 }
+
 /* 
 this is make project module made by ChunSeong Park
 make project should create git repository automatically
@@ -43,8 +43,8 @@ exports.make_project = function(req, res){
           else{
             var date=dateFormat(new Date (), "%Y-%m-%d %H:%M:%S", true);
 
-            // mysql_handler.insert_new_project(project_name,username,project_discription,date);
-            // elastic_search_handler.insert_new_project(project_name,username,project_discription,date);
+            mysql_handler.insert_new_project(project_name,username,project_discription,date);
+            elastic_search_handler.insert_new_project(project_name,username,project_discription,date);
           }
         })
         console.log("Making project"); 
@@ -59,7 +59,27 @@ exports.make_project = function(req, res){
   }
 };
 
+exports.show_project = function(req, res){
+  var project_name = req.params.project_name;
+  console.log(project_name);
+  res.send(project_name);
+}
 
+exports.commit = function(data){
+  var project_name = data.project_name;
+  var commiter = data.commiter;
+  var date = data.date;
 
+  if(project_name==null|| commiter==null){
+    console.log("commit error\n");
+  }else{
+    if(date==null){
+      date = dateFormat(new Date (), "%Y-%m-%d %H:%M:%S", true);
+    }else{
+      date = dateFormat(date,"%Y-%m-%d %H:%M:%S", true);
+      mysql_handler.insert_new_commit(project_name, commiter, date);
+    }
+  }
 
+}
 

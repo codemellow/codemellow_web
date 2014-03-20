@@ -10,11 +10,12 @@ create table project_info(
 	project_id int(10) unsigned not null auto_increment primary key,
 	project_name varchar(50) not null unique,
 	project_language varchar(50),
-	project_maintatiner varchar(50) not null,
+	project_maintainer varchar(50) not null,
 	project_discription varchar(100) not null,
 	create_date TIMESTAMP not null,
 	last_commit_date TIMESTAMP,
 	last_author varchar(50),
+  inspector_count int(10) default 0,
 	commit_count int(10) default 1,
 	branch_count int(10) default 0,
 	release_count int(10) default 0,
@@ -57,7 +58,11 @@ create table contributors(
 	INDEX(project_id(4))
 );
 
-
+create table inspector(
+  inspector_id int(10) unsigned not null auto_increment primary key,
+  project_id int(10) unsigned not null,
+  INDEX(project_id(4))
+);
 
 
 #########################
