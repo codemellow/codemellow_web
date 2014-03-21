@@ -13,7 +13,7 @@ switch(process.env.NODE_ENV){
   	break;
   case 'production':
     dbconn=mysql.createConnection({
-	    host     : 'cow1.codemellow.net', // 3306
+	    host     : 'database.codemellow.net', // 3306
 	    user     : 'root',
 	    password : 'ehowlsus14'
 	});
@@ -21,7 +21,7 @@ switch(process.env.NODE_ENV){
 
   default:
   	dbconn=mysql.createConnection({
-	    host     : 'cow1.codemellow.net', // 3306
+	    host     : 'database.codemellow.net', // 3306
 	    user     : 'root',
 	    password : 'ehowlsus14'
 	});
