@@ -5,7 +5,7 @@ create database project;
 
 use project;
 
-drop table project_info;
+#drop table project_info;
 create table project_info(
 	project_id int(10) unsigned not null auto_increment primary key,
 	project_name varchar(50) not null unique,
@@ -26,7 +26,7 @@ create table project_info(
 
 
 #project_name indexing because one project has many issues
-drop table issues;
+#drop table issues;
 create table issues(
 	issue_id int(10) unsigned not null auto_increment primary key,
 	project_id int(10) unsigned not null,
@@ -38,7 +38,7 @@ create table issues(
 
 
 #project_name indexing because one project has many commits
-drop table commits;
+#drop table commits;
 create table commits(
 	commit_id int(10) unsigned not null auto_increment primary key,
 	project_id int(10) unsigned not null,
@@ -49,7 +49,7 @@ create table commits(
 );
 
 #project_name indexing because one project has many commits
-drop table contributors;
+#drop table contributors;
 create table contributors(
 	contributor_id int(10) unsigned not null auto_increment primary key,
 	project_id int(10) unsigned not null,
@@ -68,7 +68,7 @@ create table contributors(
 
 
 BEGIN;
-DROP TABLE `cm_users`;
+#DROP TABLE `cm_users`;
 CREATE TABLE `cm_users` (
   `user_id` int(11) unsigned AUTO_INCREMENT NOT NULL,
   `user_email` varchar(64) NOT NULL,
@@ -105,7 +105,7 @@ CREATE TABLE `cm_users` (
   KEY (`user_email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE `cm_user_imgs`;
+#DROP TABLE `cm_user_imgs`;
 CREATE TABLE `cm_user_imgs` (
   `cm_user_img_id` int(11) unsigned AUTO_INCREMENT NOT NULL,
   `user_id` int(11) unsigned NOT NULL,
