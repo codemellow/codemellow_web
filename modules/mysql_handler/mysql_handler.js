@@ -1,4 +1,10 @@
-
+/*
+**************************
+@author Park, ChunSeong
+@created 2014-03-24
+This Document is protected
+**************************
+*/
 var mysql = require('mysql');
 
 
