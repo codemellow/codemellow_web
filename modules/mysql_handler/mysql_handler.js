@@ -49,7 +49,12 @@ exports.is_project_exist = function(project_name,callback){
     }
   });
 };
-exports.insert_new_project = function(project_name,username,project_discription,date){
+exports.insert_new_project = function(project_name, username, project_discription, date){
   //dbconn.query("use project");
-  dbconn.query("insert into project_info (project_name,project_maintatiner,project_discription,create_date) values ('"+project_name+"','"+username+"','"+project_discription+"','"+date+"')")
+  dbconn.query("insert into project_info (project_name,project_maintainer,project_discription,create_date) values ('"+project_name+"','"+username+"','"+project_discription+"','"+date+"')")
+};
+
+exports.insert_new_commit = function(project_name, username, date){
+
+  dbconn.query("insert into commits (project_id,create_date,author) values ((select project_id from project_info where project_name='" + project_name + "'), '" + date + "', '" + username + "')");
 };

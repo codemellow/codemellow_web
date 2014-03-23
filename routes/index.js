@@ -36,6 +36,7 @@ exports.market_index = function(req, res){
 	res.end(data)
   })
 };
+
 exports.dev_index = function(req, res){
   fs.readFile(path.resolve(__dirname,'..','views')+'/dev_main.html', function(error, data){
   	if(error)
@@ -50,3 +51,7 @@ exports.elastic_code_search = function(req, res){
 exports.make_project = function(req, res){
   project.make_project(req,res);
 };
+
+exports.show_project = function(req, res){
+  project.show_project(req, res);
+}

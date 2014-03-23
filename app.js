@@ -34,12 +34,12 @@ app.get('/robots.txt', routes.robots_txt);
 app.get('/market', routes.market_index);
 app.get('/dev', routes.dev_index);
 app.get('/search/code', routes.elastic_code_search);
+app.get('/project/:project_name', routes.show_project);
 app.post('/project', routes.make_project);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-
 
 repos_manage.repos_init(repos);
 
