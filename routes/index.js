@@ -17,9 +17,12 @@ exports.error_404 = function(req,res){
 
 exports.robots_txt = function(req, res){
   fs.readFile(path.resolve(__dirname,'..','views')+'/robots.txt', function(error, data){
-	if(error)
+	if(error){
 		console.log(error);
-	res.writeHead(200, {'Content-Type':'text/plain'});
+		res.writeHead(404);
+	}else{
+		res.writeHead(200, {'Content-Type':'text/plain'});
+	}
 	res.end(data);
   });
 };
