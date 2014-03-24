@@ -233,15 +233,16 @@ var SANDBOX_URL = 'www.sandbox.paypal.com';
 var REGULAR_URL = 'www.paypal.com';
 var verify_paypal_ipn = function(req, callback){
   
-  var ipn_raw_data=req.rawBody;
 
+  //important info!!!!!!!!!!!!!!!!!1
+  var ipn_raw_data=req.rawBody;
   var verify_data='cmd=_notify-validate&'
-  verify_data+=ipn_raw_data;
+      verify_data+=ipn_raw_data;
   
 
 
   var verify_paypal_ipn_https_option={
-     host: (req.body.test_ipn) ? SANDBOX_URL : REGULAR_URL,
+    host: (req.body.test_ipn) ? SANDBOX_URL : REGULAR_URL,
     method: 'POST',
     path: '/cgi-bin/webscr',
     headers: {'Content-Length': verify_data.length}
@@ -258,7 +259,15 @@ var verify_paypal_ipn = function(req, callback){
       
       console.log('is_verified---------------------------------------------')
       console.log(is_verified)
-      if(callback)callback(is_verified);
+      if(callback){
+        if(is_verified=='VERIFIED'){
+          callback(ipn_raw_data);
+        }else{
+          callback(false);
+        }
+      }else{
+        console.error('callback after verify is needed!!!!!!!!!!!')
+      }
 
     
     })
