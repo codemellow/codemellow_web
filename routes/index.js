@@ -10,6 +10,20 @@ var project=require('../modules/project/project');
 var elastic_search_handler=require('../modules/elastic_search_handler/elastic_search_handler');
 
 
+exports.error_404 = function(req,res){
+  res.writeHead(404);
+  res.end();
+};
+
+exports.robots_txt = function(req, res){
+  fs.readFile(path.resolve(__dirname,'..','views')+'/robots.txt', function(error, data){
+	if(error)
+		console.log(error);
+	res.writeHead(200, {'Content-Type':'text/plain'});
+	res.end(data);
+  });
+};
+
 
 exports.market_index = function(req, res){
   fs.readFile(path.resolve(__dirname,'..','views')+'/market_main.html', function(error, data){
