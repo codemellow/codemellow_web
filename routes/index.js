@@ -9,6 +9,8 @@ var project=require('../modules/project/project');
 //var mysql_handler=require('../mysql_handler/mysql_handler');
 var elastic_search_handler=require('../modules/elastic_search_handler/elastic_search_handler');
 
+var payment=require("../modules/payment/pay_module");
+
 
 exports.error_404 = function(req,res){
   res.writeHead(404);
@@ -55,3 +57,15 @@ exports.make_project = function(req, res){
 exports.show_project = function(req, res){
   project.show_project(req, res);
 }
+
+
+
+//payment start
+exports.pay_start = function(req, res){
+  payment.pay_start(req, res);
+}
+
+exports.ipn = function(req, res){
+  payment.ipn(req, res);
+}
+//payment end

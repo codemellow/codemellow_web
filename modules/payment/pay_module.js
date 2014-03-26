@@ -4,6 +4,17 @@ var https = require("https");
 
 
 
+var from_nvp_to_json=function(nvp_str){
+  var nvp_arr=nvp_str.split("&");
+  var data={};
+  for(var i=0;i<nvp_arr.length;i++){
+    data[ decodeURIComponent(nvp_arr[i].split("=")[0]) ]=decodeURIComponent(nvp_arr[i].split("=")[1])
+  }
+  return data;  
+}
+
+
+
 ////////////////////////////////////////////////////////////////////////
 //masspay nvp version
 ////////////////////////////////////////////////////////////////////////
@@ -27,7 +38,7 @@ basic_nvp+="&CURRENCYCODE=USD"
 
 
 
-exports.call_masspay_api = function(pay_info_arr, callback){
+var call_masspay_api = function(pay_info_arr, callback){
     var nvp=basic_nvp;
     
     for(var i=0;i<pay_info_arr.length;i++){
@@ -61,15 +72,15 @@ exports.call_masspay_api = function(pay_info_arr, callback){
 }
 
 //example
-/*
 
+/*
 var pay_info_input=[];
 pay_info_input[0]={
     email : 'guest1@nate.com'
     ,amt : '1.2'
 }
 pay_info_input[1]={
-    email : 'guest2@nate.com'
+    email : 'simdj58@gmail.com'
     ,amt : '2.1'
 }
 
@@ -79,8 +90,8 @@ call_masspay_api(pay_info_input, function(data){
 });
 
 
-
 */
+
 
 
 
@@ -143,58 +154,30 @@ var call_parallel_pay_api = function(pay_info, callback){
 
 
   req.on('error', function(e){
+    callback(false);
     console.error(e);
   });
 
 }
 
 
-/*
-
-//example about how to use
-var pay_data={
-  "actionType":"PAY",
-  "currencyCode":"USD",
-  "receiverList":{
-    "receiver":[
-      {
-        "amount":"10.00",
-        "email":"user1@naver.com"
-      }
-    ]
-  },
-  "notify_url":"http://115.145.178.162/ipn",
-  "returnUrl":"http://115.145.178.162/",
-  "cancelUrl":"http://www.example.com/failure.html",
-  "requestEnvelope":{
-    "errorLanguage":"en_US",
-    "detailLevel":"ReturnAll"
-  }
-}
 
 
 
 
-
-call_parallel_pay_api(pay_data, function(res){
-  console.log(res);
-  var payKey= res.payKey;
-  var real_pay_url="https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey="+payKey
-  console.log(real_pay_url)
-})
-*/
-
-
-
-
-
-exports.paypal_ipn = function(req, res){
+exports.ipn = function(req, res){
    res.end();
     
 
-  verify_paypal_ipn(req, function(is_verified){
-    console.log('in callback')
-    console.log(is_verified)
+  verify_paypal_ipn(req, function(verify_data){
+    if(!verify_data){
+      console.log('invalid ipn');
+    }else{
+      var verify_data_obj=from_nvp_to_json(verify_data);
+      console.log(verify_data_obj)
+      console.log('!!!!!!');
+      console.log(verify_data_obj.payment_status);
+    }
   });
 }
 
@@ -256,9 +239,6 @@ var verify_paypal_ipn = function(req, callback){
       is_verified+=d
     });
     verify_res.on('end', function(d){
-      
-      console.log('is_verified---------------------------------------------')
-      console.log(is_verified)
       if(callback){
         if(is_verified=='VERIFIED'){
           callback(ipn_raw_data);
@@ -266,6 +246,7 @@ var verify_paypal_ipn = function(req, callback){
           callback(false);
         }
       }else{
+        callback(false);
         console.error('callback after verify is needed!!!!!!!!!!!')
       }
 
@@ -274,7 +255,7 @@ var verify_paypal_ipn = function(req, callback){
   });
   verify_req.write(verify_data)
   verify_req.end();
-  console.log(req.rawBody)
+  //console.log(req.rawBody)
   req=null;
 
   
@@ -307,7 +288,7 @@ var pay_data={
 
   "reverseAllParallelPaymentsOnError" : true,
 
-  "trackingId" : "tracking_baby",
+  //"trackingId" : "tracking_baby",
 
   "ipnNotificationUrl":"http://115.145.178.162/ipn",
   "returnUrl":"http://www.example.com/success.html",
@@ -317,13 +298,44 @@ var pay_data={
     "detailLevel":"ReturnAll"
   }
 }
+
+
+
+
+
+
+
+
+
+
 exports.pay_start=function(req, res){
 
   call_parallel_pay_api(pay_data, function(pay_api_res){
-    console.log(pay_api_res);
-    var payKey= pay_api_res.payKey;
-    var real_pay_url="https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey="+payKey
-    console.log(real_pay_url);
-    res.render('index', { title: real_pay_url });
-  })
+    console.log(pay_api_res)
+    if(pay_api_res && pay_api_res.responseEnvelope.ack ==='Success'){
+      var payKey= pay_api_res.payKey;
+      var real_pay_url="https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey="+payKey
+      res.write(real_pay_url);
+    }else{
+      res.write(pay_api_res.error[0].message)
+    }
+    
+    res.end();
+  });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

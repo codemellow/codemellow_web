@@ -1,0 +1,133 @@
+{ payer_id: '4Q4JDBBSFXRG4',
+  payment_date: '05:15:57+Mar+26,+2014+PDT',
+  payment_gross_1: '1.20',
+  payment_gross_2: '2.10',
+  payment_status: 'Completed',
+  receiver_email_1: 'guest1@nate.com',
+  receiver_email_2: 'guest2@nate.com',
+  charset: 'windows-1252',
+  mc_currency_1: 'USD',
+  masspay_txn_id_1: '5ES46019B9610162C',
+  mc_currency_2: 'USD',
+  masspay_txn_id_2: '80K7451163717435R',
+  first_name: 'facilitator',
+  unique_id_1: '',
+  notify_version: '3.7',
+  unique_id_2: '',
+  payer_status: 'verified',
+  verify_sign: 'Ap92pBBz-SYIusmTW7pxHX68mAguA4Yy0EMZLF8ddWrSQJI6mUqPBgzT',
+  payer_email: 'rlagoaptl-facilitator@nate.com',
+  payer_business_name: 'facilitator+account\'s+Test+Store',
+  last_name: 'account',
+  status_1: 'Completed',
+  status_2: 'Completed',
+  txn_type: 'masspay',
+  mc_gross_1: '1.20',
+  mc_gross_2: '2.10',
+  payment_fee_1: '0.02',
+  residence_country: 'US',
+  payment_fee_2: '0.04',
+  test_ipn: '1',
+  mc_fee_1: '0.02',
+  mc_fee_2: '0.04',
+  ipn_track_id: '30bd467c98a1d' }
+!!!!!!
+Completed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{ payer_id: '4Q4JDBBSFXRG4',
+  payment_date: '05:13:36+Mar+26,+2014+PDT',
+  payment_gross_1: '1.20',
+  payment_gross_2: '2.10',
+  payment_status: 'Processed',
+  receiver_email_1: 'guest1@nate.com',
+  receiver_email_2: 'guest2@nate.com',
+  charset: 'windows-1252',
+  mc_currency_1: 'USD',
+  masspay_txn_id_1: '5ES46019B9610162C',
+  mc_currency_2: 'USD',
+  masspay_txn_id_2: '80K7451163717435R',
+  first_name: 'facilitator',
+  unique_id_1: '',
+  notify_version: '3.7',
+  unique_id_2: '',
+  payer_status: 'verified',
+  verify_sign: 'A-uS16Ni-drg.vucczGiZX3.owZ-AoOPzJOS8JptfGtL1eYFKK5D70wI',
+  payer_email: 'rlagoaptl-facilitator@nate.com',
+  payer_business_name: 'facilitator+account\'s+Test+Store',
+  last_name: 'account',
+  status_1: 'Completed',
+  status_2: 'Completed',
+  txn_type: 'masspay',
+  mc_gross_1: '1.20',
+  mc_gross_2: '2.10',
+  payment_fee_1: '0.02',
+  residence_country: 'US',
+  payment_fee_2: '0.04',
+  test_ipn: '1',
+  mc_fee_1: '0.02',
+  mc_fee_2: '0.04',
+  ipn_track_id: '30bd467c98a1d' }
+
+
+
+{ payer_id: '4Q4JDBBSFXRG4',
+  payment_date: '05:29:11+Mar+26,+2014+PDT',
+  payment_gross_1: '1.20',
+  payment_gross_2: '2.10',
+  payment_status: 'Processed',
+  receiver_email_1: 'guest1@nate.com',
+  receiver_email_2: 'simdj58@gmail.com',
+  charset: 'windows-1252',
+  mc_currency_1: 'USD',
+  masspay_txn_id_1: '49U4538890775900D',
+  mc_currency_2: 'USD',
+  masspay_txn_id_2: '3064592577311931B',
+  first_name: 'facilitator',
+  unique_id_1: '',
+  notify_version: '3.7',
+  unique_id_2: '',
+  payer_status: 'verified',
+  verify_sign: 'Apbbv-Pt7PbYwQotIsyLIKphk5TjAnHFh2dgdbKHEItqtyZ5nRxvMpvM',
+  payer_email: 'rlagoaptl-facilitator@nate.com',
+  payer_business_name: 'facilitator+account\'s+Test+Store',
+  last_name: 'account',
+  reason_code_2: '14767',
+  status_1: 'Completed',
+  status_2: 'Unclaimed',
+  txn_type: 'masspay',
+  mc_gross_1: '1.20',
+  mc_gross_2: '2.10',
+  payment_fee_1: '0.02',
+  residence_country: 'US',
+  test_ipn: '1',
+  payment_fee_2: '0.04',
+  mc_fee_1: '0.02',
+  mc_fee_2: '0.04',
+  ipn_track_id: 'cab4cd6782046' }
+!!!!!!
+Processed

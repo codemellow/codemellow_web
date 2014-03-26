@@ -19,7 +19,7 @@ app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 
-app.user(function(req, res, next){
+app.use(function(req, res, next){
 	if(req.url==='/ipn'){
 		req.rawBody='';
 		req.on('data', function(chunk){
@@ -46,6 +46,9 @@ app.get('/dev', routes.dev_index);
 app.get('/search/code', routes.elastic_code_search);
 app.get('/project/:project_name', routes.show_project);
 app.post('/project', routes.make_project);
+
+app.get('/pay_start', routes.pay_start);
+app.post('/ipn', routes.ipn);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
