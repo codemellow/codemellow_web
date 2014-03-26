@@ -69,6 +69,7 @@ create table inspector(
 # user DB schema	#
 # @author Park, Hyun Ha	#
 # @created 2014-03-21	#
+# @edited  2014-03-26   #
 #########################
 
 
@@ -85,6 +86,7 @@ CREATE TABLE `cm_users` (
   `user_homepage` varchar(128) NOT NULL,
   `user_recommend_id` int(11) unsigned NOT NULL,
   `user_profile` varchar(255) NOT NULL,
+  `user_img_url` varchar(255) NOT NULL, # default image url : http://
   `user_ip` varchar(255),
   `user_login_ip` varchar(255),
   `user_reg_date` datetime NOT NULL,
@@ -111,13 +113,13 @@ CREATE TABLE `cm_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #DROP TABLE `cm_user_imgs`;
-CREATE TABLE `cm_user_imgs` (
-  `cm_user_img_id` int(11) unsigned AUTO_INCREMENT NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
-  `user_img` BLOB(4294967295),
-  PRIMARY KEY (`cm_user_img_id`),
-  FOREIGN KEY (`user_id`) REFERENCES `cm_users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+#CREATE TABLE `cm_user_imgs` (
+#  `cm_user_img_id` int(11) unsigned AUTO_INCREMENT NOT NULL,
+#  `user_id` int(11) unsigned NOT NULL,
+#  `user_img` BLOB(4294967295),
+#  PRIMARY KEY (`cm_user_img_id`),
+#  FOREIGN KEY (`user_id`) REFERENCES `cm_users` (`user_id`)
+#) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 COMMIT;
 
