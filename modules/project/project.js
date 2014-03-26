@@ -6,6 +6,7 @@ var elasticsearch = require('elasticsearch');
 var pushover = require('pushover');
 var elastic_search_handler = require('../elastic_search_handler/elastic_search_handler');
 var mysql_handler = require('../mysql_handler/mysql_handler');
+var socket_handler = require('../socket_handler/socket_handler');
 
 function dateFormat (date, fstr, utc) {
   utc = utc ? 'getUTC' : 'get';
@@ -66,20 +67,19 @@ exports.show_project = function(req, res){
 }
 
 exports.commit = function(data){
-  var project_name = data.project_name;
-  var commiter = data.commiter;
-  var date = data.date;
 
-  if(project_name==null|| commiter==null){
+  if(data.project_name==null|| data.commiter==null){
     console.log("commit error\n");
-  }else{
-    if(date==null){
-      date = dateFormat(new Date (), "%Y-%m-%d %H:%M:%S", true);
-    }else{
-      date = dateFormat(date,"%Y-%m-%d %H:%M:%S", true);
-      mysql_handler.insert_new_commit(project_name, commiter, date);
-    }
+    return false;
   }
 
+  if(data.date==null){
+    data.date = dateFormat(new Date (), "%Y-%m-%d %H:%M:%S", true);
+  }else{
+    data.date = dateFormat(data.date,"%Y-%m-%d %H:%M:%S", true);
+    mysql_handler.insert_new_commit(data.project_name, data.commiter, data.date);
+  }
+
+  socket_handler.commit(data);
 }
 

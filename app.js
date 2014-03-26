@@ -12,6 +12,8 @@ var app = express();
 var pushover = require('pushover');
 var repos_manage = require('./modules/repository/repository_manage');
 var repos = pushover('/tmp/repos',{autoCreate:false});
+var socket_handler = require('./modules/socket_handler/socket_handler');
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -54,6 +56,9 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
+var io = require('socket.io').listen(app);
+
+socket_handler.init(io);
 repos_manage.repos_init(repos);
 
 http.createServer(function (req, res) {

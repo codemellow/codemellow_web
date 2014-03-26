@@ -56,5 +56,13 @@ exports.insert_new_project = function(project_name, username, project_discriptio
 
 exports.insert_new_commit = function(project_name, username, date){
 
-  dbconn.query("insert into commits (project_id,create_date,author) values ((select project_id from project_info where project_name='" + project_name + "'), '" + date + "', '" + username + "')");
+  dbconn.query("insert into commits (project_id,author,create_date) values ((select project_id from project_info where project_name='" + project_name + "'), '" + username + "', '" + date + "')");
 };
+
+exports.insert_new_contributor = function(project_name, username){
+  dbconn.query("insert into contributors (project_id, contributor_name) values ((select project_id from project_info where project_name='" + project_name + "'), '" + username + "')" );
+}
+
+exports.new_evaluation = function(commit_num, username, point){
+  dbconn.query("insert into evaluation (commit_id, evaluator, evaluation_point) values ('" + commit_num + "', '" + username + "', '" + point + "')" );
+}

@@ -160,7 +160,7 @@ module.exports = {
 
 	push_commit: function(data){
 		this.logging(data);
-		project.commit(data);
+		if(!project.commit(data)) return false;
 	}
 
 }

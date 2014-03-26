@@ -7,63 +7,72 @@ use project;
 
 #drop table project_info;
 create table project_info(
-	project_id int(10) unsigned not null auto_increment primary key,
-	project_name varchar(50) not null unique,
-	project_language varchar(50),
-	project_maintainer varchar(50) not null,
-	project_discription varchar(100) not null,
-	create_date TIMESTAMP not null,
-	last_commit_date TIMESTAMP,
-	last_author varchar(50),
+  project_id int(10) unsigned not null auto_increment primary key,
+  project_name varchar(50) not null unique,
+  project_language varchar(50),
+  project_maintainer varchar(50) not null,
+  project_discription varchar(100) not null,
+  create_date TIMESTAMP not null,
+  last_commit_date TIMESTAMP,
+  last_author varchar(50),
+  contribution_total_point int(10),
   inspector_count int(10) default 0,
-	commit_count int(10) default 1,
-	branch_count int(10) default 0,
-	release_count int(10) default 0,
-	contributor_count int(10) default 1,
-	pull_request_count int(10) default 0,
-	issue_count int(10) default 0,
-	INDEX(project_name(50))
+  commit_count int(10) default 1,
+  branch_count int(10) default 0,
+  release_count int(10) default 0,
+  contributor_count int(10) default 1,
+  pull_request_count int(10) default 0,
+  issue_count int(10) default 0,
+  INDEX(project_name(50))
 );
 
 
 #project_name indexing because one project has many issues
 #drop table issues;
 create table issues(
-	issue_id int(10) unsigned not null auto_increment primary key,
-	project_id int(10) unsigned not null,
-	create_date TIMESTAMP not null,
-	author varchar(50),
-	issue_content varchar(200),
-	INDEX(project_id(4))
+  issue_id int(10) unsigned not null auto_increment primary key,
+  project_id int(10) unsigned not null,
+  create_date TIMESTAMP not null,
+  author varchar(50),
+  issue_content varchar(200),
+  INDEX(project_id(4))
 );
 
 
 #project_name indexing because one project has many commits
 #drop table commits;
 create table commits(
-	commit_id int(10) unsigned not null auto_increment primary key,
-	project_id int(10) unsigned not null,
-	create_date TIMESTAMP not null,
-	author varchar(50),
-	commit_content varchar(200),
-	INDEX(project_id(4))
+  commit_id int(10) unsigned not null auto_increment primary key,
+  project_id int(10) unsigned not null,
+  create_date TIMESTAMP not null,
+  author varchar(50),
+  commit_content varchar(200),
+  evaluation_percent DECIMAL(5,4),  
+  INDEX(project_id(4))
 );
 
 #project_name indexing because one project has many commits
 #drop table contributors;
 create table contributors(
-	contributor_id int(10) unsigned not null auto_increment primary key,
-	project_id int(10) unsigned not null,
-	contributor_name varchar(50),
-	INDEX(project_id(4))
+  contributor_id int(10) unsigned not null auto_increment primary key,
+  project_id int(10) unsigned not null,
+  contributor_name varchar(50) not null,
+  contribute_point int(10) unsigned default 0,
+  INDEX(project_id(4))
 );
 
 create table inspector(
   inspector_id int(10) unsigned not null auto_increment primary key,
   project_id int(10) unsigned not null,
+  inspector_name varchar(50) not null,
   INDEX(project_id(4))
 );
 
+create table evaluation(
+  commit_id int(10) unsigned not null primary key,
+  evaluator varchar(50),
+  evaluation_point int(10) unsigend default 0,
+);
 
 #########################
 # user DB schema	#
@@ -110,6 +119,13 @@ CREATE TABLE `cm_users` (
   `user_10` varchar(255),		# extend Field 10
   PRIMARY KEY (`user_id`),
   KEY (`user_email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `cm_user_pay` (
+  `cm_user_pay_id` int(11) unsigned AUTO_INCREMENT NOT NULL,
+  `user_pay_email` varchar(255),
+  `pay_type` varchar(255),
+  FOREIGN KEY (`user_id`) REFERENCES `cm_users` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #DROP TABLE `cm_user_imgs`;
