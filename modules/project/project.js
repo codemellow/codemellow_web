@@ -77,9 +77,10 @@ exports.commit = function(data){
     data.date = dateFormat(new Date (), "%Y-%m-%d %H:%M:%S", true);
   }else{
     data.date = dateFormat(data.date,"%Y-%m-%d %H:%M:%S", true);
-    mysql_handler.insert_new_commit(data.project_name, data.commiter, data.date);
   }
 
+
+  mysql_handler.insert_new_commit(data.project_name, data.commiter, data.date);
   socket_handler.commit(data);
 }
 
