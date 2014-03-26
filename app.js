@@ -49,7 +49,9 @@ app.get('/search/code', routes.elastic_code_search);
 app.get('/project/:project_name', routes.show_project);
 app.post('/project', routes.make_project);
 
-app.get('/pay_start', routes.pay_start);
+app.get('/pay', routes.pay);
+app.get('/orders_list', routes.orders_list);
+app.post('/pay_start', routes.pay_start);
 app.post('/ipn', routes.ipn);
 
 http.createServer(app).listen(app.get('port'), function(){

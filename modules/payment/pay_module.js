@@ -39,35 +39,35 @@ basic_nvp+="&CURRENCYCODE=USD"
 
 
 var call_masspay_api = function(pay_info_arr, callback){
-    var nvp=basic_nvp;
+  var nvp=basic_nvp;
+  
+  for(var i=0;i<pay_info_arr.length;i++){
+      nvp+="&L_EMAIL"+i+"="+pay_info_arr[i].email;
+      nvp+=  "&L_AMT"+i+"="+pay_info_arr[i].amt;
+  }
+
+  var pay_api_call_res="";
+
+  var https_option=masspay_api_https_option;
+  https_option.headers={"Content-length" : nvp.length}
+  
+  var req=https.request(https_option, function(res){
+      res.on('data', function(d) {
+          pay_api_call_res+=d;
+      });
+      res.on('end', function(d){
+          callback( pay_api_call_res );
+      })
     
-    for(var i=0;i<pay_info_arr.length;i++){
-        nvp+="&L_EMAIL"+i+"="+pay_info_arr[i].email;
-        nvp+=  "&L_AMT"+i+"="+pay_info_arr[i].amt;
-    }
-
-    var pay_api_call_res="";
-
-    var https_option=masspay_api_https_option;
-    https_option.headers={"Content-length" : nvp.length}
-    
-    var req=https.request(https_option, function(res){
-        res.on('data', function(d) {
-            pay_api_call_res+=d;
-        });
-        res.on('end', function(d){
-            callback( pay_api_call_res );
-        })
-      
-    });
-    console.log(nvp);
-    req.write(nvp)
-    req.end();
+  });
+  console.log(nvp);
+  req.write(nvp)
+  req.end();
 
 
-    req.on('error', function(e){
-        console.error(e);
-    });
+  req.on('error', function(e){
+      console.error(e);
+  });
 
 }
 
@@ -96,7 +96,28 @@ call_masspay_api(pay_info_input, function(data){
 
 
 
+var masspay_start=function(ipn_data, callback){
+  //db query by ipn data pay_key, trackingID
 
+
+
+
+
+  var pay_info_input=[];
+  pay_info_input[0]={
+    email : 'guest1@nate.com'
+    ,amt : '1.2'
+  }
+  pay_info_input[1]={
+    email : 'simdj58@gmail.com'
+    ,amt : '2.1'
+  }
+
+  call_masspay_api(pay_info_input, function(data){
+    console.log('masspay result');
+    console.log(data);
+  });
+}
 
 
 
@@ -129,6 +150,34 @@ var parallel_api_https_option={
   , method :  'POST'
   , headers : parallel_api_header
 };
+
+
+var basic_pay_data={
+  "actionType":"PAY",
+  "currencyCode":"USD",
+  "receiverList":{
+    // "receiver":[
+    //   {
+    //     "amount":"1.00",
+    //     "email":"widian@naver.com"
+    //   }
+    // ]
+  },
+
+  "reverseAllParallelPaymentsOnError" : true,
+
+  //"trackingId" : "tracking_baby",
+
+  "ipnNotificationUrl":"http://115.145.178.162/ipn",
+  "returnUrl":"http://115.145.178.162/orders_list",
+  "cancelUrl":"http://www.example.com/failure.html",
+  "requestEnvelope":{
+    "errorLanguage":"en_US",
+    "detailLevel":"ReturnAll"
+  }
+}
+
+
 
 
 
@@ -174,9 +223,43 @@ exports.ipn = function(req, res){
       console.log('invalid ipn');
     }else{
       var verify_data_obj=from_nvp_to_json(verify_data);
-      console.log(verify_data_obj)
-      console.log('!!!!!!');
-      console.log(verify_data_obj.payment_status);
+      
+      console.log('----------VALID IPN result--------');
+
+
+      if(verify_data_obj.transaction_type==='Adaptive+Payment+PAY'){
+        //parallel
+        var status=verify_data_obj.status;
+        if(status==='COMPLETED'){
+          console.log('[+] parallel compelete!!!!!')
+          console.log('[+] masspay start')
+          masspay_start(verify_data_obj, function(){});
+        }else{
+          console.log('[-] parallel not completed....');
+          
+        }
+
+
+      }else if(verify_data_obj.txn_type==='masspay'){
+        //masspay
+        var status=verify_data_obj.payment_status;
+        if(status==='COMPLETED'){
+          console.log('[+] masspay compeleted')
+        }else if(status==='Processed'){
+          console.log('[+] masspay Processed, Paypal gogo?')
+        }else{
+          console.log('[-] masspay something wrong?')
+        }
+        ;
+
+      }else{
+        console.log('[-] no parallel, no masspay, then what?');
+        
+      }
+
+      //save !!!!
+      console.log(verify_data_obj);
+      
     }
   });
 }
@@ -185,7 +268,7 @@ exports.ipn = function(req, res){
 
 /*
 { payment_request_date: 'Mon Mar 24 03:38:59 PDT 2014',
-  return_url: 'http://www.example.com/success.html',
+  return_url: 'http://115.145.178.162/orders_list',
   fees_payer: 'EACHRECEIVER',
   ipn_notification_url: 'http://115.145.178.162/ipn',
   sender_email: 'rlagoaptl-facilitator@nate.com',
@@ -274,34 +357,6 @@ var verify_paypal_ipn = function(req, callback){
 
 
 
-var pay_data={
-  "actionType":"PAY",
-  "currencyCode":"USD",
-  "receiverList":{
-    "receiver":[
-      {
-        "amount":"1.00",
-        "email":"widian@naver.com"
-      }
-    ]
-  },
-
-  "reverseAllParallelPaymentsOnError" : true,
-
-  //"trackingId" : "tracking_baby",
-
-  "ipnNotificationUrl":"http://115.145.178.162/ipn",
-  "returnUrl":"http://www.example.com/success.html",
-  "cancelUrl":"http://www.example.com/failure.html",
-  "requestEnvelope":{
-    "errorLanguage":"en_US",
-    "detailLevel":"ReturnAll"
-  }
-}
-
-
-
-
 
 
 
@@ -310,18 +365,55 @@ var pay_data={
 
 exports.pay_start=function(req, res){
 
-  call_parallel_pay_api(pay_data, function(pay_api_res){
+  //project_id needed
+  //payer id needed
+  var buyer_id=req.body.buyer_id;
+  var project_id=req.body.project_id;
+  if(!buyer_id || !project_id){
+    res.json(res_data);
+    res.end()
+    return false;
+  }
+
+
+  var req_pay_data=basic_pay_data;
+  req_pay_data.receiverList.receiver=[];
+
+  //select statement from database
+  //after...
+  
+  req_pay_data.receiverList.receiver.push({
+    amount: '1.00',
+    email : 'guest1@nate.com'
+  });
+    
+  //optional.....
+  req_pay_data.trackingId=buyer_id+'/'+project_id;
+
+
+
+
+  call_parallel_pay_api(req_pay_data, function(pay_api_res){
     console.log(pay_api_res)
     if(pay_api_res && pay_api_res.responseEnvelope.ack ==='Success'){
       var payKey= pay_api_res.payKey;
-      var real_pay_url="https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey="+payKey
-      res.write(real_pay_url);
+      var redirect_url="https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey="+payKey
+      var timestamp=pay_api_res.responseEnvelope.timestamp;
+
+      //db_save
+
+
+      res_data=pay_api_res;
+      res_data.redirect_url=redirect_url;
+      
+      res.json(res_data);
     }else{
-      res.write(pay_api_res.error[0].message)
+      res.json(pay_api_res)
     }
     
     res.end();
   });
+ 
 }
 
 

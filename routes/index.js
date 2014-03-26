@@ -68,4 +68,25 @@ exports.pay_start = function(req, res){
 exports.ipn = function(req, res){
   payment.ipn(req, res);
 }
+
+
+exports.pay=function(req, res){
+  fs.readFile(path.resolve(__dirname,'..','views')+'/pay.html', function(error, data){
+    if(error)
+      console.log(error)
+  res.writeHead(200, {'Content-Type':'text/html'});
+  res.end(data)
+  })
+}
+
+
+exports.orders_list=function(req, res){
+  fs.readFile(path.resolve(__dirname,'..','views')+'/orders_list.html', function(error, data){
+    if(error)
+      console.log(error)
+  res.writeHead(200, {'Content-Type':'text/html'});
+  res.end(data)
+  })
+}
+
 //payment end
