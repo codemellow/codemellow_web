@@ -18,6 +18,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
+
+app.user(function(req, res, next){
+	if(req.url==='/ipn'){
+		req.rawBody='';
+		req.on('data', function(chunk){
+			req.rawBody+=chunk;
+		});
+	}
+	next();
+})
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
