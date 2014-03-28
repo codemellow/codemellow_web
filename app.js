@@ -13,6 +13,11 @@ var pushover = require('pushover');
 var repos_manage = require('./modules/repository/repository_manage');
 var repos = pushover('/tmp/repos',{autoCreate:false});
 var socket_handler = require('./modules/socket_handler/socket_handler');
+var settings = require('./settings');
+var passport = require('./passport');
+
+
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -36,11 +41,21 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.session({ secret : settings.data.cookieSecret }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 // development only
 if ('dev' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+
+
+
+
+// ---- ROUTING LIST START ----
 app.get('/', routes.error_404);
 app.get('/robots.txt', routes.robots_txt);
 app.get('/market', routes.market_index);
@@ -54,6 +69,31 @@ app.get('/orders_list', routes.orders_list);
 app.post('/pay_start', routes.pay_start);
 app.post('/ipn', routes.ipn);
 
+//login
+app.post('/login', passport.authenticate('local', {
+		    session: true,
+		    successRedirect: '/',
+		    failureRedirect: '/loginfail'
+		}));
+//logout
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+
+
+//temporary page
+app.get('/loginfail',function(req,res){res.header(200);res.send("failed.");})
+
+// ----  ROUTING LIST END  ----
+
+
+
+
+
+
+// ------ Create Server ------
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
@@ -64,7 +104,6 @@ socket_handler.init(io);
 repos_manage.repos_init(repos);
 
 http.createServer(function (req, res) {
-
-repos.handle(req, res);
-
+  repos.handle(req, res);
 }).listen(7000);
+
