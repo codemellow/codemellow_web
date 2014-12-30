@@ -1,0 +1,394 @@
+
+
+<style type="text/css">
+	#header_deal_wrapper {
+	  /*font-family: 'MyriadPro-Regular'*/
+	}
+	#deal_header_title{
+		font-family: "FuturaStd-Medium";
+		font-size: 42px;
+		margin-top: 40px;
+	}
+	.deal_cnt_card {
+
+	  font-family: "Source Sans Pro";
+	  font-weight: 300;
+	  cursor : pointer; cursor : hand;
+	  background: white;
+	  width : 160pt;
+	  height : 160pt;
+	  color : #e91e63;
+	  font-size: 20pt;
+	  margin-top: 50px;
+	}
+	.deal_cnt_card > .deal_cnt{
+		font-family: "FuturaStd-Medium";
+		font-weight: 600;
+		font-size: 90px;
+		padding-top: 10px;
+	}
+	
+	.deal_cnt_card > .deal_cnt_comment{
+		margin-bottom: -20px;
+		font-size: 24px;
+	}
+
+	.deal_cnt_card:hover {
+	  opacity: 0.5
+	}
+
+	#mydeal_content_in_progress_deal {
+		height: 100%;
+	}
+
+	#mydeal_content_bottom {
+		width: 100%;
+		height: 50%;
+		top: 50%;
+		background-color: white;
+		position: absolute;
+	}
+
+	.pink_btn {
+		background-color: #e91e63;
+		color: white;
+	}
+	.gray_btn {
+		background-color: darkgray;
+		color: white;	
+	}
+	#deal_user_type_switch {
+		width: 126pt !important;
+		margin-top: 7px;
+		margin-left: 1px;
+	}
+	#deal_buyer_btn {
+		float : left;
+		width: 63pt;
+		font-size: 15px;
+	}
+	#deal_seller_btn {
+		float : right;
+		width: 63pt;
+		font-size: 15px;
+	}
+	.deal_user_type_active_btn,  .deal_user_type_active_btn:focus{
+		font-family: "Source Sans Pro";
+		font-weight: 600;
+		color: #e91e63;
+		background-color: white;
+	}
+	.deal_user_type_active_btn:focus{
+	}
+	.deal_user_type_inactive_btn,  .deal_user_type_inactive_btn:focus{
+		font-family: "Source Sans Pro";
+		font-weight: 600;
+		color: white;
+		background-color: #e91e63;
+		border-color: white;
+	}
+	.deal_user_type_inactive_btn:focus{
+	}
+
+
+
+	/*bottom common*/
+	.deal_header_tab_title {
+		color: #e91e63;
+		/* font-family: 'MyriadPro-Bold'; */
+		font-size: 24px;
+		font-weight: 600;
+		padding-left: 15px;
+		margin: 15px 0;
+
+	}
+	
+	.header_deal_search_btn {
+		padding: 0px;
+		background-color: white;
+	}
+
+	.header_deal_search_input {
+		height: 25px;
+	}
+
+	@media screen and (min-width: 0px) and (max-width: 1080px) {
+	 .deal_cnt_card{
+	 	 width : 160pt;
+		 height : 160pt;
+		 font-size: 15pt;
+		 margin-top: 35px;
+	 }
+	}
+
+
+</style>
+
+
+
+<div id="header_deal_wrapper" class="row" style='background-color:#e91e63;color:white'>
+
+	<div class='row'>
+		<div class='col-xs-12' align='center' style='background-color:#e91e63;'>
+			<div id="deal_header_title">MY DEAL</div>
+			<div id='deal_user_type_switch' class="btn-group"> 
+		    	<!-- <button class="btn btn-xs btn-default active ">Buyer</button>
+		    	<button class="btn btn-xs btn-danger ">Seller</button> -->
+
+
+		    	<button id="deal_buyer_btn" class="btn btn-xs deal_user_type_active_btn">Buyer</button>
+		    	<button id="deal_seller_btn" class="btn btn-xs deal_user_type_inactive_btn">Seller</button>
+		    </div>
+		</div>
+			<div class='col-xs-4 no_padding' style='background-color:#e91e63;' align="right">
+				<!-- <a href="#in_progress" role="tab" data-toggle="tab" style="color:#e91e63"> -->
+					<div data-target='in_progress_deal' class='deal_cnt_card   text-center div_align_center img-circle' style='margin-left: auto;    margin-right: 0px;' >
+							<div class='deal_cnt_comment'>In Progress</div>
+							<div id='in_progress_deal_cnt' class='deal_cnt'>
+							0
+							</div>
+					</div>
+				<!-- </a> -->
+			</div>
+
+			<div class='col-xs-4 no_padding' style='background-color:#e91e63;'>
+				<!-- <a href="#completed" role="tab" data-toggle="tab" style="color:#e91e63"> -->
+					<div data-target='completed_deal' class='deal_cnt_card   text-center div_align_center img-circle' style='margin-left: auto;    margin-right: auto;'>
+							<div class='deal_cnt_comment'>Completed</div>
+							<div id='completed_deal_cnt' class='deal_cnt'>
+							0
+							</div>
+					</div>
+				<!-- </a> -->
+			</div>
+
+			<div class='col-xs-4 no_padding' style='background-color:#e91e63;' align="left">
+				<!-- <a href="#license" role="tab" data-toggle="tab" style="color:#e91e63"> -->
+				<div data-target='license' class='deal_cnt_card  text-center div_align_center img-circle' style='margin-left: 0px;    margin-right: auto;' >
+						
+						<div class='deal_cnt_comment'>License</div>
+						<div id='license_cnt' class='deal_cnt'>
+						0
+						</div>
+				</div>
+				<!-- </a> -->
+			</div>
+			<!-- <button id='deal_view_more'>View more</button> -->
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div id='mydeal_content_bottom' class='col-xs-12 hidden' style='background-color:white'>
+		<div id='deal_list_view' class='col-xs-offset-1 col-xs-10  'style='background-color:white;color:black'>
+
+
+	      	<div  id="mydeal_content_in_progress_deal" class='col-xs-12 mydeal_content hidden'>
+	            <% include ./deal/tab_progress %>
+	        </div>
+
+
+
+	        <div  id="mydeal_content_completed_deal" class='col-xs-12 mydeal_content hidden'>
+	            <% include ./deal/tab_complete %>
+	        </div>
+
+	        <div  id="mydeal_content_license" class='col-xs-12 mydeal_content hidden'>
+	        	<% include ./deal/tab_license %>
+	        
+
+	        </div>
+	      </div>
+
+	</div>
+	
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<% include ./deal/modal %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <script type='text/javascript'>
+
+
+
+
+function mydeal_buyer(){
+	if( !global_function.require_login() ){
+		return false;
+	}
+
+	global_user.user_type='Buyer';
+	deal_switch_display('Buyer')
+	refresh_progress_deal_list('Buyer');
+	refresh_complete_deal_list('Buyer');
+
+	
+	
+
+
+}
+
+function mydeal_seller(){
+	if( !global_function.require_login() ){
+		return false;
+	}
+	global_user.user_type='Seller';
+	deal_switch_display('Seller')
+	refresh_progress_deal_list('Seller');
+	refresh_complete_deal_list('Seller');
+
+	
+	
+
+
+}
+
+
+
+
+function set_current_deal_info(selected_deal_id, which_deal_arr){
+	var len = which_deal_arr.length;
+	for(var i=0;i<len;i++){
+		if(which_deal_arr[i].deal_id == selected_deal_id){
+			global_deal.current_deal_info = which_deal_arr[i];
+			break;
+		}
+	}
+
+}
+function get_deal_info_by_deal_id (selected_deal_id,which_deal_arr){
+	var len = which_deal_arr.length;
+	var ret=false;
+	for(var i=0;i<len;i++){
+		if(which_deal_arr[i].deal_id == selected_deal_id){
+			ret= which_deal_arr[i];
+			break;
+		}
+	}
+	return ret;
+}
+
+
+
+function deal_switch_display(which_type){
+	if( $("#deal_user_type_switch").find('.deal_user_type_inactive_btn').text() == which_type ){
+		$("#deal_user_type_switch").find('.btn').toggleClass('deal_user_type_active_btn');  
+		$("#deal_user_type_switch").find('.btn').toggleClass('deal_user_type_inactive_btn');  
+	}
+}
+
+
+
+$('#mydeal').on('click',function(){
+	$(".mydeal_content").addClass("hidden");
+	$('#mydeal_content_bottom').addClass("hidden");
+});
+
+$(".deal_cnt_card").on('click',function(e){
+	var content = $('#mydeal_content_'+this.dataset.target);
+	var isClosed = content.hasClass("hidden");
+
+	$(".mydeal_content").addClass("hidden");
+
+	if(isClosed){
+		content.removeClass("hidden");
+		$('#mydeal_content_bottom').removeClass("hidden");
+		$("#utility_content_wrapper").addClass("height_Strech_Animation")
+		$("#utility_content_wrapper").height("calc(100% - 0px)");
+	}else{
+		$('#mydeal_content_bottom').addClass("hidden");
+		$("#utility_content_wrapper").removeClass("height_Strech_Animation")
+		$("#utility_content_wrapper").height("450px");
+	}
+})
+
+
+
+$("#deal_buyer_btn").on('click', function(){
+	if(   $(this).hasClass('deal_user_type_inactive_btn')  ){
+		mydeal_buyer();
+	}
+});
+
+$("#deal_seller_btn").on('click', function(){
+	if(   $(this).hasClass('deal_user_type_inactive_btn') ){
+		mydeal_seller();
+	}
+});
+
+
+
+
+
+if(global_function.is_login()){
+	
+	var license_cnt_req={};
+	license_cnt_req.buyer_id=global_user.user_id;
+
+	$.get('/simdj/license/cnt', license_cnt_req, function(data){
+		if(data){
+			$("#license_cnt").text(data);
+		}
+	});
+
+	if(global_user.user_type =='Seller'){
+		mydeal_seller();
+	}else{
+		mydeal_buyer();
+	}
+
+
+}
+
+
+
+setTimeout(function(e){
+// $("#mydeal").click();
+// $($(".deal_cnt_card")[0]).click();
+},300)
+
+</script>

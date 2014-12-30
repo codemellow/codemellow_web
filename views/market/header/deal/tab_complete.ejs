@@ -1,0 +1,504 @@
+<div id='header_tab_complete' class='row'>
+	<div class='deal_header_tab_title'>Completed Deal</div>
+	
+
+	<div class='row'>
+		<div class='col-xs-6'>
+			<div class="navbar-form navbar-left" >
+		        <button id="header_tab_complete_search" class="btn header_deal_search_btn"> <span class="glyphicon glyphicon-search"></span></button>
+		        <div class="form-group">
+					<input id='header_tab_complete_search_input' type="text" class="form-control header_deal_search_input" placeholder="">
+		        </div>
+		  	</div>
+		</div>
+		<div class='col-xs-6' style='text-align:right'>
+
+
+		  	
+		  	<button class='btn btn-link pink_color deal_complete_group deal_complete_group_all'>All</button>
+		  	<button class='btn btn-link pink_color deal_complete_group deal_complete_group_complete'>Bought/Sold</button>
+		  	<button class='btn btn-link pink_color deal_complete_group deal_complete_group_cancelled' >Cancelled</button>
+		</div>
+	</div>
+
+	<hr>	
+
+
+	<div class='row'>
+
+		<div id='deal_complete_list' class='col-xs-12 no_margin'>
+			
+
+		</div>
+
+				
+
+
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<style type='text/css'>
+	/*#deal_complete_list_col_1{
+		border-right: 1px solid #ccc;
+	}
+	#deal_complete_list_col_2{
+		border-right: 1px solid #ccc;
+	}*/
+	
+	/*.deal_complete_card {
+		align-items: center;
+		margin-bottom: 10pt;
+	}
+	.deal_complete_card:hover {
+	  opacity: 0.5
+	}
+
+	.deal_complete_maintainer{
+		font-size: 13pt;
+	}
+
+	.deal_complete_project_name {
+		font-size: 20pt;
+		font-family: 'MyriadPro-Bold'
+	}*/
+
+	.deal_complete_status_btn{
+		float: right;
+		width: 100%;
+		font-size: 8pt;
+		border: 0;
+		border-radius: 5pt;
+	}
+
+	.deal_complete_status_btn_wrapper {
+		padding: 0;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	#modal_deal_complete{
+		font-family: "MyriadPro-Light";
+	}
+
+
+
+
+	#modal_deal_complete_maintainer {
+		font-size: 40px;
+	}
+
+	#modal_deal_complete_project {
+		font-size: 50px;
+	}
+
+	#modal_deal_complete_expired_btn{
+		color :white;
+	}
+	#modal_deal_complete_available_btn {
+		color :white;
+	}
+
+	#modal_deal_complete_period_of_use {
+		font-size: 30px;
+	}
+
+	#modal_deal_complete_extend_btn{
+		color :white;
+		background-color:#e91e63;
+
+	}
+
+	.modal_deal_complete_status_active{
+		background-color:#e91e63;
+	}
+	.modal_deal_complete_status_inactive{
+		background-color:darkgray;
+	}
+
+
+	#modal_deal_complete_using_condition{
+		min-height: 100px;
+	}
+
+	#modal_deal_complete_readme{
+		min-height: 150px;
+
+	}
+	.deal_complete_group{
+		padding-right: 0px;
+	}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type='text/javascript'>
+
+
+function html_deal_complete(deal_complete_info){
+	var ret=" <div class='col-xs-12 col-sm-6 col-md-4 repository_list_card deal_complete_card  [deal_complete_group]' [data-deal_complete]  [data-repository_name]> ";
+	ret   +="<div class='col-xs-2 no_padding'><img src='[project_img_url]' class='mypage_project_image'/></div> ";
+	ret   +="<div class='col-xs-10 no_padding'><div class='col-xs-12 no_padding'>[repo_maintainer]</div> <div class='col-xs-8 no_padding'>[repo_project]</div><div class='col-xs-4 deal_complete_status_btn_wrapper'>[status_display]</div>  </div></div>";
+	
+	var project_img_url = deal_complete_info.thumbnail_url ? deal_complete_info.thumbnail_url : '/image/add_your_img.png';
+
+	// var checkbox='<input type="checkbox" class="progress_deal_checkbox" />';
+	var repo_maintainer= '<div class="repository_list_card_maintainer">'+deal_complete_info.repository_name.split('/')[0]+'</div>'
+	var repo_project= 	'<div class="repository_list_card_project_name">'+deal_complete_info.repository_name.split('/')[1]+'</div>'
+	// var status=( new Date() <  ( new Date(deal_complete_info.expiration_date) ) ) ? 'AVAILABLE' :  'EXPIRED'
+	var status_display='<button class="deal_complete_status_btn [btn_type]">'+global_function.capitalize_first_letter(deal_complete_info.deal_status)+'</button>'
+
+	if(deal_complete_info.deal_status=='completed'){
+		status_display=status_display.replace("[btn_type]","pink_btn");
+
+		
+		ret=ret.replace('[deal_complete_group]','deal_complete_completed');
+		
+	}else{
+		status_display=status_display.replace("[btn_type]","gray_btn");
+		ret=ret.replace('[deal_complete_group]','deal_complete_cancelled');
+	}
+
+	var data_deal_complete = "data-deal_complete='"+deal_complete_info.deal_id+"'";
+	var data_repository_name = "data-repository_name='"+deal_complete_info.repository_name+"'"
+
+	return ret.replace('[data-deal_complete]',data_deal_complete).replace('[data-repository_name]',data_repository_name).replace('[project_img_url]',project_img_url).replace('[repo_maintainer]',repo_maintainer).replace('[repo_project]',repo_project).replace('[status_display]', status_display);
+
+
+}
+
+function ajax_get_seller_deal_complete(callback){
+
+	var seller_deal_complete_req={}
+	seller_deal_complete_req.op='';
+	seller_deal_complete_req.buyer_name='';
+	seller_deal_complete_req.seller_name=(global_user.status!=const_user_code.NOTLOGIN) ? global_user.user_name : '' ;
+	//seller_deal_complete_req.status_condition='( status = "NEGOTIATING" OR status = "DENIED" OR status = "ACCEPTED")'
+	seller_deal_complete_req.status_condition='( status = "COMPLETED" OR status = "CANCELLED" )'
+
+	$.post('/ajax/deal/list', seller_deal_complete_req, function(seller_deal_complete_arr){
+		seller_deal_complete_arr.forEach(function(el){
+			switch(el.status){
+				case 'COMPLETED':
+					el.deal_status='completed'
+					break;
+				case 'CANCELLED':
+					el.deal_status='cancelled'
+					break;
+				default:
+					el.deal_status='';
+			}
+			el.user_type='seller'
+		})
+		if(typeof callback =='function') {
+			callback(seller_deal_complete_arr);
+		}
+
+	});
+}
+
+function ajax_get_buyer_deal_complete(callback){
+
+
+
+
+	var buyer_deal_complete_req={}
+	buyer_deal_complete_req.op='';
+	buyer_deal_complete_req.buyer_name= (global_user.status!=const_user_code.NOTLOGIN) ? global_user.user_name : '' ;
+	buyer_deal_complete_req.seller_name='';
+
+	//complete condition
+	buyer_deal_complete_req.status_condition='( status = "COMPLETED" OR status = "CANCELLED" )'
+
+
+	$.post('/ajax/deal/list', buyer_deal_complete_req, function(buyer_deal_complete_arr){
+		buyer_deal_complete_arr.forEach(function(el){
+			switch(el.status){
+				case 'COMPLETED':
+					el.deal_status='completed'
+					break;
+				case 'CANCELLED':
+					el.deal_status='cancelled'
+					break;
+				default:
+					el.deal_status='';
+			}
+			el.user_type='buyer'
+		})
+
+		if(typeof callback =='function') {
+			callback(buyer_deal_complete_arr);
+		}
+		
+
+	});
+	
+}
+
+
+
+function ajax_get_complete_deal(user_type, callback){
+	if(user_type=='Seller'){
+		ajax_get_seller_deal_complete(function(seller_deal_complete_arr){
+			global_deal.deal_complete_arr=seller_deal_complete_arr;
+			global_deal.deal_complete_arr.sort(function(a,b){
+				return b.created_date>a.created_date;
+			});
+			if(typeof callback =='function') {
+				callback();
+			}
+		});
+	}else{
+		ajax_get_buyer_deal_complete(function(buyer_deal_complete_arr){
+			global_deal.deal_complete_arr=buyer_deal_complete_arr;
+			global_deal.deal_complete_arr.sort(function(a,b){
+				return b.created_date>a.created_date;
+			});
+			if(typeof callback =='function') {
+				callback();
+			}
+		});
+	}
+}
+
+function refresh_complete_deal_list(user_type){
+	if(global_function.is_login()){
+		
+		global_deal.deal_complete_arr=[];
+		global_deal.current_complete_deal_info={};
+		$("#deal_complete_list").empty();
+		$(".modal") && $(".modal").modal && $(".modal").modal('hide');
+
+
+
+		if(user_type.toLowerCase() =='seller'){
+			$(".deal_complete_group_complete").text('Sold')
+
+			//2. complete deal cnt
+			var complete_deal_cnt_req={};
+			complete_deal_cnt_req.seller_id=global_user.user_id;
+			complete_deal_cnt_req.status_condition='status="COMPLETED" or status="CANCELLED"';
+			$.get('/simdj/deal/cnt',complete_deal_cnt_req, function(data){
+				$("#completed_deal_cnt").text(data);
+			});
+		}else{
+			$(".deal_complete_group_complete").text('Bought')
+
+			//2. complete deal cnt
+			var complete_deal_cnt_req={};
+			complete_deal_cnt_req.buyer_id=global_user.user_id;
+			complete_deal_cnt_req.status_condition='status="COMPLETED" or status="CANCELLED"';
+			$.get('/simdj/deal/cnt',complete_deal_cnt_req, function(data){
+				$("#completed_deal_cnt").text(data);
+			});
+		}
+
+
+
+			
+		ajax_get_complete_deal(user_type, function(){
+			global_deal.deal_complete_arr.forEach(function(el, index){
+				$("#deal_complete_list").append( html_deal_complete(el)  )	
+			});
+			complete_card_event_listen();
+		});
+	}
+	$(".deal_complete_group").removeClass('semi_bold');
+}
+
+
+
+//refresh_complete_deal_list(global_user.user_type);
+
+
+
+
+// function modal_deal_complete_view_fill(deal_complete_info){
+
+// 	$("#modal_deal_complete_maintainer").text(deal_complete_info.repository_name.split('/')[0])
+// 	$("#modal_deal_complete_project").text(deal_complete_info.repository_name.split('/')[1])
+	
+
+
+// 	var is_expired=( new Date() >  ( new Date(deal_complete_info.expiration_date) ) );
+// 	if(is_expired){
+// 		$("#modal_deal_complete_available_btn").removeClass('modal_deal_complete_status_active')
+// 		$("#modal_deal_complete_expired_btn").addClass('modal_deal_complete_status_active')
+// 	}else{
+// 		$("#modal_deal_complete_available_btn").addClass('modal_deal_complete_status_active')
+// 		$("#modal_deal_complete_expired_btn").removeClass('modal_deal_complete_status_active')
+// 	}
+
+
+// 	var expiration_date=new Date(deal_complete_info.expiration_date);
+// 	$("#modal_deal_complete_expiration_date").text(expiration_date.toISOString().slice(0,10))
+
+
+// 	$("#modal_deal_complete_using_condition").text(deal_complete_info.using_condition);
+
+
+// 	$("#modal_deal_complete_readme").text(deal_complete_info.readme);		
+
+
+// }
+
+
+
+
+function set_current_deal_complete_info(deal_complete_id){
+	// var len=global_deal.deal_complete_arr.length;
+	// for(var i=0;i<len;i++){
+	// 	if(global_deal.deal_complete_arr[i].deal_id==deal_complete_id){
+	// 		global_deal.current_deal_complete_info=global_deal.deal_complete_arr[i];
+	// 		break;
+	// 	}
+	// }
+}
+
+function complete_card_event_listen(){
+
+	// $(".deal_complete_card").click(function(){
+		
+	// 	set_current_deal_complete_info( $(this).data('deal_complete') );
+
+	// 	var selected_deal_complete_info=global_deal.current_deal_complete_info;
+	// 	var selected_repository_name=$(this).data('repository_name');
+
+
+
+
+		
+	// 	$.get('/'+selected_repository_name+'/readme', function(readme){
+
+	// 		global_deal.current_deal_complete_info.readme=readme;
+	// 		console.log(global_deal.current_deal_complete_info);
+
+	// 		modal_deal_complete_view_fill(global_deal.current_deal_complete_info);
+	// 		$("#modal_deal_complete").modal();
+
+	// 	})
+
+	// })
+}
+
+
+
+$(".deal_complete_group").off('click');
+$(".deal_complete_group").on('click', function(e){
+	$(this).siblings().removeClass('semi_bold');
+	$(this).addClass('semi_bold');
+	if($(this).hasClass('deal_complete_group_complete') ){
+
+		$('.deal_complete_completed').css('display','');
+		$('.deal_complete_cancelled').css('display','none');
+
+	}else if($(this).hasClass('deal_complete_group_cancelled')){
+		
+		$('.deal_complete_completed').css('display','none');
+		$('.deal_complete_cancelled').css('display','');
+	}else{
+		
+		$('.deal_complete_card').css('display','');
+	}
+		
+
+
+
+		
+
+});
+
+
+
+
+
+function header_tab_complete_search(){
+	//repository name indexof gogogo
+	var str=$("#header_tab_complete_search_input").val().toLowerCase();
+	var targets=$(".deal_complete_card");
+	var len=targets.length;
+	for(var i=0;i<len;i++){
+		if( $(targets[i]).text().toLowerCase().indexOf(str) > -1){
+			$(targets[i]).css('display','');
+		}else{
+			$(targets[i]).css('display','none');
+		}
+	}
+	$(".deal_complete_group").removeClass('semi_bold')
+}
+
+
+
+$("#header_tab_complete_search").off('click');
+$("#header_tab_complete_search").on('click', header_tab_complete_search);
+$("#header_tab_complete_search_input").on('keyup', function(e){
+	e.keyCode==13 && header_tab_complete_search();
+});
+
+
+</script>
+
+
+
+
+
+
+
+

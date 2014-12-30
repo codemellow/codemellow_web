@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
+  <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+  <title>
+
+    Codemellow
+
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+
+  <!-- commn css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+  <!-- search css -->
+  <link href="/stylesheets/search.css" rel="stylesheet">
+
+  </head>
+  <body class="bs-docs-home" style='padding-top:100px'>
+
+    <!-- fixed header-->
+    <div id="header">
+      <% include ../header %> 
+    </div>
+
+
+    <!-- content -->
+    <div class='container'>
+      <form class="form-horizontal" role="form"  style="color:darkgrey">
+        <div>
+          <article>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left;font-size:24px">Advanced Search</label>
+              <div class="col-sm-8" style="padding-top:7px">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+              <div class="col-sm-1" style="padding-top:7px">
+                <button type="submit" class="btn btn-default">Search</button>
+              </div>
+            </div>
+          </article>
+        </div>
+        <hr class="divider">
+        <article class="advanced_field">
+          <div>
+            <div><h3>Advanced options</h3></div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">From these owners</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">In these repositories</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">Created on the dates</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">Written in this languages</label>
+              <div class="col-sm-9">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Languages <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">English</a></li>
+                    <li><a href="#">Japanese</a></li>
+                    <li><a href="#">Chinese</a></li>
+                    <li><a href="#">Korea</a></li>
+                  </ul>
+                </div> 
+              </div>
+            </div>                                   
+          </div>
+          <hr class="divider">
+          <div>
+            <div><h3>Repositories options</h3></div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">With this many stars</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">With this many imports</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">Of this size</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>                 
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">Pushed to</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div> 
+          </div>
+          <hr class="divider">
+          <div>
+            <div><h3>Codes options</h3></div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">With this extension</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">Of this file size</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">In this path</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>                 
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">Updated before the date</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div> 
+          </div>
+          <hr class="divider">
+          <div>
+            <div><h3>Issues options</h3></div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">In the state</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">With this many comments</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">With the labels</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>     
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">Opened by the author</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">Mentioning the users</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">Assigned to the users</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>   
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">Updated before the date</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>                                           
+          </div>          
+          <hr class="divider">
+          <div>
+            <div><h3>Users options</h3></div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">With this full name</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">From this location</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">With this many followers</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div>                 
+            <div class="form-group">
+              <label class="col-sm-3 control-label" style="text-align:left">With this many repositories</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputPassword" placeholder="Search or type a command">
+              </div>
+            </div> 
+          </div>
+        </article>
+      </form>
+    </div>
+
+    <!-- fixed footer-->
+    <div id="footer">
+      <% include ../footer %> 
+    </div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>-->
+
+    <script src="/library/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+
+</body>
+</html>

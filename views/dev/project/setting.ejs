@@ -1,0 +1,152 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+
+    Codemellow
+
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  
+
+  <!-- common css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+  
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bs-docs-home" style='padding-top:100px'>
+
+    <!-- fixed header-->
+    <div id="header">
+      <% include ../header.ejs %>
+    </div>
+
+    <!-- content -->
+    <div class='container no_padding'>
+      
+
+
+
+
+
+
+
+
+
+	<div id='search_header' class='row'>
+        <div class='col-sm-3 mint_color' style="font-size: 40px;font-weight: 600;">
+          Setting
+        </div>
+        <div class='col-sm-8'>
+          <input id="input_add_contributor" type="text" class="form-control" placeholder='Fill UserName to invite ' autocomplete="off">
+        </div>
+        <div class='col-sm-1'>
+          <button id='btn_add_contributor' type="button" class="btn btn-link">Contributor Add</button>
+        </div>
+
+      </div>
+
+
+    </div>
+      
+      
+
+    <!-- fixed footer-->
+    <div id="footer">
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="/library/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+    <script src="/library/typeahead/bootstrap-typeahead.min.js"></script>
+   	<script type="text/javascript">
+   		var current_repository_name='<%=repository_name%>'
+   		var contributor_add_url='/'+current_repository_name+'/contributor/insert'
+   		var contributor_add_function = function(){
+   			var ic={};
+  			ic.user_name=$("#input_add_contributor").val();
+        if(!ic.user_name){
+          alert('fill user_name')
+          return false;
+        }
+  			$.post(contributor_add_url, ic, function(d){
+  				console.log(d)
+  				if(!d){
+  					alert('add fail');
+  				}else{
+            alert('add success');            
+          }
+  			})
+  			return false;
+   		}
+   		  // $("#btn_add_contributor").keydown(function(e){
+	      //   if(e.keyCode == 13){
+	      //     	contributor_add_function();
+	      //   }
+      	// })
+
+      	$("#btn_add_contributor").click(function(){
+			     contributor_add_function();
+      	})
+
+        
+        // $("#input_add_contributor").keyup(function(e){
+        //   $.get("/ajax/autocomplete_user", {query:$("#input_add_contributor").val()}, function(data){
+        //     for(var i=0;i<data.length;i++){
+        //       console.log(data[i].user_name)
+        //     }
+        //   })
+        // })
+        // $("#input_add_contributor").typeahead({
+        //           onSelect: function(item) {
+        //               console.log(item);
+        //           },
+                   
+        //           ajax: {
+        //             url: '/ajax/autocomplete_user?query='+$("#input_add_contributor").val(),
+        //             timeout: 500,
+        //             displayField: "user_name",
+        //             triggerLength: 1,
+        //             method: "get",
+        //             loadingClass: "loading-circle",
+        //             preDispatch: function (query) {
+        //                 showLoadingMask(true);
+        //                 return {
+        //                     search: query
+        //                 }
+        //             },
+        //             preProcess: function (data) {
+        //               showLoadingMask(false);
+        //               if (data.success === false) {
+        //                   // Hide the list, there was some error
+        //                   return false;
+        //               }
+        //               // We good!
+        //               return data.mylist;
+        //           }
+        //         }
+        // })
+
+   	</script>
+    
+  </body>
+</html>

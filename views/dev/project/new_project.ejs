@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+
+    Codemellow
+
+  </title>
+
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+  <link href="/stylesheets/dev/project/new_project.css" rel="stylesheet">
+  <link href="/stylesheets/common.css" rel="stylesheet">
+  <link href="/stylesheets/syntax.css" rel="stylesheet">
+  <link href="/stylesheets/dev/project/dir_view.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body class="bs-docs-home" style='padding-top:100px'>
+
+    <!-- fixed header-->
+    <div id="header">
+      <% include ../header.ejs %>
+    </div>
+
+    <!-- content -->
+    <div> 
+      <div class="row">
+        <div class="col-md-6 col-sm-8 col-xs-10 col-md-offset-3 col-sm-offset-2 col-xs-offset-1">
+          <br />
+          <br />
+          <br />
+          <div style="font-family:'Source Sans Pro';font-size:42px;text-align:center">NEW PROJECT </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <form id="form_new_project" name="new_project_form" role="form" method="post" enctype="multipart/form-data" action="<%=reposerver_origin%>new_project">
+            <div class="row">
+              <div style="float:left; position:relative">
+                <img id="fileInputForm" src="/image/add_your_img.png" cropwidth="240" cropheight="240" >
+                  <input type="file" name="image_input_button" id="image_input" value="" accept="image/*">
+                  <input type="text" id="image_data_input" style="display:none;" value="" name="image_data"  accept="image/*">
+                </img>
+                <div class="results">
+                  </div>
+              </div>
+              <div style="padding-left:30px;padding-top:5px;width:calc( 100% - 300px );float: left;">
+                <div class="col-sm-12">
+                  <div><label for="new_project_title" class="col-md-4 col-sm-10 control-label">Name</label></div>
+                  <div class="col-sm-10 col-md-8">
+                    <input type="text" class="form-control new_project_input" name="projectInfo[name]" id="new_project_name" placeholder="Name" required>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div>
+                    <label for="new_project_tags" class="col-md-4 col-sm-12 control-label">Tag</label>
+                    <div class="col-sm-12 col-md-8">
+                      <input type="text" class="form-control new_project_input" name="projectInfo[tags]" id="new_project_tags" placeholder="#Tag,#Tag,#Tag,#Tag" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div>
+                    <label for="new_project_category" class="col-sm-4 control-label">Category</label>
+                    <div class="col-sm-8">
+                      <select class="form-control new_project_input" name="projectInfo[category]" id="new_project_category" style="width:100%">
+                        <option>Business &  Enterprise</option>
+                        <option>Communications</option>
+                        <option>Development</option>
+                        <option>Home & Education</option>
+                        <option>Games</option>
+                        <option>Graphics</option>
+                        <option>Science & Engineering</option>
+                        <option>Security & Utioptionties</option>
+                        <option>System Administration</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div>
+                    <label for="new_project_description" class="col-sm-4 control-label">Description</label>
+                    <div class="col-sm-8">
+                      <textarea class="form-control new_project_input" name="projectInfo[description]" id="new_project_description" placeholder="Description" required></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div>
+                    <input id="repository_auto_init" name="projectInfo[auto_init]" tabindex="6" type="checkbox" value="1">
+                    <label class="control-label">Initialize this repository with a README</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />  
+            <div class="form-group">
+            </div>
+            <div class="col-sm-12" style="text-align:center">
+              <p id="create_new_project" >Create</p>
+            </div>
+          </form>
+          <br />
+        </div>
+      </div> 
+    </div>
+
+    <!-- fixed footer-->
+    <div id="footer">
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>-->
+    <script src="/library/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+    <script src="/library/crop/jquery.cropbox.js"></script>
+    <script src="/scripts/dev/project/new_project.js"></script>
+    <script>
+      CreateNewProjectController.setValue('user_name', '<%=name%>');
+      CreateNewProjectController.init()
+    </script>
+  </body>
+</html>

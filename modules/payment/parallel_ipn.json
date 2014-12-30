@@ -21,3 +21,23 @@
   charset: 'windows-1252',
   notify_version: 'UNVERSIONED',
   reverse_all_parallel_payments_on_error: 'true' }
+
+
+
+
+
+
+
+
+//first response
+{
+  "responseEnvelope":
+    {
+      "timestamp":"2014-03-31T06:41:38.569-07:00"
+      ,"ack":"Success"
+      ,"correlationId":"2607f5c8f64b7"
+      ,"build":"10273932"
+    }
+    ,"payKey":"AP-5EP93503C89127903",
+    "paymentExecStatus":"CREATED"
+}

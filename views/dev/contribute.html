@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/library/bootstrap/docs/assets/ico/favicon.ico">
+
+    <title>contribute test page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <script>
+        function contribute_init(){
+          var postdata={};
+          postdata.username=document.getElementById('username').value;
+          postdata.commit_id=document.getElementById('commit_id').value;
+          postdata.seed_point=document.getElementById('seed_point').value;
+          postdata.project_name="hello";
+
+          postdata.event_type="seed_point";
+          $.post('/evaluation', postdata, function(data){
+            console.log(data);
+
+          });          
+        };
+
+      </script>
+      <input type='text' id='username' value='bbu'></input>
+      <input type='text' id='commit_id' value='1'></input>
+      <input type='text' id='seed_point' value=''></input>
+      <button onclick="contribute_init()">set seed</button>
+    </div> 
+
+    <div class="container">
+
+      <script>
+        function contribute_init(){
+          var postdata={};
+          postdata.username=document.getElementById('username').value;
+          postdata.commit_id=document.getElementById('commit_id').value;
+          postdata.commit_point=document.getElementById('commit_point').value;
+          postdata.project_name="hello";
+
+          postdata.event_type="commit_point";
+          $.post('/evaluation', postdata, function(data){
+            console.log(data);
+          });          
+        };
+
+      </script>
+      <input type='text' id='commit_point' value=''></input>
+      <button onclick="contribute_init()">evaluation</button>
+    </div> 
+    <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/library/jquery/jquery-2.1.0.min.js"></script>
+  </body>
+</html>

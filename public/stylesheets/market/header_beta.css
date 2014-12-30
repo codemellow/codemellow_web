@@ -1,0 +1,191 @@
+a:link,a:visited,a:active,a:hover {
+    text-decoration:none;
+    color: white;
+}
+ @font-face {
+  font-family: 'FuturaStd-Medium';
+  font-style: normal;
+  src: url(/fonts/FuturaStd-Medium.eot);
+  src: local('FuturaStd-Medium'), url(/fonts/FuturaStd-Medium.woff) format('woff');
+}
+@font-face {
+  font-family: 'FuturaLT-Book';
+  font-style: normal;
+  src: url(/fonts/FuturaLT-Book.eot);
+  src: local('FuturaLT-Book'), url(/fonts/FuturaLT-Book.woff) format('woff');
+}
+.codemellow_header_btn{
+  font-family: "FuturaStd-Medium";
+  color: #e91e63 !important;
+  font-size: 20pt;
+}
+.nav.navbar-nav{
+  margin: 0 !important;
+}
+.btn-default{
+  color: #ebebeb !important;
+  border-color: #323232 !important;
+  background-color: #323232 !important
+}
+.utility_menu{
+  display: none !important;
+}
+/*#utility_content_wrapper>div{
+  width:100%;
+}*/
+#loading{
+  height:100%;
+  width:100%;
+  position:absolute;
+  z-index:9999;
+  top:0px;left:0px;
+  background-color:rgba(50, 50, 50, 0.9);
+}
+#find_password_modal{
+  height:100%;
+  width:100%;
+  position:absolute;
+  z-index:9998;
+  top:0px;left:0px;
+  background-color:rgba(50, 50, 50, 0.9);
+}
+#find_password_content{
+  height:300px;
+  width:400px;
+  margin: auto;
+  margin-top: 150px;
+}
+#search_input_box{
+  border:0px;
+  font-size: 150pt;
+  width: 80%;
+  text-align: center;
+  border-color: none;
+  box-shadow: none;
+  -webket-box-shadow: none;
+  outline: 0px;
+  font-family: "FuturaStd-Medium";
+}
+#brand{
+  color:#e91e63;
+}
+#header_container{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#utility_container{
+  position: absolute;
+  z-index: 11;
+  padding:0px;
+  padding: 0px;
+  margin: 0px;
+  height: calc(100% - 50px);
+}
+#utility_content_wrapper{
+  width: 200%;
+  height: 450px;
+  background-color: #FFFFFF;
+  padding: 0px;
+  margin: 0px;
+  overflow: auto;
+}
+#utility_content_wrapper>div, #utility_content_wrapper>div>div{
+  height: 100%;
+}
+.pt-page-movetoOrigin{
+  -webkit-animation: movetoOrigin .7s ease both;
+   animation: movetoOrigin .7s ease both;
+}
+@-webkit-keyframes movetoOrigin {
+   from { -webkit-transform: translateY(450px); }
+   to { }
+}
+@keyframes movetoOrigin {
+    from { -webkit-transform: translateY(450px); transform: translateY(450px); }
+    to { }
+}
+.pt-page-pullDown{
+  -webkit-animation: pullDown .7s ease both;
+   animation: pullDown .7s ease both;
+}
+@-webkit-keyframes pullDown {
+   from { }
+   to { -webkit-transform: translateY(450px); }
+}
+@keyframes pullDown {
+    from { }
+    to { -webkit-transform: translateY(450px); transform: translateY(450px); }
+}
+.pt-page-moveFromTop {
+   -webkit-animation: moveFromTop .5s ease both;
+   animation: moveFromTop .5s ease both;
+}
+
+.pt-page-moveToBottom {
+   -webkit-animation: moveToBottom 1.0s ease both;
+   animation: moveToBottom 1.0s ease both;
+}
+@-webkit-keyframes moveFromTop {
+   from { -webkit-transform: translateY(-100%); }
+}
+@keyframes moveFromTop {
+   from { -webkit-transform: translateY(-100%); transform: translateY(-100%); }
+}
+
+@-webkit-keyframes moveToBottom {
+  from { -webkit-transform: translateY(0%); }
+   to { -webkit-transform: translateY(-100%); }
+}
+@keyframes moveToBottom {
+  from { -webkit-transform: translateY(0%); }
+   to { -webkit-transform: translateY(-100%); transform: translateY(-100%); }
+}
+.pt-page-moveFromLeftFade {
+   -webkit-animation: moveFromLeftFade .7s ease both;
+   animation: moveFromLeftFade .7s ease both;
+}
+
+@-webkit-keyframes moveFromLeftFade {
+   from { opacity: 0.3; -webkit-transform: translateX(-100%); }
+}
+@keyframes moveFromLeftFade {
+   from { opacity: 0.3; -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+
+.pt-page-moveFromRightFade {
+   -webkit-animation: moveFromRightFade .7s ease both;
+   animation: moveFromRightFade .7s ease both;
+}
+
+@-webkit-keyframes moveFromRightFade {
+   from{ opacity: 0.3; }
+   to { -webkit-transform: translateX(-100%); }
+}
+@keyframes moveFromRightFade {
+   from{ opacity: 0.3; }
+   to { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+.pt-page-leftfade {
+   -webkit-animation: leftfade .7s ease both;
+   animation: leftfade .7s ease both;
+}
+@-webkit-keyframes leftfade {
+   from { -webkit-transform: translateX(-100%); }
+   to { opacity: 0.1; -webkit-transform: translateX(0%);}
+}
+@keyframes leftfade {
+   from { -webkit-transform: translateX(-100%); transform: translateX(-100%) }
+   to { opacity: 0.1;-webkit-transform: translateX(0%); transform: translateX(0%);}
+}
+.pt-page-rightfade {
+   -webkit-animation: rightfade .7s ease both;
+   animation: rightfade .7s ease both;
+}
+@-webkit-keyframes rightfade {
+   from { }
+   to { opacity: 0.1; -webkit-transform: translateX(-100%);}
+}
+@keyframes rightfade {
+   from { }
+   to { opacity: 0.1; -webkit-transform: translateX(-100%); transform: translateX(-100%);}
+}

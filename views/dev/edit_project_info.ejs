@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+    <title>
+
+      Codemellow
+
+    </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+    <!-- commn css -->
+    <link href="/stylesheets/common.css" rel="stylesheet">
+
+  </head>
+
+  <body class="bs-docs-home" style='padding-top:100px'>
+
+    <!-- Fixed header -->
+    <div id="header">
+      <% include ../header %> 
+    </div>
+
+    <!-- content -->
+    <div> 
+      <div class='container'>
+        <form name="create_project_form" method="post" action="repository_create" class="" role="form" style='float:center;width:350px'>
+          <div class="project_info_form">
+              <input name="username" type="hidden" class="form-control" value=<%=name%> required="" autofocus="" >
+            </div>
+            <div class="project_name">
+              <h3>Project name</h3>
+              <input name="project_name" type="text" class="form-control" placeholder="Project name" required="" autofocus="" >
+            </div>
+            <div class="project_description">
+              <h3>Project Description</h3>
+              <input name="project_description" type="text" class="form-control" placeholder="Project Description" required="" autofocus="" >
+            </div>
+            <div class="project_tags">
+              <h3>Add tags</h3>
+              <input name="project_tags" type="text" class="form-control" placeholder="Tags" required="" autofocus="" >
+            </div>
+            <div class="similar_project">
+              <h3><span>Similar Project</span> <span style="color:darkgray;font-size:10pt"> (options)</span></h3>
+              <input id="similar_box" name="similar_project" type="text" class="form-control" placeholder="Similar Project" autofocus="" >
+            </div>
+            <div class="project_import">
+              <h3><span>Import Project</span> <span style="color:darkgray;font-size:10pt"> (options)</span></h3>
+              <input name="project_import" type="text" class="form-control" placeholder="Import Project" autofocus="" >
+            </div>
+            <div class="project_inspector">
+              <h3><span>Set Inspector</span> <span style="color:darkgray;font-size:10pt"> (options)</span></h3>
+              <input name="project_inspector" type="text" class="form-control" placeholder="Inspector ID" autofocus="" >
+            </div>            
+            <div style="padding-top:15px">
+              <button type='submit' class='btn'>Create Project</button> 
+            </div>       
+          </div>
+        </form>  
+      </div>
+    </div> 
+
+    <!-- fixed footer-->
+    <div id="footer">
+      <% include ../footer %> 
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="/library/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>    
+    <script>
+
+      // autocomlete function
+      $('#similar_box').on('keyup', function(){
+        var postdata = {};
+        postdata.msg = $('#similar_box').val();
+        if(postdata.msg != ""){
+          $.post("/autocomplete_project", postdata, function(data){
+            var array = [];
+            var i;
+            for(i=0;i<data.length;i++){
+              array[i]= data[i].text;
+            }
+            $('#similar_box').autocomplete({
+              source: array
+            })
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

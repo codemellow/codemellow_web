@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+
+    Codemellow
+
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+
+  <!-- common css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+  <!-- syntax css -->
+  <link href="/stylesheets/syntax.css" rel="stylesheet">
+
+  <link href="/stylesheets/dev/project/milestone.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+
+  </head>
+  <body class="bs-docs-home" style='padding-top:100px'>
+
+    <!-- fixed header-->
+    <div id="header">
+      <% include ../header.ejs %>
+    </div>
+
+    <!-- content -->
+    <div> 
+      <% include ./project_header %>
+      <div class='container no_padding'>
+        <div id='project_basic_info' class="row project_body_class" >
+          <% include ./project_body_left %>
+          <div id="project_body_center" class="col-modal-8">
+            <div id="project_content_options_bar" class="row">
+              <div class="col-sm-12">
+                <div class="btn-group">
+                  <button id="branch_controll_btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Branch : master  <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Branch : master  </a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div id="project_content_commits" class="row">
+              <div class="col-sm-12">
+                <div id="project_evaluation_list">
+                </div>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- fixed footer-->
+    <div id="footer">
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="/library/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+    <script src="/library/extension-bootstrap/js/star-rating.min.js"></script>
+    <script src="/scripts/dev/project/milestone.js"></script>
+    <script>
+
+      projectHeaderController.setValue('repository_id', '<%=repository_id%>');
+      projectHeaderController.setValue('repository_name', '<%=repository_name%>');
+      milestoneController.setValue('repository_name', '<%=repository_name%>');
+
+      projectHeaderController.init();
+      milestoneController.init();
+
+    </script>
+  </body>
+</html>

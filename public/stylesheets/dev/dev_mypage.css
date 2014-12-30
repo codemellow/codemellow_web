@@ -1,0 +1,99 @@
+
+  #background_blur{
+    background-image: url('/image/blur-background.jpg');
+    background-size: cover;
+    -webkit-filter: blur(1px); -moz-filter: blur(1px); -o-filter: blur(1px); -ms-filter: blur(1px); filter: blur(1px);
+
+  }
+
+  body{
+    font-family: 'Source Sans Pro';
+    font-weight: 400;
+     background: url('/image/background_image.jpg')  no-repeat center center fixed;
+       -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+  }
+
+
+
+  #my_page{
+      position: relative;
+      z-index:1;
+      margin-top:50px;
+      color:white;
+      /*background-image : url('/image/background_image.jpg');
+      background-size: cover;
+      height: 100%*/
+
+  }
+
+
+
+
+  #left_profile{
+    font-size:15px;
+    margin-top: 30px;
+    margin-left: 5%;
+  }
+  #right_content{
+    margin-right: 5%;
+  }
+
+  .left_profile_unit{
+    margin-bottom: 20px;
+  }
+  #left_profile_user_name{
+    font-size: 30px;
+    font-weight: 600;
+  }
+  .left_profile_num{
+    color: aqua;
+    font-size: 20px;
+
+  }
+
+  .accordion_content{
+    background-color: white;
+    color: black;
+    min-height: 300px;
+    max-height: 300px;
+    overflow: scroll;
+  }
+
+  .accordion_heading{
+    background-color: rgba(255,255,255,0.4);
+    /*background: transparent;*/
+    font-weight: 400;
+    border-bottom: 0;
+    /*border-color: #ddd;*/
+    padding: 10px 15px;
+    /*border-bottom: 1px solid transparent;*/
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+
+  }
+
+  .panel{
+    background: transparent;
+  }
+
+
+  .accordion_label{
+    font-size: 30px;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+
+
+  .accordion_wrapper{
+    max-height: 700px;
+    overflow: scroll;
+  }
+
+
+
+
+
+

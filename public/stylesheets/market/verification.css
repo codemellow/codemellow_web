@@ -1,0 +1,27 @@
+#content{
+	padding-left: 0px;
+	padding-right: 0px;
+	overflow-y: scroll;
+	overflow-x:hidden;
+	background-color:white;
+}
+.verification_page_title{
+	text-align: center;
+	color: #e91e63;
+	margin-top: 10%;
+	font-family: "MyriadPro-Bold";
+	font-size: 4vw;
+}
+.verification_page_subtitle{
+	text-align: center;
+	margin-top: 10%;
+	color: #000;
+	font-family: "MyriadPro-Semibold";
+	font-size: 1vw;
+}
+.verification_page_icon_div{
+    margin-top: 8%;
+ }
+ .verification_page_icon_div>img{
+ 	cursor: pointer; 	
+ }

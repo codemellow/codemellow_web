@@ -1,0 +1,444 @@
+<div id="interest_background" class="row" align="center">
+	<div align='center' class="row"><!-- style="height:50%;" -->
+		<p class="interest_title">INTEREST</p>
+		<p class="interest_subtitle" id="interest_subtitle"></p>
+		<div class="container" style="width:80%; margin-top: 18px;">
+			<div id="interest_slide" class="carousel slide">
+				<div id="interest_carousel" class="carousel-inner">
+				</div>
+			</div>
+		  <a class="carousel-control left" href="#interest_slide" data-slide="prev"><i class="icon-chevron-left"></i></a>
+		  <a class="carousel-control right" href="#interest_slide" data-slide="next"><i class="icon-chevron-right"></i></a>	
+		</div>
+	</div>
+	<!-- <div id='interest_content_bottom' class='col-xs-12' style='background-color:white'>
+		<div id='interest_list_view' class='col-xs-offset-1 col-xs-10 'style='background-color:white;color:black'>
+
+
+	      	
+	    </div>
+
+	</div> -->
+</div>
+	
+<style type="text/css">
+	#interest_content_bottom {
+		width: 100%;
+		height: 50%;
+		top: 50%;
+		background-color: white;
+		position: absolute;
+	}
+	.interest_hover{
+		font-family: "MyriadPro-Light";
+		-webkit-animation-duration: 0.3s;
+	    -webkit-animation-name: fadeIn;
+		animation-duration: 0.3s;
+  		animation-name: fadeIn;
+		position: absolute;
+		top: 0%;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.93);
+		color: #fff;
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		z-index: 10;
+	}
+	@-webkit-keyframes fadeIn{
+		0% { opacity: 0; }
+		20% { opacity: 0; }
+		40% { opacity: 0.3; }
+		60% { opacity: 0.5; }
+		80% { opacity: 0.9; }
+		100% { opacity: 1; }
+	}
+	@keyframes fadeIn {
+		0% { opacity: 0; }
+		20% { opacity: 0; }
+		40% { opacity: 0.3; }
+		60% { opacity: 0.5; }
+		80% { opacity: 0.9; }
+		100% { opacity: 1; }
+	}
+	.interest_none_hover{
+		position: absolute;
+		width: 100%;
+		height:0%;
+		display: none;
+	}
+	#interest_background{
+		background: #e91e63;
+	}
+	.interest_card_wrapper{
+		background: #e91e63;
+		position: relative;
+		border: 0 none;
+		width:200px;
+		height: 300px;
+    	margin: 0px !important;
+    	padding: 0;
+    	border-radius: 5px;
+		-moz-border-radius: 5px;
+		color: white;
+		cursor: pointer;
+    		
+	}
+	.interest_card_img{
+		background: rgba(0,0,0,0.3);
+		position: relative;
+		border: 0 none;
+		position:relative;
+		width:160pt;
+    	margin: 0;
+    	padding: 0;
+    	border-top-left-radius: 5px;
+    	-moz-border-top-left-radius: 5px;
+    	border-top-right-radius: 5px;
+		-moz-border-top-right-radius: 5px;
+
+	}
+	.interest_project_user{
+		font-size: 10pt;
+		text-align: left;
+		width: 50%;
+		display: inline-block;
+		float: left;
+		margin-left: 7px;
+		font-family: 'Source Sans Pro';
+  		font-weight: 400;
+	}
+	.interest_project_name{
+		font-size: 10pt;
+		text-align: center;
+		width: 100%;
+		display: inline-block;
+		font-family: 'Source Sans Pro';
+  		font-weight: 400;
+	}
+	.interest_project_like_div{
+		display: inline-block;
+		width: 40%
+	}
+	.interest_like_count{
+		display: inline-block;
+		width: 30%
+	}
+	.interest_view_detail{
+		font-size: 15pt;
+		width: 100%;
+		left: 0%;
+		position: absolute;
+		top: 40%;
+
+	}
+	.interest_delete_icon{
+		position: absolute;
+		right: 14px;
+		top: 14px;
+		color: white;
+	}
+	.interest_delete_icon:hover{
+		color: #e91e63;
+	}
+	
+	.interest_title{
+		margin-top: 0.5%;
+		color: #fff;
+		font-size: 30pt;
+		font-family: 'Source Sans Pro';
+  		
+	}
+	.interest_subtitle{
+		color: #fff;
+		font-size: 12pt;
+		font-family: 'Source Sans Pro';
+	}
+	.interest_none{
+		color: #fff;
+		margin-top: 5%;
+		font-family: 'Source Sans Pro';
+		font-size: 25pt;
+	}
+	
+	.interest_project_overlay_label{
+		height: 100px;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		position: relative;
+		background: rgba(255,255,255,0.3);
+
+		border-bottom-right-radius: 10px;
+		border-bottom-left-radius: 10px;
+		-moz-border-bottom-right-radius: 10px;
+		-moz-border-bottom-left-radius: 10px;
+	}
+
+	.interest_check_icon{
+		position: absolute;
+		top: 14px;
+		left: 14px;
+		color: white;
+	}
+	.interest_check_icon:hover{
+		color: #e91e63;
+	}
+	.interest_check_none_select{
+		display: hidden;
+	}
+	.interest_check_select{
+		position: absolute;
+		top: 2.5%;
+		padding-left: 7%;
+	}
+	.interest_check_select_icon{
+		color:#e91e63;
+	}
+</style>
+
+<script type="text/javascript">
+	var interest_list = [];
+	var interest_added_list = [];
+	$(document).ready(function(){
+		$('#interest').on('click',function(){
+			if($("#utility_content_interest").hasClass("utility_menu") ){
+				if(global_user.status==const_user_code.LOGIN){
+					$.post("/project/like/list", function(result){
+						console.log('result');
+						console.log(result);
+						if(result.err){
+							alert(const_err_msg[result.err]);
+						}else
+							interest_list = result.data;
+							make_interest_list(interest_list);
+					})
+				}
+
+			}
+		})
+	})
+	var delete_interest_entry = function(repository_id){
+		var new_list = [];
+		interest_list.forEach(function(item){
+			if(item.repository_id!=repository_id){
+				new_list.push(item);
+			}
+		})
+		interest_list = new_list;
+	}
+	var reset_interest_event = function(){
+		global_function.long_name_hover_animation();
+		$('.interest_card_wrapper').hover(function(e){
+			$(this).find(".interest_check_icon").removeClass('hidden')
+			$(this).find(".interest_delete_icon").removeClass('hidden')
+			$(this).css("background-color", "#ffffff")
+			$(this).css("color", "#000000")
+		}, function(e){
+			if(!$(this).find(".interest_check_icon").attr("selected"))
+				$(this).find(".interest_check_icon").addClass('hidden')
+			$(this).find(".interest_delete_icon").addClass('hidden')
+			$(this).css("background-color", "#e91e63")
+			$(this).css("color", "#ffffff")
+		})
+		
+
+		var interest_items = $('.interest_card_wrapper');
+		addEvent(interest_items, 'click', function (event) {
+		  if(localStorage.getItem(const_localStorage_key.recent_count)==null)
+		  localStorage.setItem(const_localStorage_key.recent_count, 0);
+		  var text;
+		  event.preventDefault();
+		  text = 'project_modal';
+		  projectInfo.state = "project_modal";
+		  projectInfo.url = $(this).data('url');
+		  projectInfo.user_name = projectInfo.url.split('/')[2];
+		  projectInfo.project_name = projectInfo.url.split('/')[3];  
+		  projectInfo.repository_name = projectInfo.user_name + '/' + projectInfo.project_name;
+		  get_project_data(projectInfo);
+
+		  history.pushState(projectInfo, text, projectInfo.url);
+		});
+
+		$('.interest_delete_icon').on('click',function(){
+			var repository_id= $(this).data('repositoryid');
+			var post_obj = {repository_id: repository_id};
+			var self = $(this);
+			event.stopPropagation();
+			event.preventDefault();
+			$.post("/project/like/cancel", post_obj, function(res){
+				if(res.result){
+					self.parents().eq(2).remove();
+					delete_interest_entry(repository_id);
+					make_interest_list(interest_list);
+				}else if(res.code == "login"){
+					global_function.login_alert();
+				}
+			})
+			
+		})
+		$('.interest_check_icon').on('click',function(event){
+			var self = $(this);
+			var repository_id = self.data('repositoryid');
+			event.stopPropagation();
+			event.preventDefault();
+			if($(this).attr("selected")){
+				$(this).attr("selected", false)
+				$(this).css("color","#fff")
+				for(var i in interest_added_list){
+					if(interest_added_list[i].repository_id==repository_id){
+						delete interest_added_list[i];
+						break;
+					}
+				}
+			}else{
+				$(this).attr("selected", true)
+				$(this).css("color","#e91e63")
+				for(var i in interest_list){
+					if(interest_list[i].repository_id==repository_id){
+						interest_added_list.push({repository_id:repository_id,data:cart_data_list[i]})
+						break;
+					}
+				}
+			}
+		})
+	}
+	var make_interest_list=function(data){
+		var width=$(window).width()
+		if(width<1600&&width>=1280)
+			make_interest_list_not_5(data,4)
+		else if(width<1280&&1000<=width)
+			make_interest_list_not_5(data,3)
+		else if(width<1000&&700<=width)
+			make_interest_list_not_5(data,2)
+		else if(width>=1600)
+			make_interest_list_5(data)
+		else
+			make_interest_list_not_5(data,1)
+	}
+	var innerhtml_interest = "";
+	var interest_make_inner_html = function(data,size){
+		var repository_name= data.repository_name;
+		var index=repository_name.indexOf('/');
+		var repository_id=data.repository_id;
+		var thumbnail_url=data.thumbnail_url;
+		var repository_like_count = data.repository_like_count;
+		thumbnail_url=thumbnail_url&&thumbnail_url!=""? thumbnail_url:"/image/add_your_img.png";
+		size=Math.floor(12/size)
+		innerhtml_interest +=
+			'<div class="col-xs-'+size+'" style="margin:0" align="center" >'+
+				'<div class="thumbnail interest_card_wrapper" align="center" data-toggle="modal" data-target="#project_desc_modal" data-url="/market/'+repository_name+'">'+
+					'<img class="interest_card_img" src="'+thumbnail_url+'">'+
+					'<div class ="interest_project_overlay_label">'+
+							'<div style="display:inline-block; height:30%;width: 100%;">'+
+								'<p class="interest_project_user">'+repository_name.substring(0,index)+'</p>'+
+							'</div>'+
+							'<div style="display:inline-block;float: left;margin-left: 7px;">'+
+								'<p class="interest_project_name">'+repository_name.substring(index+1)+'</p>'+
+							'</div>'+
+					'</div>'+
+
+					'<div class="interest_check_icon glyphicon glyphicon-ok hidden" data-repositoryid="'+repository_id+'"></div>'+
+					'<div class="interest_delete_icon glyphicon glyphicon-remove hidden" data-repositoryid="'+repository_id+'"></div>'+
+				'</div>'+
+			'</div>'
+	}
+	var make_interest_list_5=function(data){
+		innerhtml_interest="";
+			if(data){
+				var data_length=data.length;
+				$("#interest_subtitle").text(data_length+" Items in your interest.")
+				if(data_length>5){
+
+					var count_reproduce=Math.floor(data_length/5);
+					innerhtml_interest+='<div class="item active">'
+									+'<div class="row text-center">'
+										+'<div class="col-xs-1"></div>';
+					for(var i=0; i <5;i++){
+						interest_make_inner_html(data[i],5);
+					}
+					innerhtml_interest+='<div class="col-xs-1"></div></div></div>';
+					for(var j=0;  j<count_reproduce;j++){								
+						var current_left= j==count_reproduce-1? data_length%5:5
+				        
+						innerhtml_interest+='<div class="item">'
+										+'<div class="row text-center">'
+											+'<div class="col-xs-1"></div>';
+
+						for(var i=0; i <current_left;i++){
+							interest_make_inner_html(data[i],5);
+						}											
+
+				        innerhtml_interest+=	 '<div class="col-xs-1"></div>'
+										  +'</div>'
+										+'</div>';
+					}
+
+
+				}else{
+					innerhtml_interest+='<div class="item active">'
+									+'<div class="row text-center">'
+										+'<div class="col-xs-1"></div>';
+					for(var i=0; i <data_length;i++){
+						interest_make_inner_html(data[i],5);
+					}											
+
+			        innerhtml_interest+=	 '<div class="col-xs-1"></div>'
+									  +'</div>'
+									+'</div>';
+
+
+				}
+
+				document.getElementById("interest_carousel").innerHTML=innerhtml_interest;
+				reset_interest_event();
+
+			}else{
+				innerhtml_interest+="<p class='interest_none'>There's no project in interest</p>"
+				document.getElementById("interest_carousel").innerHTML=innerhtml_interest;
+
+			}
+	}
+	var make_interest_list_not_5=function(data,num){
+		innerhtml_interest="";
+			if(data){
+				var data_length=data.length;
+				$("#interest_subtitle").text(data_length+" Items in your interest.")
+				if(data_length>num){
+					var count_reproduce=Math.floor(data_length/num);
+					innerhtml_interest+='<div class="item active">'
+									+'<div class="row text-center">';
+					for(var i=0; i <num;i++){
+						interest_make_inner_html(data[i],num)
+					}
+			        innerhtml_interest+= '</div>'
+					+'</div>';
+					for(var j=0;  j<count_reproduce;j++){								
+						var current_left= j==count_reproduce-1? data_length%num:num
+						innerhtml_interest+='<div class="item">'
+										+'<div class="row text-center">'
+
+						for(var i=0; i <current_left;i++){
+							interest_make_inner_html(data[i],num)
+						}											
+				        innerhtml_interest+='</div>'
+										+'</div>';
+					}
+				}else{
+					innerhtml_interest+='<div class="item active">'
+									+'<div class="row text-center">'
+					for(var i=0; i <data_length;i++){
+						interest_make_inner_html(data[i],num)
+					}											
+			        innerhtml_interest+='</div>'
+								+'</div>';
+				}
+				document.getElementById("interest_carousel").innerHTML=innerhtml_interest;
+				reset_interest_event();
+		}else{
+			innerhtml_interest+="<p class='interest_none'>There's no project in interest</p>"
+			document.getElementById("interest_carousel").innerHTML=innerhtml_interest;
+		}
+	}
+
+</script>

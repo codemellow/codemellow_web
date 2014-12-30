@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en" style='height:100%'>
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>  
+        Codemellow
+    </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+
+
+  <!-- commn css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+
+  <!-- market css -->
+  <link href="/stylesheets/market/market.css" rel="stylesheet">  
+  <!-- main beta css -->
+  <link href="/stylesheets/market/main_beta.css" rel="stylesheet">
+  <style type="text/css">
+  .not_found_page_title{
+    text-align: center;
+    color: #e91e63;
+    margin-top: 13%;
+    font-size: 40pt;
+    font-weight: 700;
+  }
+  .not_found_page_subtitle{
+    text-align: center;
+    margin-top: 0.5%;
+    color: #000;
+    font-size: 15pt;
+  }
+  .not_found_page_icon_div{
+    margin-top: 5%;
+  }
+  #not_found_page_contact{
+    text-align: center;
+    color: #e91e63;
+    margin-top: 5%;
+    font-family: "MyriadPro-Light";
+    font-size: 20pt;
+  }
+
+
+  </style>
+ </head>
+
+  <body class="bs-docs-home" style='padding-top:50px;height:100%;overflow-y: scroll;overflow-x:hidden'>    
+    <div id="sidebar"> 
+      <!-- % include ./market/left_side_menu %> -->
+    </div>
+    <div> 
+      <!-- % include ./market/right_side_menu %> -->
+    </div>
+    <div id="header">
+      <!-- % include ./market/header %>  -->
+    </div>
+      <p  id="not_found_page_title" class="not_found_page_title"></p>
+      <p  id="not_found_page_subtitle" class="not_found_page_subtitle"></p>
+      <div align="center" class="not_found_page_icon_div">
+       <img id="not_found_page_icon" src="/image/icons/404_icon.png">
+      </div>
+      <div id="footer" class="hidden">
+        <!-- % include ./market/footer %>  -->
+      </div>
+    </div>
+    
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/library/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/library/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/scripts/market/market_common.js"></script>
+    <script src="/scripts/market/main_beta.js"></script>
+    <script type="text/javascript">
+      $('#not_found_page_title').text(const_err_msg.NOTFOUND_404_ERR_MSG)
+      $('#not_found_page_subtitle').text(const_err_msg.CONTACT_PERSIST_ERR_MSG)
+    </script>
+
+  </body>
+
+</html>

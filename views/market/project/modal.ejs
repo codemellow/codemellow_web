@@ -1,0 +1,157 @@
+<link href="/library/extension-bootstrap/css/bootstrap-modal-bs3patch.css" rel="stylesheet">
+<link href="/library/extension-bootstrap/css/bootstrap-modal.css" rel="stylesheet">
+<link href="/library/bootstrap-imageupload/css/fileinput.min.css" rel="stylesheet">
+<link href="/library/extension-bootstrap/css/star-rating.min.css" rel="stylesheet">
+<link href="/stylesheets/market/project/modal.css" rel="stylesheet">
+<link href="/stylesheets/dev/project/code_view.css" rel="stylesheet">
+<script>
+  var modal_directView = <%=directView%>;
+  var projectInfo = {
+    reviewInfo : {
+      point : 0
+    }
+  };
+  if(modal_directView) {
+    projectInfo.user_name = "<%=user_name%>";
+    projectInfo.project_name = "<%=project_name%>";
+    projectInfo.repository_name = "<%=repository_name%>";
+  }
+
+</script>
+
+
+<!-- Modal -->
+<div id="project_desc_modal" class="modal container fade" tabindex="-1">
+  <div class="modal-header" style="padding-top:0px">
+
+    <div class="project_desc_modal_header">
+      <div class="row project_desc_modal_title_row">
+        <div class="no_padding col-modal-2 project_desc_modal_title_left">
+          <img id="project_desc_modal_project_picture" src="/image/add_your_img.png" alt="..." style="width:100%">
+        </div>
+        <div class="row col-modal-8 no_padding project_desc_modal_title"> 
+          <div id="project_desc_modal_title_middle" class="col-sm-9">
+            <div class="project_desc_modal_maintainer_name">Maintainer Name</div>
+            <div class="project_desc_modal_project_name">Project Name</div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div style="float:left">
+                  <input id="project_desc_total_rating" class="rating" value="0" data-readonly="true" data-show-clear="false" data-show-caption="false" data-size="xs">
+                </div>
+                <div style="float:left">
+                  <h4 id="project_desc_rating_user_count"></h4>
+                </div>
+              </div>
+            </div>
+            <div class="project_desc_modal_tags">
+              <span>#tag_01&nbsp&nbsp</span>
+              <span>#tag_02&nbsp&nbsp</span>
+              <span>#tag_03</span>
+            </div>
+            <div class="project_desc_modal_category">
+              <span>Category</span>
+            </div>
+          </div>
+          <div id="project_desc_modal_title_right" class="col-sm-3 no_padding">
+            <div id="project_desc_modal_header_icon" class="row">
+              <a id="project_desc_modal_home" class="glyphicon glyphicon-home"></a>
+              <a id="project_desc_modal_like" class="glyphicon glyphicon-heart project_like"></a>
+              <a id="project_desc_modal_close" class="glyphicon glyphicon-remove modal-close" data-dismiss="modal"></a>
+            </div>
+            <div class="project_desc_modal_title_buttons col-sm-12">
+              <a type="button" id="modal_header_change_btn" class="btn project_modal_title_right_btn donate_now_btn" ><span>Donate</span></a>
+              <br/>
+              <a type="button" id="modal_add_to_cart" class="btn project_modal_title_right_btn add_to_cart" ><span>Add to cart</span></a>
+              <br/>
+              <a type="button" class="btn project_modal_title_right_btn deal_now_btn" ><span>Deal now</span></a>
+              <br/>
+            </div>
+          </div>      
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body market_project_desc_modal_body">
+    <div id='project_desc_modal_basic_info' class="row project_desc_modal_body_class" >
+      <div id="project_desc_modal_body_left" class="col-modal-2 no_padding">
+        <ul id="project_desc_modal_body_left_list" class="nav no_padding_left_right" style="list-style:none; text-align:left;">
+          <!-- <li class="project_desc_modal_left_catepory">
+            <a class='project_desc_modal_left_catepory_link active' href="#project_modal_overview" data-toggle="tab"><span>Overview</span></a>
+          </li> -->
+          <li class="project_desc_modal_left_catepory">
+            <a class='project_desc_modal_left_catepory_link active' href="#project_modal_readme" data-toggle="tab"><span>Read Me</span></a>
+          </li> 
+          <li class="project_desc_modal_left_catepory">
+            <a class='project_desc_modal_left_catepory_link' href="#project_modal_review" data-toggle="tab"><span>Reviews</span></a>
+          </li>
+          <li class="project_desc_modal_left_catepory">
+            <a class='project_desc_modal_left_catepory_link' href='#project_modal_donate' data-toggle="tab"><span>Donate</span></a>
+          </li>
+          <li id="project_desc_modal_code" class="project_desc_modal_left_catepory">
+            <a class='project_desc_modal_left_catepory_link' href=''><span>Code</span></a>
+          </li>
+        </ul>
+      </div>
+      <div id="project_desc_modal_body_center" class="col-modal-8">
+        <div class="tab-content">
+          <!-- Overview -->
+          <!-- <div class="tab-pane fade in active" id="project_modal_overview">
+            <% include ./overview %> 
+
+          </div> -->
+
+          <!-- Overview Edit -->
+          <div class="tab-pane fade in active" id="project_modal_overview_edit">
+            <% include ./edit %>
+          </div>
+          <!-- Read Me -->
+          <div class="tab-pane fade in" id="project_modal_readme">
+            <% include ./readme %> 
+          </div>
+
+          <!-- Review -->
+          <div class="tab-pane fade in" id="project_modal_review">
+            <% include ./review %>
+          </div>                      
+
+
+          <!-- Donate -->
+          <div class="tab-pane fade in" id="project_modal_donate">
+            <% include ./donate %>
+          </div>                      
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row project_desc_modal_body_class" id='project_desc_modal_donate_now' style='display:none'>
+      <div class="col-modal-2 project_desc_modal_body_left">
+        Donate
+      </div>
+      <div class='col-modal-8'> 
+        <div class='modal_desc_body_wrapper'>
+          <% include ./donate_now %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row project_desc_modal_body_class" id='project_desc_modal_deal_now' style='display:none'>
+      <div class="col-modal-2 project_desc_modal_body_left" >
+        Negotiation
+      </div>
+      <div class='col-modal-8 ' > 
+        <div class='modal_desc_body_wrapper'>
+          <% include ./deal_now %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="/library/extension-bootstrap/js/bootstrap-modal.js" ></script>
+<script src="/library/extension-bootstrap/js/bootstrap-modalmanager.js" ></script>
+<script src="/library/extension-bootstrap/js/star-rating.min.js"></script>
+<script src="/scripts/market/project/modal.js"></script>

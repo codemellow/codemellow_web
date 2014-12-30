@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+    <title>
+      
+        Codemellow
+      
+    </title>
+
+  <!-- Bootstrap core CSS -->
+    <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+  <!-- commn css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+  <!-- market css -->
+  <link href="/stylesheets/main.css" rel="stylesheet">
+
+  </head>
+  <body class="bs-docs-home" style='padding-top:100px'>
+    
+    <!-- Fixed navbar -->
+    <div id="header">
+      <% include ../header %> 
+    </div>
+
+
+    <!-- content -->
+    <div id='main_container' class='container' style='color:black;'>
+
+      <div class='row'>
+        <div class='col-sm-8'>
+          <article class="panel-main parent main-title-brand">
+            <div class='child'>
+              <div class='field main-title-font'>
+                <strong><p>Codemellow</p></strong>
+                <p>Mellow your code,</p>
+                <p>Better our software.</p> 
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class='col-sm-4 '>
+          <article class='panel-main form-group main-title-brand parent'>
+            <div id='info_container' class='main-title-login child'>
+              <% if (name) {%>
+                <h3><%=name%><h3>
+              <% } else {%>
+                <input type='userid' class='form-control main-input' id='input-userid' placeholder='User name'></input>
+                <input type='password' class='form-control main-input' id='input-userpw' placeholder='Password'></input>
+
+                <div class="row row-margin" style="text-align:center">
+                  <div class="col-sm-6">
+                    <button class="btn btn-block main-button" onclick="(function(){location.href='/register';})()">Register</button>
+                  </div>
+                  <div class="col-sm-6">
+                    <button id="sign_in_bt" class="btn btn-block main-button">Sign in</button>
+                  </div>              
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Remember Me
+                  </label>
+                </div>
+                <div data-toggle="modal" data-target="#find_pw_modal"><a href="#"><span class="glyphicon glyphicon-question-sign main-icon"></span> Find my password</div></a>
+                </div>
+            <% } %>
+          </article>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div id="main-market" class='col-sm-6'>
+          <a href="/market">
+            <article class="panel-main parent main-title-market">   
+              <span class="child main-title-font">
+                Market
+                <p style="font-size:25px">Find Great Source</p>
+              </span>
+            </article>
+          </a>
+        </div>
+        <div id="main-develop"  class='col-sm-6'>
+          <a href="/dev">
+            <article class="panel-main parent main-title-develop">
+              <span class="child main-title-font">
+                Develop
+                <p style="font-size:25px">Develop and Make Better</p>  
+              </span>
+            </article>
+          </a> 
+        </div>
+      </div>   
+
+      <div class='row' style="padding-left:15px;padding-right:15px">
+        <article class="panel-main parent main-title-guideline1">
+          <div class="child" style="text-align:center;">
+            <div class="field main-title-font">
+              We mellow your value
+            </div>
+            <div class="field" style="font-size:25px">
+              Codemellow runs like this
+            </div>
+            <div class='row'>
+              <div class='col-sm-6'>
+                <div class='field'>
+                  text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text 
+                </div>
+              </div>
+              <div class='col-sm-6'>
+                <div class='field'>
+                  text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text 
+                </div>
+              </div>                   
+            </div>
+          </div>
+        </article>
+      </div>   
+
+      <div class='row'>
+        <div class='col-sm-8'>
+          <article class="panel-main parent main-title-guideline2">
+            <div class="child" style="text-align:center;">
+              <div class="field">
+                <div class="main-title-font">Make, develop, and Sell</div>
+                  text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text                  
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class='col-sm-4'>
+          <article class="panel-main parent main-title-guideline2">
+            <div class="child" style="text-align:center;">
+              <div class="field">
+                <div class="main-title-font">Legal Aid</div>
+                  text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text      
+              </div>
+            </div>
+          </article>
+        </div>
+      </div> 
+      <div class='row dummy'>
+      </div>
+
+    </div>
+
+    <!-- fixed header-->
+    <div id="footer">
+      <% include ../footer %> 
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/library/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/scripts/main_action.js"></script>
+  </body>
+
+  <div class="modal fade" id="find_pw_modal" tabindex="-1" role="dialog" aria-labelledby="find_pw_modal_label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="find_pw_modal_label">Find User Password</h4>
+        </div>
+        <div class="modal-body">
+          <input class='form-control' id='find_pw_email' placeholder='User email'></input>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="find_pw_send_bt">Send Email</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</html>

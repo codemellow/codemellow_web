@@ -1,0 +1,191 @@
+<script src='/scripts/chart/chart.min.js' ></script>
+<br/>
+<br/>
+<br/>
+<canvas id="user_sales_chart" height="300"></canvas>
+
+<script type="text/javascript">
+
+  function getRandomColor() {
+      var letters = '0123456789ABCDEF'.split('');
+      var color = '#';
+      for (var i = 0; i < 6; i++ ) {
+          color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+  }
+
+
+
+
+
+
+
+  var ctx = document.getElementById("user_sales_chart").getContext("2d");
+
+
+
+
+
+  // var data = [
+  //     {
+  //         value: 300,
+  //         color:"#F7464A",
+  //         highlight: "#FF5A5E",
+  //         label: "Red"
+  //     },
+  //     {
+  //         value: 50,
+  //         color: "#46BFBD",
+  //         highlight: "#5AD3D1",
+  //         label: "Green"
+  //     },
+  //     {
+  //         value: 100,
+  //         color: "#FDB45C",
+  //         highlight: "#FFC870",
+  //         label: "Yellow"
+  //     }
+  // ]
+  
+  // // For a pie chart
+  // var myPieChart = new Chart(ctx).Pie(data);
+
+
+
+
+
+
+  
+
+
+
+
+  // var data = {
+  //     labels: ["January", "February", "March", "April", "May", "June", "July"],
+  //     datasets: [
+  //         {
+  //             label: "My First dataset",
+  //             fillColor: "rgba(220,220,220,0.2)",
+  //             strokeColor: "rgba(220,220,220,1)",
+  //             pointColor: "rgba(220,220,220,1)",
+  //             pointStrokeColor: "#fff",
+  //             pointHighlightFill: "#fff",
+  //             pointHighlightStroke: "rgba(220,220,220,1)",
+  //             data: [65, 59, 80, 81, 56, 55, 40]
+  //         },
+  //         {
+  //             label: "My Second dataset",
+  //             fillColor: "rgba(151,187,205,0.2)",
+  //             strokeColor: "rgba(151,187,205,1)",
+  //             pointColor: "rgba(151,187,205,1)",
+  //             pointStrokeColor: "#fff",
+  //             pointHighlightFill: "#fff",
+  //             pointHighlightStroke: "rgba(151,187,205,1)",
+  //             data: [28, 48, 40, 19, 86, 27, 90]
+  //         }
+  //     ]
+  // };
+  // var myLineChart = new Chart(ctx).Line(data);
+
+  function pie_chart_rendering(){
+
+    var sales_req={};
+    sales_req.maintainer_id=1
+    $.get('/simdj/sales', sales_req, function(data){
+      var pie_data=[];
+      for(var i=0;i<data.length;i++){
+        pie_data.push({
+          value : data[i].sales_volume,
+          label : data[i].repository_name,
+          highlight : getRandomColor(),
+          color : getRandomColor()
+
+        });
+      }
+
+      var myPieChart = new Chart(ctx).Pie(pie_data);
+    })
+
+  }
+  
+
+  function line_chart_rendering(){
+    var monthly_sales_req={};
+    monthly_sales_req.seller_id=global_user.user_id;
+    //monthly_sales_req.group_by_repo='' // true;
+    //monthly_sales_req.repository_id=1
+
+    $.get('/simdj/monthly_sales', monthly_sales_req, function(data){
+      console.log(data);
+
+      var chart_data={};
+      chart_data.labels=[];
+      price_arr=[];
+
+      // var start_year=parseInt(data[0].year);
+      // var start_month=parseInt(data[0].month);
+
+      // var end_year=parseInt(data[data.length-1].year);
+      // var end_month=parseInt(data[data.length-1].month);
+
+
+      // if(end_year>start_year){
+      //   for(var i=start_month;i<13;i++){
+      //     chart_data.labels.push( start_year+'-'+i  )
+      //   }
+      // }
+
+      // for(var i=1;i<end_year-start_year-1;i++){
+        
+      //   for(var k=1;k<13;k++){
+      //     chart_data.labels.push( (start_year+i)+'-'+k ) ;
+      //   }
+      // }
+
+
+      // if(end_year>start_year){
+      //   for(var i=1;i<=end_month;i++){
+      //     chart_data.labels.push( end_year+'-'+i  )
+      //   }
+      // }
+
+
+      for(var i=0;i<data.length;i++){
+        chart_data.labels.push(data[i].date);
+        price_arr.push(data[i].sales_volume);
+      
+      }
+      
+      
+
+      var dataset={
+        label :'wow',
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data: price_arr
+      };
+
+
+      chart_data.datasets = [dataset];
+      if(price_arr.length>0){
+        var myLineChart = new Chart(ctx).Line(chart_data);
+      }
+      //console.log(chart_data.labels)
+    });
+
+  }
+
+  if(global_function.is_login()){
+    line_chart_rendering();
+  }
+
+
+</script>
+
+
+

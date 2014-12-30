@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+    <title>
+      
+        Codemellow
+      
+    </title>
+
+  <!-- Bootstrap core CSS -->
+    <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+  <!-- commn css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+  <!-- market css -->
+  <link href="/stylesheets/main.css" rel="stylesheet">
+
+  </head>
+  <body class="bs-docs-home" style='padding-top:100px'>
+    
+    <!-- Fixed navbar -->
+    <div id="header">
+      <% include ../header %> 
+    </div>
+
+
+    <!-- content -->
+    <div id='main_container' class='container' style='color:black;'>
+      <div class="row">
+        <form role="form" method="post" action="/join" id="register_form">
+          <h1 class="gray_text_color">Registration</h1>
+          <article class="panel-main padding_10">
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-6">
+                  <br />
+                  <h4 class="gray_text_color">New to Codemellow? Register Below</h4>
+                  
+                  <input id="client_name" name="name" type="text" class="form-control" placeholder="My name is_" required>
+                  <br />
+                  <input id="client_email" name="email" type="email" class="form-control" placeholder="My e-mail address is_" required>
+                  <br />
+                  <input id="client_email_check" type="email" class="form-control" placeholder="Check your mail box_" required>
+                  <br />
+                  <input id="client_phone" name="phone" type="tel" class="form-control" placeholder="My mobile phone number is_" required>
+                  <br />
+                  <br />
+                  <h4 class="gray_text_color">Protect your information with a password</h4>
+                  <input id="client_password" name="pw" type="password" class="form-control" placeholder="Enter a new password_" required>
+                  <br />
+                  <input id="client_password_check" type="password" class="form-control" placeholder="Try it again_" required>
+                  <br />
+                  <br />
+              </div>
+            </div>
+          </article>
+          <h1 class="gray_text_color">Agreement of utilization</h1>
+          <article class="panel-main padding_10">
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-8">
+                <br />
+                <h4 class="gray_text_color">Agreement of utilization (compulsory)</h4>
+                <textarea class="form-control" rows="5" readonly></textarea>
+                <br />
+                <h4 class="gray_text_color">Electronic financial transaction (compulsory)</h4>
+                <textarea class="form-control" rows="5"></textarea>
+                <br />
+                <h4 class="gray_text_color">Collection of personal information (compulsory)</h4>
+                <textarea class="form-control" rows="5"></textarea>
+                <br />
+                <br />
+              </div>
+            </div>
+          </article>
+          <br />
+          <div class="row text-center">
+            <h4 class="gray_text_color">By creating an account, you agree to Codemellow's Contitions of Use and Privacy Notice.</h4>
+            <button id="register" type="button" class="btn btn-default btn-lg">Create account</button>
+          </div>
+          <br />
+          <br />
+          <br />
+          <br />
+        </form>
+      </div>
+    </div>
+
+    <!-- fixed header-->
+    <div id="footer">
+      <% include ../footer %> 
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/library/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/scripts/main/register.js"></script>
+  </body>
+</html>

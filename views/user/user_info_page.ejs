@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
+  <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+  <title>
+
+    Codemellow
+
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+
+  <!-- commn css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+
+  <!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+
+      <!-- Favicons -->
+    <!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico"> -->
+
+
+
+  </head>
+  <body class="bs-docs-home" style='padding-top:100px'>
+
+    <!-- Fixed header -->
+    <div id="header">
+      <% include ../header %> 
+    </div>
+
+    <!-- content -->
+    <div> 
+      <div class='container'>
+
+        <div class='col-sm-3'>
+          <div class='user_info_wrapper'>
+            <div class='user_img'>
+              <iframe width="100%" height="300" src="//www.youtube.com/embed/s0HX-NAQyrg" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div style="text-align:center;">
+              <% if (user_name) { %>
+                <div class='user_id'><h2><%= user_name %></h2></div>
+              <% } %>
+            </div>
+            <hr class="divider">
+            <div class='user_info'>
+              <% if (email) { %>
+                <div class='user_id'><h4><%= email %></h4></div>
+              <% } %>
+                
+              Your email
+              <br>
+              Create a password
+            </div>
+            <hr class="divider">
+          </div>
+        </div>
+
+        <div class='col-sm-9'>
+          <div id="attention_project_body" class="panel-body">
+            <ul id="attention_project_tab" class="nav nav-tabs">
+              <li class="active"><a class='attetion_project_category' href="#deal" data-toggle="tab">Deal</a></li>
+              <li ><a class='attetion_project_category' href="#my-repository" data-toggle="tab">My Repository</a></li>
+              <li ><a class='attetion_project_category' href="#notification" data-toggle="tab">Notification</a></li> 
+            </ul>
+            <div id="attention_project_contents" class="tab-content">
+
+              <!-- Deal -->
+              <div class="tab-pane fade in active" id="deal">
+                <div class='row deal-row' style="padding-top: 30px;">
+                  <div class="col-sm-12">
+                    <div class='now-in-progress'>
+                      <div class="panel panel-default">
+                        <div class="panel-heading" style='background-color:darkgray;'>
+                          <h3 style='margin-top:1px;margin-bottom:1px;color:whitesmoke'>Now in progress</h3>
+                        </div>
+                        <div class="panel-body">
+                          <div class='row'>
+                            <div class='col-sm-9' style='border-right:1px solid'>
+                              <div class="deal-lists">
+                                Deal Lists
+                                <div class='row' style="text-align:center">
+                                  <div class='col-sm-3' style="padding:0px">
+                                    <h4>In Negotiations</h4>
+                                    <h1 class="list-count">0</h1>
+                                  </div>
+                                  <div class='col-sm-5'>
+                                    <h4>Progressing Payment</h4>
+                                    <h1 class="list-count">0</h1>
+                                  </div>
+                                  <div class='col-sm-4'>
+                                    <h4>Complete Payment</h4>
+                                    <h1 class="list-count">0</h1>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='col-sm-3'>
+                              <div class='cancel-lists'>
+                                Cancel Lists
+                                <h4>Canceling Deal</h4>     
+                                <h1 class="list-count" style="text-align:center">0</h1>           
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>         
+                  </div>              
+                </div>
+
+                <div class='row'>
+                  <div class="col-sm-12">
+                    <div class="panel panel-default">
+                      <!-- Default panel contents -->
+                      <div class="panel-heading">Deals</div>
+
+                      <!-- Table -->
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Order Date</th>
+                            <th>Project Name</th>
+                            <th>Price</th>
+                            <th>Developer</th>
+                            <th>State of Order</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Apr 15,2014</td>
+                            <td>Pintos</td>
+                            <td>$ 100,000,000</td>
+                            <td>Simdj</td>
+                            <td>in Negotiating</td>
+                          </tr>
+                          <tr>
+                            <td>Apr 15,2014</td>
+                            <td>Pintos</td>
+                            <td>$ 100,000,000</td>
+                            <td>Simdj</td>
+                            <td>in Negotiating</td>
+                          </tr>
+                          <tr>
+                            <td>Apr 15,2014</td>
+                            <td>Pintos</td>
+                            <td>$ 100,000,000</td>
+                            <td>Simdj</td>
+                            <td>in Negotiating</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>         
+                  </div>              
+                </div>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- My repository -->
+              <div class="tab-pane fade in active" id="my-repository">
+                <div class='row' style="padding-top: 30px;">
+                  <div class="col-sm-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading" style='background-color:darkgray;'>
+                        <h3 style='margin-top:1px;margin-bottom:1px;color:whitesmoke'>Popular Repositories</h3>
+                      </div>
+                      <div class="panel-body">
+                        <div class="special-list-group ellipsis list-group">
+                          <a href="#" class="list-group-item">
+                            <div class='row'>
+                              <div class='col-sm-2'>
+                                <div class='list-item-img'>
+                                  <img src="" width='40px' height='40px'></img></div>
+                                </div>
+                              <div class='col-sm-8 ellipsis'>
+                                <span class='list-item-title'>Elasticsearch/Elasticsearch</span>
+                                <br>
+                                <span class='list-item-description'>Code description</span>
+                              </div>
+                              <div class='col-sm-2' style='padding:0px;margin-top:10px'>
+                                <div class='list-item-like'>
+                                  <span class='glyphicon glyphicon-star'></span>
+                                  <span class='like-count'> 000</span>
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                          <a href="#" class="list-group-item">
+                            <div class='row'>
+                              <div class='col-sm-2'>
+                                <div class='list-item-img'>
+                                  <img src="" width='40px' height='40px'></img></div>
+                                </div>
+                              <div class='col-sm-8 ellipsis'>
+                                <span class='list-item-title'>Elasticsearch/Elasticsearch</span>
+                                <br>
+                                <span class='list-item-description'>Code description</span>
+                              </div>
+                              <div class='col-sm-2' style='padding:0px;margin-top:10px'>
+                                <div class='list-item-like'>
+                                  <span class='glyphicon glyphicon-star'></span>
+                                  <span class='like-count'> 000</span>
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                          <a href="#" class="list-group-item">
+                            <div class='row'>
+                              <div class='col-sm-2'>
+                                <div class='list-item-img'>
+                                  <img src="" width='40px' height='40px'></img></div>
+                                </div>
+                              <div class='col-sm-8 ellipsis'>
+                                <span class='list-item-title'>Elasticsearch/Elasticsearch</span>
+                                <br>
+                                <span class='list-item-description'>Code description</span>
+                              </div>
+                              <div class='col-sm-2' style='padding:0px;margin-top:10px'>
+                                <div class='list-item-like'>
+                                  <span class='glyphicon glyphicon-star'></span>
+                                  <span class='like-count'> 000</span>
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                          <a href="#" class="list-group-item">
+                            <div class='row'>
+                              <div class='col-sm-2'>
+                                <div class='list-item-img'>
+                                  <img src="" width='40px' height='40px'></img></div>
+                                </div>
+                              <div class='col-sm-8 ellipsis'>
+                                <span class='list-item-title'>Elasticsearch/Elasticsearch</span>
+                                <br>
+                                <span class='list-item-description'>Code description</span>
+                              </div>
+                              <div class='col-sm-2' style='padding:0px;margin-top:10px'>
+                                <div class='list-item-like'>
+                                  <span class='glyphicon glyphicon-star'></span>
+                                  <span class='like-count'> 000</span>
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading" style='background-color:darkgray;'>
+                        <h3 style='margin-top:1px;margin-bottom:1px;color:whitesmoke'>Repositories Contributed to</h3>
+                      </div>
+                      <div class="panel-body">
+                        <div class="special-list-group list-group">
+                          <a href="#" class="list-group-item">
+                            <div class='row'>
+                              <div class='col-sm-2'>
+                                <div class='list-item-img'>
+                                  <img src="" width='40px' height='40px'></img></div>
+                                </div>
+                              <div class='col-sm-8 ellipsis'>
+                                <span class='list-item-title'>Elasticsearch/Elasticsearch</span>
+                                <br>
+                                <span class='list-item-description'>Code description</span>
+                              </div>
+                              <div class='col-sm-2' style='padding:0px;margin-top:10px'>
+                                <div class='list-item-like'>
+                                  <span class='glyphicon glyphicon-star'></span>
+                                  <span class='like-count'> 000</span>
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                          <a href="#" class="list-group-item">
+                            <div class='row'>
+                              <div class='col-sm-2'>
+                                <div class='list-item-img'>
+                                  <img src="" width='40px' height='40px'></img></div>
+                                </div>
+                              <div class='col-sm-8 ellipsis'>
+                                <span class='list-item-title'>Elasticsearch/Elasticsearch</span>
+                                <br>
+                                <span class='list-item-description'>Code description</span>
+                              </div>
+                              <div class='col-sm-2' style='padding:0px;margin-top:10px'>
+                                <div class='list-item-like'>
+                                  <span class='glyphicon glyphicon-star'></span>
+                                  <span class='like-count'> 000</span>
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                          <a href="#" class="list-group-item">
+                            <div class='row'>
+                              <div class='col-sm-2'>
+                                <div class='list-item-img'>
+                                  <img src="" width='40px' height='40px'></img></div>
+                                </div>
+                              <div class='col-sm-8 ellipsis'>
+                                <span class='list-item-title'>Elasticsearch/Elasticsearch</span>
+                                <br>
+                                <span class='list-item-description'>Code description</span>
+                              </div>
+                              <div class='col-sm-2' style='padding:0px;margin-top:10px'>
+                                <div class='list-item-like'>
+                                  <span class='glyphicon glyphicon-star'></span>
+                                  <span class='like-count'> 000</span>
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                          <a href="#" class="list-group-item">
+                            <div class='row'>
+                              <div class='col-sm-2'>
+                                <div class='list-item-img'>
+                                  <img src="" width='40px' height='40px'></img></div>
+                                </div>
+                              <div class='col-sm-8 ellipsis'>
+                                <span class='list-item-title'>Elasticsearch/Elasticsearch</span>
+                                <br>
+                                <span class='list-item-description'>Code description</span>
+                              </div>
+                              <div class='col-sm-2' style='padding:0px;margin-top:10px'>
+                                <div class='list-item-like'>
+                                  <span class='glyphicon glyphicon-star'></span>
+                                  <span class='like-count'> 000</span>
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>                
+                  </div>              
+                </div>
+                <hr class="divider">
+                <div class='row'>
+                  <form class="navbar-form navbar-left" role="search">
+                    <div class="input-group" style="float:left;width:200px">
+                      <input type="text" class="form-control" placeholder="Find a Repository..." style="border-right:0px">
+                      <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default" style="border-left:0px"><span class='glyphicon glyphicon-search'> </span></button>
+                      </div>
+                    </div>
+                  </form>
+
+                  <ul class="nav navbar-nav navbar-right" style="margin-right:0px">
+                    <li><a href="#">All</a></li>
+                    <li><a href="#">Source</a></li>
+                    <li><a href="#">Import</a></li>
+                  </ul> 
+                </div>
+                <div class="row">
+                  <article class='repository-search-field'>
+                    <ul id="project_list" class='list-group'>
+                      
+                    </ul> 
+                  </article>
+                </div>
+
+              </div>
+
+              <!-- Notification -->
+              <div class="tab-pane fade in active" id="notification">
+                hi
+              </div>
+
+
+            </div>
+          </div> 
+        </div>    
+            
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="project_desc_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class='row'>
+            <div class="modal-content col-sm-12">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class='modal-title'>
+                  <div class='row'>
+                    <div class='col-sm-1'>
+                      Favicon
+                    </div>
+                    <div class='col-sm-7'>
+                      <div class='project_name'>
+                        <h2>Pintos</h2>
+                      </div>
+                      <div class='project_content'>
+                        <div class='download'>
+                          <span class='glyphicon glyphicon-download'></span> 1234 Downloads
+                        </div>
+                        <div class='star'>
+                          <span class='glyphicon glyphicon-star'></span> 5312 Stars
+                        </div>
+                        <div class='last_update'>
+                          <span class='glyphicon glyphicon-calendar'></span> Last Update: 5 days ago
+                        </div>
+                      </div>
+                    </div>
+                    <div class='col-sm-4'>
+                      <div class='star_img'>
+                        5312
+                      </div>
+                      <div class='download_btn_wrapper'>
+                        <button type='button' class='btn btn-info btn-block'>View detail page</button>
+                        <button type='button'class='btn btn-success btn-block history_toggle' >history</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
+              </div>
+              <div class="modal-body">
+                <div class='row'>
+                  <div class='col-sm-9'>
+                    <label id='project_version_info'>version 2.0</label>
+                    <div class='desc_carousel'>
+                      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                          <div class="item active text-center" >
+                             
+                           <iframe width="640" height="360" src="//www.youtube.com/embed/s0HX-NAQyrg" frameborder="0" allowfullscreen></iframe>
+                          </div>
+                          <div class='item text-center'>
+                            <iframe width="640" height="360" src="//www.youtube.com/embed/Fg6Zps-bzV4" frameborder="0" allowfullscreen></iframe>
+                          </div>
+                          <div class='item text-center'>
+                            <iframe width="640" height="360" src="//www.youtube.com/embed/6Dt-JMsYI7c" frameborder="0" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                          <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class='desc_content'>
+                      <p>
+                        <h2>Description</h2>
+                       Want to know what is the score of the team that you follow? You love sports and you want to get all the updates and information in real time? Download 365scores Notifier to start getting all the scores in your chrome browser!
+                      </p>
+                      <p>
+                        <h2>Featues</h2>
+                        <ul>
+                          <li> Live Scores</li>
+                          <li> News</li>
+                          <li> Notifications</li>
+                        </ul>
+                        </p>
+                    </div>
+                  </div>
+                   <div class='project_version_tree col-sm-3' style='background-color:white;border-radius:12px;'>
+                    <p>Hist</p>
+                    <p>
+                    dummy dummy<br>
+                    dummy dummy<br>
+                    dummy dummy<br>
+                    dummy dummy<br>
+                    dummy dummy<br>
+                    dummy dummy<br>
+                    dummy dummy<br>
+                    dummy dummy<br>
+                    dummy dummy<br>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               <!--  <button type="button" class="btn btn-primary">Save changes</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+
+    </div> 
+
+    <!-- fixed footer-->
+    <div id="footer">
+      <% include ../footer %> 
+    </div> 
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>-->
+    <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+    <script src="/scripts/market/mypage.js"></script>
+  </body>
+</html>

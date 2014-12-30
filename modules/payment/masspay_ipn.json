@@ -131,3 +131,8 @@ Completed
   ipn_track_id: 'cab4cd6782046' }
 !!!!!!
 Processed
+
+
+exec('git log >> log.txt', function(data){
+ exec('parser log.txt') 
+  })

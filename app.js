@@ -4,27 +4,23 @@
 */
 
 var express = require('express');
-var routes = require('./routes');
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
-var app = express();
-var pushover = require('pushover');
-var repos_manage = require('./modules/repository/repository_manage');
-var repos = pushover('/tmp/repos',{autoCreate:false});
-var socket_handler = require('./modules/socket_handler/socket_handler');
-var settings = require('./settings');
-var passport = require('./passport');
-
-
-
+var app =  express();
+var elastic_search = require('./modules/elastic_search_handler/elastic_search');
+var flash = require('connect-flash'); // Flash
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session)
+var settings = require('./settings'); //Simple Setting Infos
 
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile); 
+
 app.use(express.favicon());
-app.use(express.logger('dev'));
 
 app.use(function(req, res, next){
 	if(req.url==='/ipn'){
@@ -34,76 +30,60 @@ app.use(function(req, res, next){
 		});
 	}
 	next();
-})
+});
+
+/* DO NOT MODIFY THE ORDER BELOW */
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.cookieParser());
+app.use(express.bodyParser());
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(session({secret: "1234567890QWERTY",
+ store: new RedisStore(settings.redis_config)}));
+//app.use(express.session({ secret : settings.data.cookieSecret }));
+//app.use(passport.initialize());
+//app.use(passport.session());
+//app.use(express.csrf());
+app.use(flash());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(express.session({ secret : settings.data.cookieSecret }));
-app.use(passport.initialize());
-app.use(passport.session());
+/* DO NOT MODIFY THE ORDER ABOVE */
 
 
 // development only
 if ('dev' == app.get('env')) {
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+}else{
   app.use(express.errorHandler());
+};
+
+var error_404page = function(req, res){
+  req.render_info={
+    repository_id: null,
+    directView: false,
+    reviews: false,
+    user_name: undefined,
+    project_name: undefined,
+    repository_name: undefined,
+    reposerver_origin: settings.data.reposerver_origin,
+    name: false,
+    email: false
+  };  
+  res.render('404page', req.render_info);
 }
 
+/* ---- ROUTING LIST START ---- */
 
+require('./routes/market/router')(app);
+require('./routes/dev/router')(app);
 
-
-
-// ---- ROUTING LIST START ----
-app.get('/', routes.error_404);
-app.get('/robots.txt', routes.robots_txt);
-app.get('/market', routes.market_index);
-app.get('/dev', routes.dev_index);
-app.get('/search/code', routes.elastic_code_search);
-app.get('/project/:project_name', routes.show_project);
-app.post('/project', routes.make_project);
-
-app.get('/pay', routes.pay);
-app.get('/orders_list', routes.orders_list);
-app.post('/pay_start', routes.pay_start);
-app.post('/ipn', routes.ipn);
-
-//login
-app.post('/login', passport.authenticate('local', {
-		    session: true,
-		    successRedirect: '/',
-		    failureRedirect: '/loginfail'
-		}));
-//logout
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
-
-
-
-//temporary page
-app.get('/loginfail',function(req,res){res.header(200);res.send("failed.");})
-
-// ----  ROUTING LIST END  ----
-
-
-
-
-
+app.get('*', error_404page);
+/* ----  ROUTING LIST END  ---- */
 
 // ------ Create Server ------
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-var io = require('socket.io').listen(app);
 
-socket_handler.init(io);
-repos_manage.repos_init(repos);
-
-http.createServer(function (req, res) {
-  repos.handle(req, res);
-}).listen(7000);
-
+elastic_search.elastic_init();

@@ -1,0 +1,156 @@
+.new_project_input {
+	border: 0;
+}
+
+#upload_crop_img{
+	font-size: 10pt;
+	display: inline-block;
+}
+#upload_crop_img:hover{
+	cursor: pointer;
+}
+#create_new_project{
+	width: 30%;
+	display: inline-block;
+	font-size: 30px;
+
+	color: #e91e63;
+	font-weight: 600;
+}
+#create_new_project:hover{
+	cursor: pointer;
+}
+.cropFrame {
+	overflow : hidden;
+	position : relative;
+    display: inline-block;
+}
+
+.cropImage {
+	position : absolute;
+	top      : 0;
+	left     : 0;
+	cursor   : move;
+	max-width: none;
+}
+
+.imageControls {
+	margin-top: -4px;
+	margin-left: -2px;
+	background : #000;
+	width      : 20px;
+	height     : 23px;
+	position   : absolute;
+	z-index    : 100;
+	top 		: 0;
+	left       : 0;
+	opacity    : .55;
+	filter     : alpha(opacity=55);
+	transition : opacity .25s linear;
+	-moz-transition    : opacity .25s linear;
+	-webkit-transition : opacity .25s linear;
+
+    t-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.cropControls {
+	background : #000;
+	width      : 100%;
+	height     : 26px;
+	position   : absolute;
+	z-index    : 1;
+	bottom     : 0;
+	left       : 0;
+	opacity    : 0;
+	filter     : alpha(opacity=0);
+	transition : opacity .25s linear;
+	-moz-transition    : opacity .25s linear;
+	-webkit-transition : opacity .25s linear;
+
+    t-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.cropFrame.hover .cropControls {
+	opacity    : .55;
+	filter     : alpha(opacity=55);
+}
+
+.imageControls span {
+	display   : block;
+	float     : left;
+	color     : #fff;
+	font-size : 11px;
+	margin    : 7px 0 0 5px;
+}
+
+.cropControls span {
+	display   : block;
+	float     : left;
+	color     : #fff;
+	font-size : 11px;
+	margin    : 7px 0 0 5px;
+}
+
+.cropZoomIn,
+.cropZoomOut {
+	display         : block;
+	float           : right;
+	margin          : 4px 4px 0 0;
+	background      : #fff;
+    border: 1px solid #000;
+	color           : #000;
+	border-radius   : 4px;
+	width           : 18px;
+	height          : 18px;
+	line-height     : 18px;
+	font-size       : 18px;
+	text-align      : center;
+	text-decoration : none;
+	cursor          : pointer;
+	/* IE SUCKS */
+	zoom            : expression(this.runtimeStyle.zoom = "1", this.appendChild( document.createElement("b") ).className = "after")\9;
+}
+
+.cropZoomIn::after,
+.cropZoomIn .after {
+	content : "+";
+	display : block;
+}
+
+.cropZoomOut::after,
+.cropZoomOut .after {
+	content        : "-";
+	display        : block;
+}
+
+#image_input {
+	position: absolute;
+	top: 0;
+	opacity: 0;
+	width: 240px;
+	height: 240px;	
+	z-index : 101;
+}
+
+#fileInputForm{
+	position:relative;
+	float:left;
+	cursor:pointer;
+	width:240px;
+	height:240;
+}
+
+#repository_auto_init {
+	margin-left:15px;
+	margin-right:15px;
+}

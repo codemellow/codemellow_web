@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+
+    Codemellow
+
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+
+  <!-- common css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+  <!-- syntax css -->
+  <link href="/stylesheets/syntax.css" rel="stylesheet">
+  <!-- commit view css -->
+  <link href="/stylesheets/dev/project/commit/list_view.css" rel="stylesheet">
+  <link href="/stylesheets/dev/dev_commit_view.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body class="bs-docs-home" style='padding-top:100px'>
+
+    <!-- fixed header-->
+    <div id="header">
+      <% include ../../header.ejs %>
+    </div>
+
+    <!-- content -->
+    <div>
+      <% include ../project_header %>
+        <div class='container no_padding'>
+          <div id='project_basic_info' class="row project_body_class" >
+            <% include ../project_body_left %>
+            <div id="project_body_center" class="col-modal-8">
+<!-- contents start -->
+              <div class='row'>
+                <div class='col-sm-12 project_content'>
+      <% 
+                  if (commit_data) {
+      %>
+                  <div class="panel panel-info horizontal-space">
+                    <div class="panel-heading">
+                      <h4><%= commit_log%></h4>
+                      <h5><span class='glyphicon glyphicon-tree-deciduous'></span> <%= branch%></h5>
+                    </div>
+                  </div>
+                  <div id="commit-info" class="horizontal-space">
+                    <h4><%= commitor %> <small>authored <%= create_date %></small></h4>
+                    <h5 class="right"><small>commit</small> &nbsp <small><%= commit_hash %></small></h5>
+                  </div>
+                  <hr>
+                  <div id="change-info" class="horizontal-space">
+                    <h5>Showing 3 changed files with 15 addtions and 70 deletions.</h5>
+                    <div class="btn-group pull-right" role="group" aria-label="...">
+                      <a href="./?view_mode=unified"><button id="unified_bt" type="button" class="btn btn-default">Unified</button></a>
+                      <button id="split_bt" type="button" class="btn btn-default selected" disabled>&nbspSplit&nbsp</button>
+                    </div> 
+                  </div> 
+      <%
+                  }
+      %>
+      <%
+
+                  if(diff_data) {
+                    var i, data_length = diff_data.length, line_length, data, file_name;
+                    var file_end_count = 0;
+                    var before_end = null, before_file_name = null, before_minus_end = null;
+
+                    for(i=0;i<data_length;i++){
+                      if(!diff_data[i]) continue;
+                      var split_data = diff_data[i].split(' ');
+                      if(split_data[0] == 'diff'){
+                        file_name = split_data[2].substring(2);
+                        if(file_end_count==3){
+      %>
+                          <tr class="diff-line-expand">
+                            <td class="expandable-line-num" colspan="1" data-commit-hash="<%=commit_hash%>" data-start="<%=before_end%>" data-file-name="<%=before_file_name%>" data-minus-start="<%=before_minus_end%>">
+                              <span class="glyphicon glyphicon-asterisk"></span>
+                            </td>
+                            <td class="diff-line-code" colspan="3">
+                              <span class="diff-line-pre"></span>
+                            </td>
+                          </tr>
+
+      <%
+                        }
+                        if(i != 0){
+      %>
+                              </tbody>
+                          </table>
+      <%
+                        }
+                        _j = null;
+                        before_end = null;
+                        before_file_name = null;
+                        before_minus_end = null;
+      %>
+                        <table class="table file-code file-diff" cellspacing="0" cellpadding="0">
+                          <thead>
+                            <tr>
+                              <td><h4 class="file_name"><%= file_name %></h4></td>
+                            </tr>
+                          </thead>
+                          <tbody>
+      <%
+                      }
+      %>
+      <%
+                      if(split_data[0] == '@@'){
+                        var origin_data = diff_data[i];
+                        var split_data = diff_data[i].split(' ');
+                        var _split_data;
+                        _split_data = split_data[1].split(',');
+                        var minus_start = Number(_split_data[0].substring(1));
+                        var minus_num = Number(_split_data[1]);
+                        _split_data = split_data[2].split(',');
+                        var plus_start = Number(_split_data[0].substring(1));
+                        var plus_num = Number(_split_data[1]);
+                        if(isNaN(plus_num)) plus_num = plus_start;
+      %>
+                        <tr class="diff-line-expand">
+      <%
+                        if(plus_start==1){
+      %>
+                          <td class="expandable-line-num" colspan="1">
+                            <span class="glyphicon">...</span>
+                          </td>
+      <%
+                        }else{
+      %>
+                          <td class="expandable-line-num" colspan="1" data-commit-hash="<%=commit_hash%>" data-start="<%=before_end%>" data-end="<%=plus_start-1%>" data-file-name="<%=file_name%>" data-minus-end="<%=(minus_start-1)%>" data-minus-num="<%=minus_num%>" data-plus-num="<%=plus_num%>">
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                          </td>
+      <%
+                        }
+      %>
+                          <td class="diff-line-code" colspan="3">
+                            <span class="diff-line-pre"><%=origin_data%></span>
+                          </td>
+                        </tr>
+                            
+      <% 
+                        var _i = minus_start;
+                        var _j = plus_start;
+                        file_end_count = 0;
+                        while(_i <= (minus_num + (minus_start-1)) || _j <= (plus_num + (plus_start-1))){
+                          var line_check_flag = diff_data[++i].substring(0,1);
+
+                          switch(line_check_flag){
+                            case '+': 
+      %>
+                              <tr class="diff-line-plus">
+                                <td class="diff-line-originnum linkable-line-number">
+                                  <span class="line-num-content"></span>                          
+                                </td>
+                                <td class="diff-line-code">
+                                  <span class="diff-line-pre"><pre></pre></span>
+                                </td>
+                                <td class="diff-line-newnum linkable-line-number">
+                                  <span class="line-num-content"><%=_j%></span>
+                                </td>
+                                <td class="diff-line-code">
+                                  <span class="diff-line-pre"><pre><%=diff_data[i]%></pre></span>
+                                </td>
+                              </tr>
+      <%
+                            _j++;
+                            file_end_count = 0;
+                            break;
+                            case '-': 
+      %>
+                              <tr class="diff-line-minus">
+                                <td class="diff-line-originnum linkable-line-number">
+                                  <span class="line-num-content"><%=_i%></span>                          
+                                </td>
+                                <td class="diff-line-code">
+                                  <span class="diff-line-pre"><pre><%=diff_data[i]%></pre></span>
+                                </td>
+                                <td class="diff-line-newnum linkable-line-number">
+                                  <span class="line-num-content"></span>
+                                </td>
+                                <td class="diff-line-code">
+                                  <span class="diff-line-pre"><pre></pre></span>
+                                </td>
+                              </tr>
+      <%
+                            _i++;
+                            file_end_count = 0;
+                            break;
+                            default:
+      %>
+                              <tr class="diff-line-basic">
+                                <td class="diff-line-originnum linkable-line-number">
+                                  <span class="line-num-content"><%=_i%></span>                          
+                                </td>
+                                <td class="diff-line-code">
+                                  <span class="diff-line-pre"><pre><%=diff_data[i]%></pre></span>
+                                </td>
+                                <td class="diff-line-newnum linkable-line-number">
+                                  <span class="line-num-content"><%=_j%></span>
+                                </td>
+                                <td class="diff-line-code">
+                                  <span class="diff-line-pre"><pre><%=diff_data[i]%></pre></span>
+                                </td>
+                              </tr>
+      <%
+                            _i++;
+                            _j++;
+                            file_end_count++;
+                            break;
+                          }
+                        }
+                      }
+                      before_end = _j;
+                      before_minus_end = _i;
+                      before_file_name = file_name;
+                    }
+                  if(file_end_count==3){
+      %>
+                    <tr class="diff-line-expand">
+                      <td class="expandable-line-num" colspan="1" data-commit-hash="<%=commit_hash%>" data-start="<%=before_end%>" data-file-name="<%=file_name%>" data-minus-start="<%=before_minus_end%>">
+                        <span class="glyphicon glyphicon-asterisk"></span>
+                      </td>
+                      <td class="diff-line-code" colspan="3">
+                        <span class="diff-line-pre"></span>
+                      </td>
+                    </tr>
+      <%
+                  } 
+      %>
+                    </tbody>
+                  </table>
+      <%
+                }
+      %>
+                </div>
+<!-- contents end -->
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- fixed footer-->
+    <div id="footer">
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/library/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+    <script src="/library/extension-bootstrap/js/star-rating.min.js"></script>
+    <script src="/scripts/dev/dev_commit_view.js"></script>
+    <script>
+
+      projectHeaderController.setValue('repository_id', '<%=repository_id%>');
+      projectHeaderController.setValue('repository_name', '<%=repository_name%>');
+      projectHeaderController.setValue('view_mode', '<%=view_mode%>');
+
+      projectHeaderController.init();
+    </script>
+  </body>
+  </html>

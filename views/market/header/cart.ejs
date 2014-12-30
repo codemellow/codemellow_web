@@ -1,0 +1,827 @@
+<div class="row cart_background" align="center">
+	<div align='center' class="row">
+		<p class="shopping_cart_title">SHOPPING CART</p>
+		<p class="shopping_cart_subtitle" id="shopping_cart_subtitle"></p>
+		<div class="container" style="width:80%; margin-top: 18px;">
+			<div id="myCarousel2" class="carousel slide">
+				<div id="cart_carousel" class="carousel-inner">
+				</div>
+			</div>
+		  <a class="carousel-control left" href="#myCarousel2" data-slide="prev"><i class="icon-chevron-left"></i></a>
+		  <a class="carousel-control right" href="#myCarousel2" data-slide="next"><i class="icon-chevron-right"></i></a>	
+		</div>
+	</div>
+	<div class="cart_donate_bottom" style="display:none;">
+		<div class="row "style="height:100%">
+			<div class="col-sm-6" style="height:100%">
+				<p class="cart_donate_all_title">Donate to all projects</p>
+				<p class="cart_donate_list_item_header">You chose: 0 projects</p>
+				<ul class="list-group cart_donate_bottom_list" id="donate_price_list">
+					
+				</ul>
+			</div>
+			<div class="col-sm-6" style="height: 100%;">
+				<p class="cart_donate_paypal">Methods of Payment: Paypal</p>
+				<p class="cart_donate_total" id="cart_donate_total">Total : 0$</p>
+				<p class="cart_donate_checkout" id="cart_donate_checkout">Checkout</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<style type="text/css">
+	.cart_hover{
+		font-family: "MyriadPro-Light";
+		-webkit-animation-duration: 0.3s;
+	    -webkit-animation-name: fadeIn;
+		animation-duration: 0.3s;
+  		animation-name: fadeIn;
+		position: absolute;
+		top: 0%;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.93);
+		color: #fff;
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		z-index: 10;
+	}
+	@-webkit-keyframes fadeIn{
+		0% { opacity: 0; }
+		20% { opacity: 0; }
+		40% { opacity: 0.3; }
+		60% { opacity: 0.5; }
+		80% { opacity: 0.9; }
+		100% { opacity: 1; }
+	}
+	@keyframes fadeIn {
+		0% { opacity: 0; }
+		20% { opacity: 0; }
+		40% { opacity: 0.3; }
+		60% { opacity: 0.5; }
+		80% { opacity: 0.9; }
+		100% { opacity: 1; }
+	}
+	.cart_background{
+		background: #e91e63;
+	}
+	.cart_card_wrapper{
+		background: #e91e63;
+		position: relative;
+		border: 0 none;
+		position:relative;
+		width:200px;
+		height: 300px;
+    	margin: 0px !important;
+    	padding: 0;
+    	border-radius: 5px;
+		-moz-border-radius: 5px;
+		color: white;
+		cursor: pointer;
+	}
+	.cart_card_img{
+		background: rgba(0,0,0,0.3);
+		position: relative;
+		border: 0 none;
+		position:relative;
+		width:200px;
+		height:200px;
+    	margin: 0;
+    	padding: 0;
+    	border-top-left-radius: 5px;
+    	-moz-border-top-left-radius: 5px;
+    	border-top-right-radius: 5px;
+		-moz-border-top-right-radius: 5px;
+
+	}
+	.cart_project_user{
+		font-size: 14px;
+		text-align: left;
+		width:100%;
+		float: left;
+		padding-top: 7px;
+		padding-left: 12px;
+		padding-right: 12px;
+		font-family: 'Source Sans Pro';
+  		font-weight: 400;
+	}
+	.cart_project_name{
+		font-size: 23px;
+		margin-left: 12px;
+		margin-right: 12px;
+		text-align: center;
+		max-width: 172px;
+		display: inline-block;
+		font-family: 'Source Sans Pro';
+  		font-weight: 600;
+  		float: left
+	}
+	.cart_project_like_div{
+		display: inline-block;
+		width: 40%
+	}
+	.cart_like_count{
+		display: inline-block;
+		width: 30%
+	}
+	.cart_view_detail{
+		font-size: 20pt;
+		width: 100%;
+		left: 0%;
+		position: absolute;
+		top: 40%;
+
+	}
+	.cart_deal_donate{
+		width: 100%;
+		position: absolute;
+		bottom: 6px;
+	}
+	.cart_donate{
+		text-align: center;
+		margin-left:6px;
+		width: 91px;
+		height: 23px;
+		color: #fff;
+		background-color: rgba(60, 60, 60, 0.6);
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		font-size: 12px;
+		float: left;
+		border-width:0px;
+		font-family: 'Source Sans Pro';
+		font-weight: 600;
+	}
+	.cart_deal_now{
+		text-align: center;
+		border-width:0px;
+		margin-left:6px;
+		width: 91px;
+		height: 23px;
+		color: #fff;
+		background-color: rgba(233, 30, 99, 0.6);
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		font-size: 12px;
+		float: left;
+		font-family: 'Source Sans Pro';
+		font-weight: 600;
+
+	}
+	.cart_deal_now:hover{
+		color: white !important;
+	}
+	.cart_donate:hover{
+		color: white !important;
+	}
+	.cart_delete_icon{
+		position: absolute;
+		right: 14px;
+		top: 14px;
+		color: white;
+	}
+	.cart_delete_icon:hover{
+		color: #e91e63;
+	}
+	
+	.shopping_cart_title{
+		margin-top: 0.5%;
+		color: #fff;
+		font-size: 30pt;
+		font-family: "FuturaStd-Medium";
+	}
+	.shopping_cart_subtitle{
+		color: #fff;
+		font-size: 12pt;
+		font-family: "MyriadPro-Light";
+	}
+	.shopping_cart_none{
+		color: #fff;
+		margin-top: 5%;
+		font-family: "MyriadPro-Light";
+		font-size: 25pt;
+	}
+	
+	.cart_project_overlay_label{
+		height: 100px;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		position: relative;
+		background: rgba(255,255,255,0.3);
+
+		border-bottom-right-radius: 10px;
+		border-bottom-left-radius: 10px;
+		-moz-border-bottom-right-radius: 10px;
+		-moz-border-bottom-left-radius: 10px;
+	}
+
+	.cart_check_icon{
+		position: absolute;
+		top: 14px;
+		left: 14px;
+		color: white;
+	}
+	.cart_check_icon:hover{
+		color: #e91e63;
+	}
+	.cart_donate_all{
+		position: absolute;
+		z-index: -10;
+		width: 70pt;
+		left: 46.5%;
+		font-size: 15pt;
+		background: #fff;
+		color: #e91e63;
+		text-align: center;
+		font-family: "MyriadPro-Light"
+	}
+	.cart_donate_p_btn{
+		margin-top: 45%;
+		font-family: "MyriadPro-Regular"
+	}
+	.cart_donate_bottom{
+		width: 100%;
+		height: 50%;
+		top: 50%;
+		background: #fff;
+		position: absolute;
+	}
+	.cart_donate_all_title{
+		color: #e91e63;
+		font-family: "MyriadPro-Light";
+		font-size:20pt;
+		text-align: left;
+		margin-left: 20%;
+		margin-bottom: 2%;
+		margin-top: 3%;
+	}
+	.cart_donate_list_item_header{
+		border: 0px none;
+		border-bottom: 1px solid #ddd;
+		font-size:17pt;
+		text-align: left;
+		margin-left: 25%;
+		font-family: "MyriadPro-Regular";
+	}
+	.cart_donate_paypal{
+		font-size: 17pt;
+		top: 10%;
+		text-align: center;
+		width: 100%;
+		position: absolute;
+		font-family: "MyriadPro-Regular";
+	}
+	.cart_donate_total{
+		font-size: 27pt;
+		top: 40%;
+		text-align: center;
+		width: 100%;
+		position: absolute;
+		font-family: "MyriadPro-Regular";
+	}
+	.cart_donate_checkout{
+		font-size:17pt;
+		text-align: right;
+		position: absolute;
+		right: 20%;
+		bottom: 10%;
+		color: #e91e63;
+		font-family: "FuturaStd-Medium";
+	}
+	.cart_donate_checkout:hover{
+		cursor:pointer;
+	}
+	.cart_donate_list_item{
+		border: 0px none;
+		border-bottom: 1px solid #ddd;
+		font-size: 12pt;
+		text-align: left;
+		margin-left: 25%;
+		margin-right: 2%;
+		font-family: "MyriadPro-Light";
+		margin-top: 1px;
+	}
+	.cart_donate_bottom_list{
+		overflow-y:auto;
+		max-height: 55%;
+	}
+	.cart_donate_list_item_price{
+		border: 0px none;
+		width: 20%;
+		right: 3%;
+		font-size: 10pt;
+		position: absolute;
+		font-family: "MyriadPro-Light";
+	}
+	.cart_donate_list_item_price:focus{
+		outline: 0;
+	}
+	.cart_donate_bottom_dolars{
+		right: 0%;
+		font-size: 10pt;
+		position: absolute;
+		font-family: "MyriadPro-Light";
+	}
+</style>
+
+<script type="text/javascript">
+	var cart_process=false;
+	var cart_select_list=[];
+	var cart_data_list=[];
+
+	var reset_cart_event= function(){
+		global_function.long_name_hover_animation();
+		$('.cart_card_wrapper').hover(function(e){
+			$(this).find(".cart_check_icon").removeClass('hidden')
+			$(this).find(".cart_delete_icon").removeClass('hidden')
+			$(this).css("background-color", "#ffffff")
+			$(this).css("color", "#000000")
+			$(this).find(".cart_donate").css("background-color", "rgb(170, 170, 170)").css("color", "black")
+			$(this).find(".cart_deal_now").css("background-color", "rgb(233, 30, 99)").css("color", "black")
+		}, function(e){
+			if(!$(this).find(".cart_check_icon").attr("selected"))
+				$(this).find(".cart_check_icon").addClass('hidden')
+			$(this).find(".cart_delete_icon").addClass('hidden')
+			$(this).css("background-color", "#e91e63")
+			$(this).css("color", "#ffffff")
+			$(this).find(".cart_donate").css("background-color", "rgba(60, 60, 60, 0.6)").css("color", "white")
+			$(this).find(".cart_deal_now").css("background-color", "rgba(233, 30, 99, 0.6)").css("color", "white")
+		})
+		
+
+		var cart_items = $('.cart_card_wrapper');
+		addEvent(cart_items, 'click', function (event) {
+		  if(localStorage.getItem(const_localStorage_key.recent_count)==null)
+		  localStorage.setItem(const_localStorage_key.recent_count, 0);
+		  var text;
+		  event.preventDefault();
+		  text = 'project_modal';
+		  projectInfo.state = "project_modal";
+		  projectInfo.url = $(this).data('url');
+		  projectInfo.user_name = projectInfo.url.split('/')[2];
+		  projectInfo.project_name = projectInfo.url.split('/')[3];  
+		  projectInfo.repository_name = projectInfo.user_name + '/' + projectInfo.project_name;
+		  get_project_data(projectInfo);
+
+		  history.pushState(projectInfo, text, projectInfo.url);
+		});
+
+		$('.cart_delete_icon').on('click',function(){
+			var repository_id= $(this).data('repositoryid');
+			var self=$(this);
+			event.stopPropagation();
+			event.preventDefault();
+			for(var i in cart_select_list){
+				if(cart_select_list[i].repository_id==repository_id){
+					delete cart_select_list[i];
+					break;
+				}
+			}
+			if(global_user.status==const_user_code.LOGIN){
+				var params={
+	  				repository_id:repository_id
+		  		}
+				$.ajax({
+					type:"POST",
+					url:"/ajax/cart/delete",
+					data:params,
+					dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+					success : function(data) {
+						if(data){
+							user_local_delete_cart(repository_id)
+							self.parents().eq(2).remove()
+							user_get_cart_list();
+
+						}else{
+							alert(const_err_msg.DATABASE_ERR)
+						}
+					},
+					error : function(xhr, status, error) {
+						alert(const_err_msg.NETWORK_ERR)
+					}
+				})
+			}
+			else{
+				self.parents().eq(2).remove()
+				none_user_local_delete_cart(repository_id)
+				none_user_get_cart_list();
+			}
+			make_donate_bottom_list()
+		})
+		$('.cart_check_icon').on('click',function(event){
+			event.stopPropagation();
+			event.preventDefault();
+			var repository_id= $(this).data('repositoryid');
+
+			if($(this).attr("selected")){
+				$(this).attr("selected", false)
+				$(this).css("color","#fff")
+				for(var i in cart_select_list){
+					if(cart_select_list[i].repository_id==repository_id){
+						delete cart_select_list[i];
+						break;
+					}
+				}
+			}else{
+				$(this).attr("selected", true)
+				$(this).css("color","#e91e63")
+				for(var i in cart_data_list){
+					if(cart_data_list[i].repository_id==repository_id){
+						cart_select_list.push({repository_id:repository_id,data:cart_data_list[i]})
+						break;
+					}
+				}
+			}
+			make_donate_bottom_list()
+		})
+	}
+	var innerhtml_cart = "";
+	var cart_make_inner_html = function(data,size){
+		var repository_name= data.repository_name;
+		var index=repository_name.indexOf('/');
+		var repository_id=data.repository_id;
+		var thumbnail_url=data.thumbnail_url;
+		var repository_like_count = data.repository_like_count;
+		thumbnail_url=thumbnail_url&&thumbnail_url!=""? thumbnail_url:"/image/add_your_img.png";
+		size=Math.floor(12/size)
+		innerhtml_cart +=
+			
+			'<div class="col-xs-'+size+'" style="margin:0" align="center" >'+
+				/*'<a href="/market/'+repository_name+'">'+*/
+					'<div class="thumbnail cart_card_wrapper" align="center" data-toggle="modal" data-target="#project_desc_modal" data-url="/market/'+repository_name+'">'+
+						'<img class="cart_card_img" src="'+thumbnail_url+'">'+
+						'<div class ="cart_project_overlay_label">'+
+								'<div>'+
+									'<p class="cart_project_user long_name_overflow">'+repository_name.substring(0,index)+'</p>'+
+								'</div>'+
+								'<div>'+
+									'<p class="cart_project_name long_name_overflow">'+repository_name.substring(index+1)+'</p>'+
+								'</div>'+
+								'<div class="cart_deal_donate">'+
+			                        '<button class="cart_donate">Donate</button>'+
+			                        '<button class="cart_deal_now">Deal now</button>'+
+			                    '</div>'+
+						'</div>'+
+
+						'<div class="cart_check_icon glyphicon glyphicon-ok hidden" data-repositoryid="'+repository_id+'"></div>'+
+						'<div class="cart_delete_icon glyphicon glyphicon-remove hidden" data-repositoryid="'+repository_id+'"></div>'+
+					'</div>'+
+				/*'</a>' +*/
+		    '</div>'
+			
+	}
+	var make_cart_list=function(data){
+		var width=$(window).width()
+		if(width<1600&&width>=1280)
+			make_cart_list_not_5(data,4)
+		else if(width<1280&&1000<=width)
+			make_cart_list_not_5(data,3)
+		else if(width<1000&&700<=width)
+			make_cart_list_not_5(data,2)
+		else if(width>=1600)
+			make_cart_list_5(data)
+		else
+			make_cart_list_not_5(data,1)
+	}
+	var make_cart_list_5=function(data){
+		cart_select_list=[];
+		cart_data_list=data;
+		innerhtml_cart = "";
+			if(data){
+				var data_length=data.length;
+				$("#shopping_cart_subtitle").text(data_length+" Items in your cart.")
+				if(data_length>5){
+					var count_reproduce=Math.floor(data_length/5);
+					innerhtml_cart+='<div class="item active">'
+									+'<div class="row text-center">'
+										+'<div class="col-xs-1"></div>';
+					for(var i=0; i <5;i++){
+						cart_make_inner_html(data[i],5)
+					}
+			        innerhtml_cart+= '<div class="col-xs-1"></div>'
+					  +'</div>'
+					+'</div>';
+					for(var j=0;  j<count_reproduce;j++){								
+						var current_left= j==count_reproduce-1? data_length%5:5
+						innerhtml_cart+='<div class="item">'
+										+'<div class="row text-center">'
+											+'<div class="col-xs-1"></div>';
+
+						for(var i=0; i <current_left;i++){
+							cart_make_inner_html(data[i],5)
+						}											
+				        innerhtml_cart+=	 '<div class="col-xs-1"></div>'
+										  +'</div>'
+										+'</div>';
+					}
+				}else{
+					innerhtml_cart+='<div class="item active">'
+									+'<div class="row text-center">'
+										+'<div class="col-xs-1"></div>';
+					for(var i=0; i <data_length;i++){
+						cart_make_inner_html(data[i],5)
+					}											
+			        innerhtml_cart+=	 '<div class="col-xs-1"></div>'
+									  +'</div>'
+									+'</div>';
+				}
+				document.getElementById("cart_carousel").innerHTML=innerhtml_cart;
+				reset_cart_event();
+		}else{
+			innerhtml_cart+="<p class='shopping_cart_none'>There's no project in cart</p>"
+			document.getElementById("cart_carousel").innerHTML=innerhtml_cart;
+		}
+	}
+	var make_cart_list_not_5=function(data,num){
+		cart_select_list=[];
+		cart_data_list=data;
+		innerhtml_cart = "";
+			if(data){
+				var data_length=data.length;
+				$("#shopping_cart_subtitle").text(data_length+" Items in your cart.")
+				if(data_length>num){
+					var count_reproduce=Math.floor(data_length/num);
+					innerhtml_cart+='<div class="item active">'
+									+'<div class="row text-center">';
+					for(var i=0; i <num;i++){
+						cart_make_inner_html(data[i],num)
+					}
+			        innerhtml_cart+= '</div>'
+					+'</div>';
+					for(var j=0;  j<count_reproduce;j++){								
+						var current_left= j==count_reproduce-1? data_length%num:num
+						innerhtml_cart+='<div class="item">'
+										+'<div class="row text-center">'
+
+						for(var i=0; i <current_left;i++){
+							cart_make_inner_html(data[i],num)
+						}											
+				        innerhtml_cart+='</div>'
+										+'</div>';
+					}
+				}else{
+					innerhtml_cart+='<div class="item active">'
+									+'<div class="row text-center">'
+					for(var i=0; i <data_length;i++){
+						cart_make_inner_html(data[i],num)
+					}											
+			        innerhtml_cart+='</div>'
+								+'</div>';
+				}
+				document.getElementById("cart_carousel").innerHTML=innerhtml_cart;
+				reset_cart_event();
+		}else{
+			innerhtml_cart+="<p class='shopping_cart_none'>There's no project in cart</p>"
+			document.getElementById("cart_carousel").innerHTML=innerhtml_cart;
+		}
+	}
+
+
+
+
+	var user_local_delete_cart=function(repository_id){
+		var cart_user_item=JSON.parse(localStorage.getItem(const_localStorage_key.cart_user_item));
+		if(cart_user_item){
+			var newlist=[];
+			cart_user_item.forEach(function(item){
+				if(item != null && item.repository_id!=repository_id)
+				newlist.push(item)	
+			})
+			localStorage.setItem(const_localStorage_key.cart_user_item, JSON.stringify(newlist))
+		}
+	}
+	var none_user_local_delete_cart=function(repository_id){
+		var cart_none_user_item=JSON.parse(localStorage.getItem(const_localStorage_key.cart_none_user_item));
+		if(cart_none_user_item){
+			var newlist=[];
+			cart_none_user_item.forEach(function(item){
+				if(item != null && item.repository_id!=repository_id)
+				newlist.push(item)
+			})
+			localStorage.setItem(const_localStorage_key.cart_none_user_item, JSON.stringify(newlist))
+		}
+	}
+	var user_local_add_cart_list=function(data){
+		var cart_user_item=JSON.parse(localStorage.getItem(const_localStorage_key.cart_user_item));
+		if(cart_user_item){
+			cart_user_item=cart_user_item.concat(data);
+			localStorage.setItem(const_localStorage_key.cart_user_item, JSON.stringify(cart_user_item))
+		}else{
+			localStorage.setItem(const_localStorage_key.cart_user_item, JSON.stringify(data))
+		}
+	}
+	var get_cart_list=function(){
+		$.ajax({
+			type:"POST",
+			url:"/ajax/cart/get/list", //only dir
+			dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+			success : function(data) {
+				user_local_add_cart_list(data)
+				make_cart_list(data)
+			},
+			error : function(xhr, status, error) {
+				alert("Error");
+			}
+		})
+	};
+	var get_repository_info=function(repository_id,callback){
+		var params={
+			repository_id:repository_id
+		}
+		$.ajax({
+			type:"POST",
+			url:"/ajax/repositoryinfo",
+			data:params,
+			dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+			success : function(data) {
+				if(data){
+					callback(data)
+				}else{
+					callback(data)
+				}
+			},
+			error : function(xhr, status, error) {
+				callback(false)
+			}
+		})
+	}
+
+	var send_a_cart_item=function(repository_id){
+		var params={
+  			repository_id:repository_id
+  		}
+		$.ajax({
+			type:"POST",
+			url:"/ajax/cart/add",
+			data:params,
+			dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+			success : function(data) {
+				if(data){
+					alert(const_success_msg.ADD_CRAT_COMPLETE)
+				}else{
+					alert(const_err_msg.ALEADY_IN_CART_ERR)
+				}
+			},
+			error : function(xhr, status, error) {
+				alert(const_err_msg.NETWORK_ERR);
+			}
+		})
+		
+	}
+	var user_get_cart_list=function(){
+		var cart_user_item=JSON.parse(localStorage.getItem(const_localStorage_key.cart_user_item));
+		make_cart_list(cart_user_item)
+	}
+	var none_user_get_cart_list=function(){
+		var cart_none_user_item=JSON.parse(localStorage.getItem(const_localStorage_key.cart_none_user_item));
+		make_cart_list(cart_none_user_item)
+	}
+
+	var none_user_local_add_cart=function(repository_id){
+		var cart_none_user_item=JSON.parse(localStorage.getItem(const_localStorage_key.cart_none_user_item));
+		if(cart_none_user_item){
+			for(var i=0;i<cart_none_user_item.length;i++){
+				if(cart_none_user_item[i].repository_id==repository_id){
+					alert(const_err_msg.ALEADY_IN_CART_ERR)
+					return;
+				}
+			}
+		}
+		get_repository_info(repository_id,function(data){
+			var listdata=[];
+			if(cart_none_user_item){
+				listdata.push(data)
+				cart_none_user_item=cart_none_user_item.concat(listdata);
+				localStorage.setItem(const_localStorage_key.cart_none_user_item, JSON.stringify(cart_none_user_item))
+			}else{
+				listdata.push(data)
+				localStorage.setItem(const_localStorage_key.cart_none_user_item, JSON.stringify(listdata))
+			}
+			alert(const_success_msg.ADD_CRAT_COMPLETE)
+		})
+		none_user_get_cart_list()
+	}
+	$('#cart').on('click',function(){
+
+		if($("#utility_content_cart").hasClass("utility_menu") ){
+		$('.cart_donate_bottom').css("display","none");
+			if(global_user.status==const_user_code.LOGIN){
+				get_cart_list();
+			}
+			else{
+				none_user_get_cart_list()
+			}
+
+		}
+	})
+	var donate_mouse_on=function(){
+		if(!$("#utility_content_wrapper").hasClass("height_Strech_Animation")){
+			$('#utility_content_wrapper').one('mouseleave',donate_mouse_out)
+			return;
+		}
+		var code=$("#utility_content_wrapper").data('wrapper_type')
+		if(code==4){
+			$('#cart_donate_all_div').css("display","");
+			var cal_height= $("#utility_content_wrapper").height()
+			var dona_height=$('#cart_donate_all_div').height()
+			$('#cart_donate_all_div').css("top",cal_height-dona_height/2)
+		}
+		$('#utility_content_wrapper').one('mouseleave',donate_mouse_out)
+	}
+	var donate_mouse_out=function(){
+		$('#cart_donate_all_div').css("display","none");
+		$('#utility_content_wrapper').one('mouseover',donate_mouse_on)
+	}
+	$('#utility_content_wrapper').one('mouseover',donate_mouse_on)
+	$('#utility_content_wrapper').one('mouseleave',donate_mouse_out)
+
+	var make_donate_bottom_list=function(){
+		if(cart_select_list&&cart_select_list.length){
+			$(".cart_donate_list_item_header").text(' You chose: '+cart_select_list.length+' projects')
+			var innerhtml="";
+			cart_select_list.forEach(function(elem){
+				var data=elem.data;
+				innerhtml+='<li class="list-group-item cart_donate_list_item long_name_overflow">&&repository_name&&<input class="cart_donate_list_item_price" type="number" value="0"  required = "required" step = "2" /><span class="cart_donate_bottom_dolars">$</span></li>'
+				innerhtml=innerhtml.replace(/&&length&&/g,cart_select_list.length).replace(/&&repository_name&&/g,data.repository_name);
+			})
+			document.getElementById('donate_price_list').innerHTML=innerhtml;
+		}else{
+			$(".cart_donate_list_item_header").text(' You chose: '+0+' projects')
+			var innerhtml="";
+			document.getElementById('donate_price_list').innerHTML=innerhtml;
+		}
+		$(".cart_donate_list_item_price").off('change')
+		$(".cart_donate_list_item_price").change(function(){
+			var value = 0;
+        	$(".cart_donate_list_item_price").each(function() {
+        	    var i = parseInt($(this).val());
+
+	            if (!isNaN(i))
+	            {
+	                value += i;
+	            }else{
+	            	$(this).val("")
+	            }
+	        });
+	        $('#cart_donate_total').text("Total : "+value+"$")
+		})
+		$("#cart_donate_checkout").off('click')
+		$("#cart_donate_checkout").on('click',function(){
+			
+			var value = 0;
+			var donate_item_info=[];
+        	$(".cart_donate_list_item_price").each(function(index) {
+        	    var i = parseInt($(this).val());
+
+	            if (!isNaN(i))
+	            {
+	                if(i>0){
+	                	donate_item_info.push(
+	                		{
+	                			repository_id: cart_select_list[index].repository_id, 
+	                			amount:i
+	                		})
+
+	                }
+	            }
+	        });
+
+
+
+        	global_function.donate_now(donate_item_info)
+        	
+		})
+	}
+
+	$(window).load(function(){
+		$('.add_to_cart').on('click',function(ev){
+			ev.preventDefault();
+	  		ev.stopPropagation();
+	  		var repository_id= $(this).data('repositoryid');
+	  		if(repository_id){
+	  			if(global_user.status==const_user_code.LOGIN){
+					send_a_cart_item(repository_id);
+				}else{
+					none_user_local_add_cart(repository_id)
+				}
+	  		}else{
+	  			alert(const_err_msg.NO_EXIST_PROJECT_ERR)
+	  		}
+			
+		})
+		$('#cart_donate_all_p').on('click',function(ev){
+			$("#utility_content_wrapper").addClass("height_Strech_Animation")
+			$("#utility_content_wrapper").height("calc(100% - 0px)");
+			$('.cart_donate_bottom').css("display","");
+			make_donate_bottom_list();
+		})
+	})
+	
+
+
+
+</script>

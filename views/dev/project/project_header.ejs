@@ -1,0 +1,41 @@
+<link href="/stylesheets/dev/project/header.css" rel="stylesheet">
+<link href="/stylesheets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+<div id="project_header_bar" class="container no_padding">
+  <div class="project_header row">
+    <div class="project_title col-sm-6">
+      <div class="pull-left project_image">
+        <img id="project_thumbnail" src="<%=thumbnail_url%>" alt="..." style="width:100%">
+      </div> 
+      <div class="project_title_body">
+        <a href="/<%=repository_name%>"><h2 class="project_title_name"><%=project_name%></h2></a>
+        <h5 class="project_title_maintainer"><%=user_name%></h5>
+      </div>
+    </div>
+    <div class="project_status pull-right">
+<!--         <a href="#" id="project_header_commits" class="project_status_icon"><i class="fa fa-tags"></i>2,412</a> -->
+        <a href="/<%=repository_name%>/fork" id="project_header_fork" class="project_status_icon"><i class="fa fa-code-fork"></i>Fork 80</a> 
+        <!-- <a href="#" id="project_header_issue" class="project_status_icon"><i class="fa fa-comments-o"></i> 5</a> -->
+        <a href="#" id="project_header_heart" class="project_status_icon"><i class="fa fa-heart"></i>Star 2,412</a> 
+    </div>
+  </div>
+  <hr class="divider">
+  <div id="project_heaer_tab" class="row">
+    <div class="project_header_tab_list pull-right">
+      <a href="/<%=repository_name%>/milestone" class="header_milestone_btn">Milestone</a>
+    </div>
+    <div class="project_header_tab_list pull-right">
+      <a  href="/<%=repository_name%>/commits"  class="header_commit_btn">Evalution/Commit</a>
+    </div>
+    <div class="project_header_tab_list pull-right">
+      <a href="/<%=repository_name%>/pull" class="header_pull_btn">Pull requests</a>
+    </div>
+    <div class="project_header_tab_list pull-right">
+      <a href="/<%=repository_name%>/issue" class="header_issue_btn">Issues</a>
+    </div>
+    <div class="project_header_tab_list pull-right">
+      <a href="/<%=repository_name%>" class="header_code_btn">Codes</a>
+    </div>  
+  </div>
+</div>
+<script src="/scripts/dev/project/header.js"></script>

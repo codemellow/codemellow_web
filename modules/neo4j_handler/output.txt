@@ -1,0 +1,527 @@
+Welcome to the Neo4j Shell! Enter 'help' for a list of commands
+NOTE: Remote Neo4j graph database service 'shell' at port 1337
+
+neo4j-sh (?)$ 
+neo4j-sh (?)$ #########mapping repo-user#########
+Unknown command '#########mapping'
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (dev:user {name:"simdj"}), (repository:repo {name:"simdj/pintos"})
+> CREATE UNIQUE (dev)-[:PARTICIPATE_IN]->(repository);
+UniquePathNotUniqueException: The pattern (dev)-[92:`PARTICIPATE_IN`]->(repository) produced multiple possible paths, and that is not allowed
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (dev:user {name:"simdj"}), (repository:repo {name:"simdj/os"})
+> CREATE UNIQUE (dev)-[:PARTICIPATE_IN]->(repository);
++--------------------------------------------+
+| No data returned, and nothing was changed. |
++--------------------------------------------+
+4 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (dev:user {name:"simdj"}), (repository:repo {name:"simdj/goorm"})
+> CREATE UNIQUE (dev)-[:PARTICIPATE_IN]->(repository);
++--------------------------------------------+
+| No data returned, and nothing was changed. |
++--------------------------------------------+
+4 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (dev:user {name:"pcs"}), (repository:repo {name:"pcs/pintos"})
+> CREATE UNIQUE (dev)-[:PARTICIPATE_IN]->(repository);
++--------------------------------------------+
+| No data returned, and nothing was changed. |
++--------------------------------------------+
+6 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (dev:user {name:"pcs"}), (repository:repo {name:"pcs/elastic"})
+> CREATE UNIQUE (dev)-[:PARTICIPATE_IN]->(repository);
++--------------------------------------------+
+| No data returned, and nothing was changed. |
++--------------------------------------------+
+4 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (dev:user {name:"bbu"}), (repository:repo {name:"bbu/purdue"})
+> CREATE UNIQUE (dev)-[:PARTICIPATE_IN]->(repository);
++--------------------------------------------+
+| No data returned, and nothing was changed. |
++--------------------------------------------+
+4 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (dev:user {name:"bbu"}), (repository:repo {name:"bbu/soma"})
+> CREATE UNIQUE (dev)-[:PARTICIPATE_IN]->(repository);
++--------------------------------------------+
+| No data returned, and nothing was changed. |
++--------------------------------------------+
+4 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos1"}), (d:user {name:"user1"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+30 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos1"}), (d:user {name:"user2"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+17 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos1"}), (d:user {name:"user3"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+15 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos1"}), (d:user {name:"user4"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+19 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos1"}), (d:user {name:"user5"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+21 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos1"}), (d:user {name:"user6"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+20 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos1"}), (d:user {name:"user7"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+17 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos2"}), (d:user {name:"user1"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+19 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos2"}), (d:user {name:"user3"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+17 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos2"}), (d:user {name:"user6"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+17 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos2"}), (d:user {name:"user9"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+16 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos3"}), (d:user {name:"user2"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+17 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos3"}), (d:user {name:"user4"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+16 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos3"}), (d:user {name:"user6"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+24 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos3"}), (d:user {name:"user8"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+20 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos4"}), (d:user {name:"user3"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+16 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos4"}), (d:user {name:"user4"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+18 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos4"}), (d:user {name:"user9"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+16 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos4"}), (d:user {name:"user10"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+17 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos5"}), (d:user {name:"user2"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+31 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos5"}), (d:user {name:"user4"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+15 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos5"}), (d:user {name:"user5"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+15 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos5"}), (d:user {name:"user7"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+17 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos5"}), (d:user {name:"user8"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+19 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos5"}), (d:user {name:"user10"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+38 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos6"}), (d:user {name:"user5"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+15 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos6"}), (d:user {name:"user6"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+31 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos6"}), (d:user {name:"user8"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+31 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos6"}), (d:user {name:"user10"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+36 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos7"}), (d:user {name:"user3"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+38 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos7"}), (d:user {name:"user4"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+30 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos7"}), (d:user {name:"user5"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+20 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos7"}), (d:user {name:"user6"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+16 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos7"}), (d:user {name:"user10"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+20 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos8"}), (d:user {name:"user6"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+31 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos8"}), (d:user {name:"user10"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+17 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos9"}), (d:user {name:"user4"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+28 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos9"}), (d:user {name:"user7"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+33 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos9"}), (d:user {name:"user8"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+15 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos9"}), (d:user {name:"user10"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+22 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos10"}), (d:user {name:"user1"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+16 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos10"}), (d:user {name:"user2"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+18 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos10"}), (d:user {name:"user6"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+29 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos10"}), (d:user {name:"user7"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+29 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos10"}), (d:user {name:"user9"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+28 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (r:repo {name:"bbu/pintos10"}), (d:user {name:"user10"})
+> CREATE UNIQUE (d)-[:PARTICIPATE_IN]->(r);
++-------------------+
+| No data returned. |
++-------------------+
+Relationships created: 1
+21 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ #########similar user by share repo
+Unknown command '#########similar'
+neo4j-sh (?)$ 
+neo4j-sh (?)$ ## user,repo -> other user
+Unknown command '##'
+neo4j-sh (?)$ MATCH (me:user)-[:PARTICIPATE_IN]->(r:repo)<-[:PARTICIPATE_IN]-(other:user)
+> WHERE me.name='user1'
+> return me, r, other;
++-------------------------------------------------------------------------------------------+
+| me                        | r                                | other                      |
++-------------------------------------------------------------------------------------------+
+| Node[45462]{name:"user1"} | Node[45446]{name:"bbu/pintos1"}  | Node[45463]{name:"user2"}  |
+| Node[45462]{name:"user1"} | Node[45446]{name:"bbu/pintos1"}  | Node[45464]{name:"user3"}  |
+| Node[45462]{name:"user1"} | Node[45446]{name:"bbu/pintos1"}  | Node[45465]{name:"user4"}  |
+| Node[45462]{name:"user1"} | Node[45446]{name:"bbu/pintos1"}  | Node[45466]{name:"user5"}  |
+| Node[45462]{name:"user1"} | Node[45446]{name:"bbu/pintos1"}  | Node[45467]{name:"user6"}  |
+| Node[45462]{name:"user1"} | Node[45446]{name:"bbu/pintos1"}  | Node[45468]{name:"user7"}  |
+| Node[45462]{name:"user1"} | Node[45447]{name:"bbu/pintos2"}  | Node[45464]{name:"user3"}  |
+| Node[45462]{name:"user1"} | Node[45447]{name:"bbu/pintos2"}  | Node[45467]{name:"user6"}  |
+| Node[45462]{name:"user1"} | Node[45447]{name:"bbu/pintos2"}  | Node[45470]{name:"user9"}  |
+| Node[45462]{name:"user1"} | Node[45455]{name:"bbu/pintos10"} | Node[45463]{name:"user2"}  |
+| Node[45462]{name:"user1"} | Node[45455]{name:"bbu/pintos10"} | Node[45467]{name:"user6"}  |
+| Node[45462]{name:"user1"} | Node[45455]{name:"bbu/pintos10"} | Node[45468]{name:"user7"}  |
+| Node[45462]{name:"user1"} | Node[45455]{name:"bbu/pintos10"} | Node[45470]{name:"user9"}  |
+| Node[45462]{name:"user1"} | Node[45455]{name:"bbu/pintos10"} | Node[45471]{name:"user10"} |
++-------------------------------------------------------------------------------------------+
+14 rows
+65 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ 
+neo4j-sh (?)$ MATCH (a:user {name:'simdj'})-[:PARTICIPATE_IN]->(b)
+> return a,b
+> 
+> 
+> 
+> 
+> 
+> 
+> Warning: Exiting with unterminated multi-line input.

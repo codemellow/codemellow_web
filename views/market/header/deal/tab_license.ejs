@@ -1,0 +1,351 @@
+
+
+
+<style type='text/css'>
+
+
+	.license_status_btn {
+		float: right;
+		width: 100%;
+		font-size: 8pt;
+		border: 0;
+		border-radius: 5pt;
+	}
+	.license_status_btn_wrapper {
+		padding: 0;
+	}
+
+
+
+
+	.license_group{
+		color : #e91e63;
+		padding-right: 0px;
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+</style>
+
+
+
+
+
+
+
+
+
+<div id='header_tab_license' class='row'>
+	<div class='deal_header_tab_title'>License</div>
+	<div class='row'>
+		<div class='col-xs-6'>
+			<div class="navbar-form navbar-left" >
+		        <button id="header_tab_license_search" class="btn header_deal_search_btn"> <span class="glyphicon glyphicon-search"></span></button>
+		        <div class="form-group">
+					<input id='header_tab_license_search_input' type="text" class="form-control header_deal_search_input" placeholder="">
+		        </div>
+		  	</div>
+		</div>
+		<div class='col-xs-6' style='text-align:right'>
+
+
+		  	
+		  	<button class='btn btn-link pink_color license_group license_group_all'>All</button>
+		  	<button class='btn btn-link pink_color license_group license_group_available'>Available</button>
+		  	<button class='btn btn-link pink_color license_group license_group_expired' >Expired</button>
+		</div>
+	</div>
+
+	<hr>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div id='license_list' class='col-xs-12 no_margin no_padding'>
+		
+		<!-- <div id='license_list_col_1' class='license_col col-xs-4'>
+		</div>
+
+		<div id='license_list_col_2' class='license_col col-xs-4'>
+		</div>
+		
+		<div id='license_list_col_3' class='license_col col-xs-4'>
+		</div> -->
+
+	</div>
+
+			
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type='text/javascript'>
+
+
+
+function html_license(license_info){
+	var ret=" <div class='col-xs-12 col-sm-6 col-md-4 repository_list_card license_card   [license_status]' [data-license]  [data-repository_name]> "
+	+"<div class='col-xs-2 no_padding'><img src='[project_img_url]' class='mypage_project_image'/></div> "
+	+"<div class='col-xs-10 no_padding'><div class='col-xs-12 no_padding'>[repo_maintainer]</div><div class='col-xs-8 no_padding'>[repo_project]</div> <div class='col-xs-4 license_status_btn_wrapper'>[status_display]</div>  </div></div>";
+	
+	var project_img_url = license_info.thumbnail_url ? license_info.thumbnail_url : '/image/add_your_img.png';
+	// var checkbox='<input type="checkbox" class="progress_deal_checkbox" />';
+	var repo_maintainer= '<div class="repository_list_card_maintainer">'+license_info.repository_name.split('/')[0]+'</div>'
+	var repo_project= 	'<div class="repository_list_card_project_name">'+license_info.repository_name.split('/')[1]+'</div>'
+	var status=( new Date() <  ( new Date(license_info.expiration_date) ) ) ? 'Available' :  'Expired'
+	var status_display='<button class="license_status_btn [btn_type]">'+status+'</button>'
+	if(status=='Available'){
+		status_display=status_display.replace('[btn_type]', 'pink_btn')
+		ret=ret.replace('[license_status]','license_available')
+	}else{
+		status_display=status_display.replace('[btn_type]', 'gray_btn')
+		ret=ret.replace('[license_status]','license_expired')
+	}
+
+	var data_license = "data-license='"+license_info.license_id+"'";
+	var data_repository_name = "data-repository_name='"+license_info.repository_name+"'"
+
+	return ret.replace('[data-license]',data_license).replace('[data-repository_name]',data_repository_name).replace('[project_img_url]',project_img_url).replace('[repo_maintainer]',repo_maintainer).replace('[repo_project]',repo_project).replace('[status_display]',status_display);
+
+
+}
+
+
+
+function ajax_get_buyer_license(callback){
+	var buyer_license_req={}
+	buyer_license_req.buyer_id
+		= (global_user.status!=const_user_code.NOTLOGIN) ? global_user.user_id : '' ;
+
+
+
+	$.post('/'+buyer_license_req.buyer_name+'/license', buyer_license_req, function(buyer_license_arr){
+		if(typeof callback =='function') {
+			callback(buyer_license_arr);
+		}
+	});
+
+	
+	
+}
+
+
+function listup_license_card(){
+	if((global_user.status!=const_user_code.NOTLOGIN)){
+		ajax_get_buyer_license(function(buyer_license_arr){
+			global_deal.license_arr=buyer_license_arr;
+
+
+			global_deal.license_arr.forEach(function(el,index){
+				//$($(".license_col")[index%3]).append( html_license(el))
+				$("#license_list").append( html_license(el))
+			});
+
+			handle_license_card();
+		});
+	}
+	$(".license_group").removeClass('semi_bold');
+	
+}
+
+
+
+listup_license_card();
+
+
+
+
+function modal_license_view_fill(license_info){
+
+	$("#deal_modal_maintainer_name").text(license_info.repository_name.split('/')[0])
+	$("#deal_modal_project_name").text(license_info.repository_name.split('/')[1])
+	
+
+
+	// var is_expired=( new Date() >  ( new Date(license_info.expiration_date) ) );
+	// if(is_expired){
+	// 	$("#modal_license_available_btn").removeClass('modal_license_status_active')
+	// 	$("#modal_license_expired_btn").addClass('modal_license_status_active')
+	// }else{
+	// 	$("#modal_license_available_btn").addClass('modal_license_status_active')
+	// 	$("#modal_license_expired_btn").removeClass('modal_license_status_active')
+	// }
+
+
+	var expiration_date=new Date(license_info.expiration_date);
+	console.log(expiration_date);
+	$("#modal_license_expiration_date").text(expiration_date.toISOString().slice(0,10))
+
+
+	$("#modal_license_using_condition").text(license_info.using_condition);
+
+
+	$("#modal_license_readme").text(license_info.readme);		
+
+
+}
+
+
+
+
+function set_current_license_info(license_id){
+	var len=global_deal.license_arr.length;
+	for(var i=0;i<len;i++){
+		if(global_deal.license_arr[i].license_id==license_id){
+			global_deal.current_license_info=global_deal.license_arr[i];
+			break;
+		}
+	}
+}
+
+function handle_license_card(){
+
+	$(".license_card").click(function(){
+		
+		set_current_license_info( $(this).data('license') );
+
+		var selected_license_info=global_deal.current_license_info;
+		var selected_repository_name=$(this).data('repository_name');
+
+
+
+
+		
+		$.get('/'+selected_repository_name+'/readme', function(readme){
+
+			global_deal.current_license_info.readme=readme;
+			console.log(global_deal.current_license_info);
+
+			modal_license_view_fill(global_deal.current_license_info);
+			$(".modal_deal_license").siblings().css('display','none')
+			$(".modal_deal_license").css('display','');
+			$("#modal_deal").modal('show');
+
+		})
+
+	})
+}
+
+
+
+
+
+
+$(".license_group").off('click');
+$(".license_group").on('click', function(e){
+	$(this).siblings().removeClass('semi_bold');
+	$(this).addClass('semi_bold');
+	if($(this).text().toLowerCase()!=='all'){
+		$('.license_card').css('display','none');
+		var display_targets='.license_'+$(this).text().toLowerCase();
+		$(display_targets).css('display','');
+	}else{
+		$('.license_card').css('display','');
+	}
+});
+
+
+
+
+
+
+function header_tab_license_search(){
+	//repository name indexof gogogo
+	var str=$("#header_tab_license_search_input").val().toLowerCase();
+	var targets=$(".license_card");
+	var len=targets.length;
+	for(var i=0;i<len;i++){
+		if( $(targets[i]).text().toLowerCase().indexOf(str) > -1){
+			$(targets[i]).css('display','');
+		}else{
+			$(targets[i]).css('display','none');
+		}
+	}
+	$(".license_group").removeClass('semi_bold')
+}
+
+
+
+$("#header_tab_license_search").off('click');
+$("#header_tab_license_search").on('click', header_tab_license_search);
+$("#header_tab_license_search_input").on('keyup', function(e){
+	e.keyCode==13 && header_tab_license_search();
+});
+
+
+</script>
+
+
+
+
+
+
+
+

@@ -1,0 +1,99 @@
+<%
+  var i = 0;
+  var respective_review_count = [0,0,0,0,0];
+  // for(i=0;i<review.length;i++){
+  //   respective_review_count[review[i].review_point/2 -1]++;
+  // }
+  // var avg_point = repository_info.avg_point;
+  function timeDifference(current, previous) {
+
+      var msPerMinute = 60;
+      var msPerHour = msPerMinute * 60;
+      var msPerDay = msPerHour * 24;
+      var msPerMonth = msPerDay * 30;
+      var msPerYear = msPerDay * 365;
+
+      var elapsed = current - previous;
+
+      if (elapsed < msPerMinute) {
+           return Math.round(elapsed) + ' seconds ago';   
+      }
+
+      else if (elapsed < msPerHour) {
+           return Math.round(elapsed/msPerMinute) + ' minutes ago';   
+      }
+
+      else if (elapsed < msPerDay ) {
+           return Math.round(elapsed/msPerHour ) + ' hours ago';   
+      }
+
+      else if (elapsed < msPerMonth) {
+          return 'approximately ' + Math.round(elapsed/msPerDay) + ' days ago';   
+      }
+
+      else if (elapsed < msPerYear) {
+          return 'approximately ' + Math.round(elapsed/msPerMonth) + ' months ago';   
+      }
+
+      else {
+          return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';   
+      }
+  }
+%>
+<div id="project_desc_modal_review">
+  <div class="row">
+    <div class="col-sm-12">
+      <div id="review_form" class="panel panel-default">
+        <div id="review_content" class="panel-body">
+            <form role="form" method="POST" onSubmit="return put_project_review();">
+              <div class="row">
+                <div class="col-xs-9">
+                  <input id="reviewTitle" class="form-control" placeholder="Review Title">
+                </div>
+                <div class="col-xs-3">
+                  <input id='reviewPoint' class="rating" data-show-clear="false" data-show-caption="false" data-size="sm">
+                </div>
+              </div>
+              <div>
+                <textarea id="reviewComment" class="form-control" rows="3" placeholder="Enter Comment" required></textarea>           
+              </div>
+              <div class="reviewWrite" style="float:right;font-size:30px">
+                <a href="javascript:put_project_review();"><span class="glyphicon glyphicon-pencil"></span></a>
+              </div>
+            </form>
+          <hr/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+  <div id="project_reviews">
+
+  </div>
+  <br />
+
+</div>
+
+<style>
+#review_form{
+  border:0;
+}
+
+#review_content{
+  padding:0;
+}
+
+#reviewTitle{
+  color:black;
+  font-size: 25px;
+  border:0;
+  height:60px;
+}
+
+#reviewComment{
+  resize: none;
+  border:0;
+}
+</style>

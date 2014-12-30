@@ -1,0 +1,126 @@
+#############################
+# Graph DB Achitecture	    #
+# @author Sim, Dong jin		#
+# @created 2014-06-02	    #
+#############################
+
+
+#########create constraint#########
+CREATE CONSTRAINT ON (t:repo) ASSERT t.name IS UNIQUE
+CREATE CONSTRAINT ON (p:user) ASSERT p.name IS UNIQUE
+CREATE CONSTRAINT ON (r:repo) ASSERT r.name IS UNIQUE
+
+#########create index#########
+CREATE INDEX ON :repo(name)
+CREATE INDEX ON :user(name)
+CREATE INDEX ON :tag(name)
+
+#########create repo node#########
+CREATE (:repo {name:"simdj/pintos"})
+CREATE (:repo {name:"simdj/os"})
+CREATE (:repo {name:"simdj/goorm"})
+CREATE (:repo {name:"pcs/elastic"})
+CREATE (:repo {name:"pcs/pintos"})
+CREATE (:repo {name:"bbu/purdue"})
+CREATE (:repo {name:"bbu/soma"})
+
+
+#########create user node#########
+CREATE (:user {name:"simdj"})
+CREATE (:user {name:"bbu"})
+CREATE (:user {name:"pcs"})
+CREATE (:user {name:"yys"})
+CREATE (:user {name:"apple"})
+CREATE (:user {name:"samsung"})
+
+
+#########create tag node#########
+CREATE (:tag {name:"c"})
+CREATE (:tag {name:"c++"})
+CREATE (:tag {name:"java"})
+CREATE (:tag {name:"node.js"})
+CREATE (:tag {name:"OS"})
+CREATE (:tag {name:"search"})
+CREATE (:tag {name:"global"})
+
+
+
+#########mapping repo-user#########
+MATCH (dev:user {name:"simdj"}), (repository:repo {name:"simdj/pintos"})
+CREATE (dev)-[:PARTICIPATE_IN]->(repository)
+
+MATCH (dev:user {name:"simdj"}), (repository:repo {name:"simdj/os"})
+CREATE (dev)-[:PARTICIPATE_IN]->(repository)
+
+MATCH (dev:user {name:"simdj"}), (repository:repo {name:"simdj/goorm"})
+CREATE (dev)-[:PARTICIPATE_IN]->(repository)
+
+
+MATCH (dev:user {name:"pcs"}), (repository:repo {name:"pcs/pintos"})
+CREATE (dev)-[:PARTICIPATE_IN]->(repository)
+
+MATCH (dev:user {name:"pcs"}), (repository:repo {name:"pcs/elastic"})
+CREATE (dev)-[:PARTICIPATE_IN]->(repository)
+
+
+MATCH (dev:user {name:"bbu"}), (repository:repo {name:"bbu/purdue"})
+CREATE (dev)-[:PARTICIPATE_IN]->(repository)
+
+MATCH (dev:user {name:"bbu"}), (repository:repo {name:"bbu/soma"})
+CREATE (dev)-[:PARTICIPATE_IN]->(repository)
+
+
+
+MATCH (a:user {name:'simdj'})-[:PARTICIPATE_IN]->(b)
+return a,b
+
+
+
+
+#########mapping repo-tag#########
+
+
+#######language
+
+MATCH (r:repo {name:"simdj/pintos"}), (t:tag {name:'c'})
+CREATE (r)-[:TAGGED_BY]->(t)
+
+MATCH (r:repo {name:"pcs/pintos"}), (t:tag {name:'c'})
+CREATE (r)-[:TAGGED_BY]->(t)
+
+
+
+MATCH (r:repo {name:"simdj/goorm"}), (t:tag {name:'node.js'})
+CREATE (r)-[:TAGGED_BY]->(t)
+
+MATCH (r:repo {name:"pcs/elastic"}), (t:tag {name:'node.js'})
+CREATE (r)-[:TAGGED_BY]->(t)
+
+
+######project field
+
+MATCH (r:repo {name:"simdj/os"}), (t:tag {name:'OS'})
+CREATE (r)-[:TAGGED_BY]->(t)
+
+MATCH (r:repo {name:"simdj/pintos"}), (t:tag {name:'OS'})
+CREATE (r)-[:TAGGED_BY]->(t)
+
+MATCH (r:repo {name:"pcs/pintos"}), (t:tag {name:'OS'})
+CREATE (r)-[:TAGGED_BY]->(t)
+
+
+
+
+
+MATCH (a)-[:TAGGED_BY]->(b)
+return a,b
+
+
+
+
+
+##### project recommendation by tag
+
+MATCH (start:repo)-[:TAGGED_BY]->(tag)<-[:TAGGED_BY]-(result:repo)
+WHERE start.name='simdj/pintos'
+return tag, result

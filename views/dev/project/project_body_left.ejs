@@ -1,0 +1,140 @@
+<style type="text/css">
+  #project_body_left #reco_carousel .item_wrapper {
+    margin-left: auto; 
+    margin-right: auto; 
+    width:150px;
+    height:220px;
+    background:#bbb;
+    border-radius: 10px;
+  }
+  #project_body_left .item_image {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+  #project_body_left .item_maintainer{
+    font-size: 15px;
+    color: #ddd;
+    margin-left: 10px;
+  }
+  #project_body_left .item_project{
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    margin-left: 10px;
+  }
+
+</style>
+<div id="project_body_left" class="col-modal-2 no_padding">
+  <ul id="project_body_left_list" class="nav no_padding_left_right" style="list-style:none; text-align:left;">
+    <li class="project_left_category">
+      <div class="row no_margin">
+        <div class="category_name">Commits</div><div class="category_values category_commits"></div>
+      </div>
+    </li> 
+    <li class="project_left_category">
+      <div class="row no_margin">
+        <div class="category_name">Branches</div><div class="category_values category_branchs"></div>
+      </div>
+    </li>
+    <li class="project_left_category">
+      <div class="row no_margin">
+        <div class="category_name">Releases</div><div class="category_values category_releases"></div>
+      </div>
+    </li>
+    <li class="project_left_category">
+      <div class="row no_margin">
+        <div class="category_name">Contributors</div><div class="category_values category_contributors"></div>
+      </div>
+    </li>
+    <li class="project_left_category">
+      <div class="row no_margin">
+        <div class="category_name">Income</div><div class="category_values category_income"></div>
+      </div>
+    </li>
+  </ul>
+  <hr class="divider">
+  <ul id="project_body_left_list" class="nav no_padding_left_right" style="list-style:none; text-align:left;">
+    <li class="project_left_category clone_url">
+      <div class="row no_margin">
+        <div class="pull-left">
+          <a class='project_left_category_link active' href="#"><span>HTTPS clone URL</span></a>
+        </div>
+        <div class="pull-right">
+          <a class="clone_url_icon"><i class="fa fa-clipboard" style="text-align:right"></i></a>
+        </div>
+      </div>
+      <div class="ellipsis clone_url_text"><%=gitserver_origin%><%=repository_name%>.git</div>
+    </li> 
+    <li class="project_left_category download_zip">
+      <a class='project_left_category_link' href="<%=reposerver_origin%>archive/<%=repository_name%>"><span>Download ZIP</span></a>
+    </li>
+    <li class="project_left_category visualization">
+      <a class='project_left_category_link' href="javascript:setLocalStorage();"><span>Visualization</span></a>
+    </li>
+    <% if(name==user_name){ %>
+    <li class="project_left_category setting">
+      <a class='project_left_category_link' href="/<%=repository_name%>/setting"><span>Setting</span></a>
+    </li>
+    <% }%>
+  </ul>
+
+  <hr class="divider">
+  <div style="margin-bottom: 30px;font-size: 18px;font-weight: 600;">
+      Recommend Repositories
+  </div>
+  <div>
+    <div id="reco_carousel" class="carousel slide">
+        <div id="cart_carousel" class="carousel-inner">
+          <div class='item  active'>
+            <div class='item_wrapper' >
+              <a href='/Simdj/Data Mining'>
+                <img class='item_image' src="/image/add_your_img.png" alt="..." style="width:100%">
+                <div class='item_maintainer'>Simdj</div>
+                <div class='item_project'>Data Mining</div>
+            </a>
+
+            </div>
+
+
+          </div>
+          <div class='item '>
+            <div class='item_wrapper' >
+              <a href='/Aol/Elasticsearch'>
+                <img class='item_image' src="/image/add_your_img.png" alt="..." style="width:100%">
+                <div class='iteuser_namem_maintainer'>Aol</div>
+                <div class='item_project'>Elasticsearch</div>
+              </a>
+            </div>
+          </div>
+          <div class='item '>
+            <div class='item_wrapper' >
+              <a href='/Willian/MailServer'>
+                <img class='item_image' src="/image/add_your_img.png" alt="..." style="width:100%">
+                <div class='item_maintainer'>Willian</div>
+                <div class='item_project'>MailServer</div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+        <a class="carousel-control left" href="#reco_carousel" data-slide="prev" style="background:0">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="font-size:15px;color:gray"></span>
+        </a>
+        <a class="carousel-control right" href="#reco_carousel" data-slide="next" style="background:0">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="font-size:15px;color:gray;right:0"></span>
+        </a>  
+
+    </div>
+      
+  </div>
+
+
+</div>
+
+<style>
+
+.clone_url {
+
+}
+
+</style>

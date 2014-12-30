@@ -1,0 +1,127 @@
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" type="text/css" href="/library/bootstrap/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/library/full_page/jquery.fullPage.css" />
+
+
+<script src="/library/jquery/jquery-2.1.0.min.js"></script>
+<script src="/library/bootstrap/js/bootstrap.min.js"></script>
+
+
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+
+<!-- This following line is needed in case of using the default easing option or when using another
+ one rather than "linear" or "swing". You can also add the full jQuery UI instead of this file if you prefer -->
+<script src="/library/full_page/jquery.easings.min.js"></script>
+
+
+<!-- This following line needed in the case of using the plugin option `scrollOverflow:true` -->
+<!-- <script type="text/javascript" src="/library/full_page/jquery.slimscroll.min.js"></script> -->
+
+<script type="text/javascript" src="/library/full_page/jquery.fullPage.js"></script>
+
+
+<style type="text/css">
+/*.section_img_wrapper{
+  text-align: center;
+  width: 100%
+}
+.section_img{
+  width: 100%;
+}*/
+.white_text{
+  color: white;
+}
+.pink_text{
+  color:crimson;
+}
+.lime_green{
+  background-color:  #63FA63;
+}
+.pink{
+  background-color: crimson;
+}
+
+.btn-group{
+  min-width: 802px;
+}
+.btn{
+  min-width: 400px;
+}
+</style>
+
+<div id="fullpage">
+    <div class="section pink_text" style="background-image:url('image/main_page/section1.PNG');background-size:cover;text-align:center;">
+            
+          <div style="font-size:80px;font-weight:600">
+            CODEMELLOW
+          </div>
+             
+          <div style="font-size:40px;font-weight:300">
+            Mellow your code, Better your software
+          </div>
+          
+          <Br/><Br/><Br/><Br/><Br/><Br/><Br/><Br/><Br/><Br/>
+          
+          <div>
+            <div class="btn-group white_text">
+              <button type="button" class="btn lime_green dev_link">CODEMELLOW DEV</button>
+              <button type="button" class="btn pink market_link">CODEMELLOW MARKET</button>
+            </div>
+          </div>
+
+    </div>
+
+    <div class="section pink_text" style="background-image:url('image/main_page/section2.PNG');background-size:cover;text-align:center;">
+
+       <div style="font-size:80px;font-weight:600;text-align:left">
+            CODEMELLOW
+            <br>
+            Software Dev & Market platform
+          </div>
+             
+          <div style="font-size:30px;font-weight:300;text-align:left">
+            codemellow codemellow codemellowcodemellow<br/>
+            codemellow codemellow codemellowcodemellow<br/>
+            codemellow codemellow codemellowcodemellow<br/>
+            codemellow codemellow codemellowcodemellow<br/>
+
+          </div>
+
+          <Br/><Br/><Br/><Br/><Br/><Br/><Br/><Br/><Br/><Br/>
+          
+          <div>
+            <div class="btn-group white_text">
+              <button type="button" class="btn lime_green dev_link">CODEMELLOW DEV</button>
+              <button type="button" class="btn pink market_link">CODEMELLOW MARKET</button>
+            </div>
+          </div>
+
+
+    </div>
+
+
+   <!--  <div class="section" style="background-image:url('image/main_page/section3.PNG');background-size:cover;text-align:center;"> -->
+          
+    
+    </div>
+
+
+
+</div>
+
+
+<script>
+$(document).ready(function() {
+    $('#fullpage').fullpage();
+
+
+    $(".dev_link").click(function(){
+      location.href='/dev';
+    })
+
+    $(".market_link").click(function(){
+      location.href='/market';
+    })
+});
+</script>

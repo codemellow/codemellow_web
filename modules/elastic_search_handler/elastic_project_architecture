@@ -1,37 +1,64 @@
-curl -XPOST 'http://localhost:9200/project/project_info/project_name' -d '{
-	project_name:project_name,
-	project_language:"",
-	project_maintatiner:username,
-	project_discription:project_discription,
-	create_date :date,
-	commit_count :1,
-	branch_count :0,
-	release_count :0,
-	contributor_count :1,
-	pull_request_count :0,
-	issue_count :0
-}'
+DELETE /repository/
+DELETE /test_index/
 
-
-
-
-curl -XPOST 'http://localhost:9200/project/code/ccooccoo/src/b.js' -d '{
-
-	project_name:project_name,/* this can be used to give project info, we don;t have to store all info search by project_name and maintainer and then show it*/
-	project_maintatiner:username,
-
-	create_date :date,
-	code: 'Updated',
-	update_author:username,
-	update_date:date
-}'
-
-curl -XPOST 'http://localhost:9200/project/issues/ccooccoo' -d '{
-"project_name":"ccooccoo",
-"project_language":"java",
-"project_contributors":["park","kim"],
-"project_maintainer":"park",
-"file_name":"b.js",
-"file_path":"ccooccoo/src/b.js",
-"issues":"int main(void){ return 0; }"
-}'
+POST /repository/
+{
+  "mappings":{
+    "cm_repository": {
+               "properties": {
+                  "repository_id": {
+                        "type": "string"
+                     },
+                     "repository_name": {
+                        "type": "string"
+                     },
+                     "project_name": {
+                        "type": "string"
+                     },
+                     "repository_description": {
+                        "type": "string"
+                     }, 
+                     "create_date": {
+                        "type": "string"
+                     },
+                     "last_commit_date": {
+                        "type": "string"
+                     },
+                     "commit_count": {
+                        "type": "integer"
+                     },
+                     "sell_count": {
+                        "type": "integer"
+                     },
+                     "sell_price": {
+                        "type": "integer"
+                     },
+                     "view_count": {
+                        "type": "integer"
+                     },
+                     "release_count": {
+                        "type": "integer"
+                     },
+                     "contributor_count": {
+                        "type": "integer"
+                     },
+                     "review_count": {
+                        "type": "integer"
+                     },
+                     "review_point": {
+                        "type": "double"
+                     },
+                     "repository_like_count": {
+                        "type": "integer"
+                     },
+                     "project_name_suggest": {
+                        "type": "completion",
+                        "index_analyzer": "simple",
+                        "search_analyzer": "simple",
+                        "payloads": false
+                     }
+               }
+    }
+}
+  
+}

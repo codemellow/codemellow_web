@@ -1,0 +1,21 @@
+
+.project_content_body .file_thumbnail {
+	width: 20px;
+}
+
+.project_content_body .table>tbody>tr>td {
+	border-top : 0px;
+	background-color: white
+}
+
+.project_content_body a {
+	color : black;
+}
+
+.btn i {
+  color : #777777;
+}
+
+.project_content_body {
+	font-size : 16px;
+}

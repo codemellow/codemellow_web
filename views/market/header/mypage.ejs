@@ -1,0 +1,162 @@
+<div class="row mypage_background" align="center">
+	<br/>
+	<div class="row">
+		<h1 class="mypage_title">Hello. <b><%=name%></b></h1>
+	</div>
+	<br/>
+	<br/>
+	<div class="row ">
+		<div class="col-sm-2 col-sm-offset-2">
+			<a>
+				<div class="img-circle mypage_category div_align_center" data-target="profile">
+					<img class="img-circle mypage_my_image" src="/image/add_your_img.png" alt="...">
+				</div>
+			</a>
+		</div>
+		<div class="col-sm-2">
+			<a>		
+				<div class="img-circle mypage_category div_align_center" data-target="myproject">
+					<span class="glyphicon glyphicon-list"></span>
+				</div>
+			</a>
+		</div>
+		<div class="col-sm-2">
+			<a>	
+				<div class="img-circle mypage_category div_align_center" data-target="graph">
+					<span class="glyphicon glyphicon-list-alt"></span>
+				</div>
+			</a>
+		</div>
+		<div class="col-sm-2">
+			<a onclick="logout()">	
+				<div class="img-circle mypage_category div_align_center">
+					<span class="glyphicon glyphicon-log-out"></span>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div id="mypage_bottom_content" class="col-sm-12 hidden">
+		<div id="mypage_content_profile" class="mypage_content hidden">
+			<br/>
+			<br/>
+			<br/>
+			<div class="col-sm-offset-4 col-sm-5">
+				<table class="table">
+					<tbody>
+						<tr>
+							<td style="width:60px"><span class="glyphicon glyphicon-user"></span></td>
+							<td style="width:180px">Seller</td>
+							<td style="width:400px"></td>
+							<td style="width:60px"></td>
+						</tr>
+						<tr>
+							<td><span class="glyphicon glyphicon-envelope"></span></td>
+							<td>e-mail</td>
+							<td><input id="profile_content_email" class="profile_content" value="<%=email%>" readonly></input></td>
+						</tr>
+						<tr>
+							<td><span class="glyphicon glyphicon-comment"></span></td>
+							<td>SNS</td>
+							<td><input id="profile_content_sns" class="profile_content" value="" readonly></input></td>
+							<td><a class="profile_edit glyphicon glyphicon-pencil" data-target="sns"></a></td>
+						</tr>
+						<tr>
+							<td><span class="glyphicon glyphicon-globe"></span></td>
+							<td>Website</td>
+							<td><input id="profile_content_website" class="profile_content" value="" readonly></input></td>
+							<td><a class="profile_edit glyphicon glyphicon-pencil" data-target="website"></a></td>
+						</tr>
+						<tr>
+							<td><span class="glyphicon glyphicon-credit-card"></span></td>
+							<td>Paypal</td>
+							<td><input id="profile_content_paypal" class="profile_content" value="" readonly></input></td>
+							<td><a class="profile_edit glyphicon glyphicon-pencil" data-target="paypal"></a></td>
+						</tr>
+					</tbody>
+				</table>				
+			</div>
+		</div>
+		<div id="mypage_content_myproject" class="mypage_content hidden">
+			<% include ./mypage/project %>
+		</div>
+		<div id="mypage_content_graph" class="mypage_content hidden">
+			<% include ./mypage/graph %>
+		</div>
+	</div>
+</div>
+
+<script src='/scripts/market/mypage.js'></script>
+
+<style type="text/css">
+
+.mypage_background{
+	background: #e91e63;
+}
+
+.mypage_my_image {
+	width: 100%;
+	height: 100%
+}
+
+.mypage_title {
+	color: white;
+	font-size: 52px;
+}
+
+.mypage_category {
+    width : 12vw;
+    height : 12vw;	
+    border-style:solid;
+    border-color:white;
+    color:white;
+    font-size: 4vw;
+}
+
+#mypage_content_profile {
+	height: 100%;
+}
+
+#mypage_content_profile .table {
+	table-layout: fixed;
+	font-size: 32px;
+	color: #e91e63;
+}
+#mypage_content_profile .table td {
+	border-top: none;
+}
+
+#mypage_content_profile .table th {
+	border-top: none;
+}
+
+.profile_content {
+    background-color: transparent;
+    border: 0px solid;
+    color: #CCC;
+}
+
+.profile_content:focus {
+	outline: 0;
+}
+
+#mypage_bottom_content {
+	width: 100%;
+	height: 50%;
+	top: 50%;
+	background-color: white;
+	position: absolute;
+}
+
+.mypage_project_image{
+	width : 60px;
+	height : 60px;
+}
+
+.small_project_entry {
+	color: black;
+}
+
+.profile_edit {
+	color: #e91e63;	
+}
+</style>

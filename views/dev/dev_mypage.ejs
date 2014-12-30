@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+
+    Codemellow
+
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- common css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/stylesheets/octicons/octicons.css" rel="stylesheet">
+  <link href="/stylesheets/dev/dev_mypage.css" rel="stylesheet">
+
+
+
+
+
+
+</head>
+
+<body class="bs-docs-home">
+
+    <!-- fixed header-->
+    <div id="header">
+      <% include header %>
+    </div>
+
+    <!-- content -->
+        
+
+    <div id='my_page' class='row'>
+
+      <div id='left_profile' class='col-xs-2 text-center'>
+        <div class='left_profile_unit'>
+          <img id='my_profile_img' src="/h1.jpg" class="img-circle" style="width:60%">
+
+          <div class='user_name'></div>
+          <div> <span class="glyphicon glyphicon-user"></span> <span id='left_proflie_user_group'>Codemellow </span></div>  
+        </div>
+        
+        <div class='left_profile_unit'>
+
+          <div class='row'> 
+            <div class='col-xs-4 text-left'><span class="glyphicon glyphicon-map-marker"></span></div> 
+            <div id='profile_location' class='col-xs-8 text-left'>California, US </div>
+          </div>
+
+          <div class='row'> 
+            <div class='col-xs-4 text-left'><span class="glyphicon glyphicon-envelope"></span></div>   
+            <div id='profile_email' class='col-xs-8 text-left'>  </div>
+          </div>
+          
+          <div class='row'> 
+            <div class='col-xs-4 text-left'><span class="glyphicon glyphicon-globe"></span></div>  
+            <div id='profile_url' class='col-xs-8 text-left'>www.codemellow.net </div>
+          </div>
+          
+          <div class='row'> 
+            <div class='col-xs-4 text-left'><span class="glyphicon glyphicon-search"></span></div>  
+            <div id='profile_paypal' class='col-xs-8 text-left'>Paypal Account </div>
+          </div>
+        </div>
+
+
+        <div class='left_profile_unit'>
+
+          
+          <div class='row'> 
+            <div class='col-xs-8 text-left left_profile_num_label'>Contributions</div>
+            <div id='contributions_num' class='col-xs-4 text-left left_profile_num'>   </div>
+          </div>
+          
+          <div class='row'> 
+            <div class='col-xs-8 text-left left_profile_num_label'>Repositories</div>
+            <div id='repositories_num' class='col-xs-4 text-left left_profile_num'> </div>
+          </div>
+          
+          <div class='row'> 
+            <div class='col-xs-8 text-left left_profile_num_label'>Following</div>
+            <div id='following_num' class='col-xs-4 text-left left_profile_num'> </div>
+          </div>
+
+          <div class='row'> 
+            <div class='col-xs-8 text-left left_profile_num_label'>Followers</div>
+            <div id='followers_num' class='col-xs-4 text-left left_profile_num'> </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+      <div id='right_content' class='col-xs-8'>
+
+
+
+        <div id='contributing_repositories_wrapper' class='col-xs-6'>
+          <div class='accordion_label'>Contributing repositories</div>
+          
+
+          <div class="panel-group accordion_wrapper" id="contributing_accordion" role="tablist" aria-multiselectable="true">
+
+
+          </div> <!-- panel group end -->
+
+        </div>
+
+        <div id='maintaining_repositories_wrapper' class='col-xs-6'>
+          <div class='accordion_label'>Maintaining repositories</div>
+          
+
+          <div class="panel-group accordion_wrapper" id="maintaining_accordion" role="tablist" aria-multiselectable="true">
+           
+
+
+          </div> <!-- panel group end -->
+        
+        </div>
+        <div id='income_grpah' class="col-xs-12">
+          <div style="font-size: 30px;margin-bottom: 10px;font-weight: 400;">Income graph</div>
+            <div tyle="font-size: 20px;margin-bottom: 10px;font-weight: 400;">
+              All &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   Maintaining &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   Contributing
+            </div>
+          <div id="mypage_content_graph" >
+            
+            <br><br><br>
+            <canvas id="user_sales_chart" height="300" style='width:100%'></canvas>
+            <br><br><br>
+            <br><br><br>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+      
+      
+
+    <!-- fixed footer-->
+    <div id="footer">
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="/library/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+    
+    <script src="/scripts/chart/chart.min.js"></script>
+
+
+    
+    <script type="text/javascript">
+    	var user_info=<%-JSON.stringify(mypage)%>
+    </script>
+    <script src="/scripts/dev/dev_mypage.js"></script>
+   
+
+
+
+    
+  </body>
+</html>

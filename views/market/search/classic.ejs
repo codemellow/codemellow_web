@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="en" style='height:100%'>
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>  
+        Codemellow
+    </title>
+
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+  <!-- commn css -->
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/common.css" rel="stylesheet">
+  <link href="/stylesheets/market/market.css" rel="stylesheet"> 
+  <link href="/stylesheets/market/main_beta.css" rel="stylesheet">
+ </head>
+
+  <body class="bs-docs-home" style='padding-top:50px;height:100%;overflow-y: scroll;overflow-x:hidden'>    
+
+    <!-- Left side menu -->
+    <div id="sidebar"> 
+      <% include ../left_side_menu %>
+    </div>
+
+    <!-- Right side menu -->
+    <div> 
+      <% include ../right_side_menu %>
+    </div>
+
+    <!-- Fixed navbar -->
+    <div id="header">
+      <% include ../header %> 
+    </div>
+    
+
+    <!-- content -->
+    <div id="content" class='container-fluid full_height' style='overflow-y: scroll;overflow-x:hidden;' >
+      <div class="main_background active" style="background-image: url('/image/main_codemellow_blur.jpg'); "></div>
+      <div id="grid_background"></div>
+      <div class='row text-center'>
+      	<div class='row'>
+          <div class='col-xs-12'>
+              <div class='input-group col-xs-12' >
+                <div style="width:100%;">
+                  <input class="search_input_text" type='search' id="classic_search_input" placeholder="Search" autofocus="autofocus">
+                  <div class="dropdown search_sort_dropdown">
+                    <button class="btn btn-default btn-lg dropdown-toggle search_dropdown_button" type="button" data-toggle="dropdown">
+                      Arrange <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                     <li><a role="menuitem" tabindex="-1" href="#">Best Match</a></li>
+                     <li><a role="menuitem" tabindex="-1" href="#">Most Popular</a></li>
+                     <li><a role="menuitem" tabindex="-1" href="#">Most Like</a></li>
+                     <li><a role="menuitem" tabindex="-1" href="#">Highest Evaluation</a></li>
+                     <li><a role="menuitem" tabindex="-1" href="#">Best Seller</a></li>
+                     <li><a role="menuitem" tabindex="-1" href="#">Most Newest</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div display="hidden">
+                  <span class='input-group-btn' id='classic_search_bt'>
+                    <form id='search_form' method='get' style='display:hidden'></form>
+                  </span>
+                </div>
+              </div>
+          </div>
+<!--           <div class='col-sm-2'>
+            <div class="dropdown">
+              <button style="margin-top: 3.5%;" class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
+                arrange <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+               <li><a role="menuitem" tabindex="-1" href="#">Best Match</a></li>
+               <li><a role="menuitem" tabindex="-1" href="#">Most Popular</a></li>
+               <li><a role="menuitem" tabindex="-1" href="#">Most Like</a></li>
+               <li><a role="menuitem" tabindex="-1" href="#">Highest Evaluation</a></li>
+               <li><a role="menuitem" tabindex="-1" href="#">Best Seller</a></li>
+               <li><a role="menuitem" tabindex="-1" href="#">Most Newest</a></li>
+              </ul>
+            </div>
+          </div> -->
+        </div>
+        
+        <div id="card_container" class='row'>
+          <% if (data == false) { %>
+            <div align="center" class="none_result_title">
+              <p>Sorry, we can't found about</p>
+              <p>"<%-search%>"</p>
+            </div>
+          <% }else if (data && data.hits && data.hits.hits != 0) {
+              var hits = data.hits.hits 
+              var index = 1 + (Number(page)-1)*12 
+              for(i in hits){
+                var target = hits[i]._source 
+                var highlight = hits[i].highlight %>              
+
+                <div class="project_container col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                  <a href="/market/<%= target.repository_name %>">
+                    <div class="project_entry" data-toggle="modal" data-target="#project_desc_modal">
+                      <div>
+                        <% if(!target.thumbnail_url){ %>
+                            <img src="/image/add_your_img.png" alt="..." class="project_entry_img">
+                        <% }else{ %>
+                            <img src="<%=target.thumbnail_url%>" alt="..." class="project_entry_img">
+                        <% } %>
+                      </div>
+                        <div class="row">
+                          <div class="col-xs-6">
+                              <p class="card_maintainner_name long_name_overflow"><%- target.repository_name.substring(0,target.repository_name.search("/")) %></p>
+                          </div>
+                          <div class="col-xs-6">
+                            <div class="card_rating">
+                              <input class="rating" data-show-clear="false" data-show-caption="false" data-size="xxs" value="<%=(hits[i].review_point/hits[i].review_count)%>">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <% if(highlight&&highlight.project_name) {%>
+                              <p class="margin_bottom_10 card_repository_name long_name_overflow"><%-highlight.project_name %></p>
+                            <%}else{%>
+                              <p class="margin_bottom_10 card_repository_name long_name_overflow"><%= target.repository_name.substring(target.repository_name.search("/")+1) %></p>
+                            <%}%>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-4" style="padding-left: 20px; padding-right:0px;">
+                            <button type="button" class="btn btn-gray add_to_cart col-xs-12 btn-xs small_button" data-repositoryid="<%=target.repository_id%>">Add to cart</button>
+                          </div>
+                          <div class="col-xs-4" style="padding-right:10px;padding-left:10px;">
+                            <button type="button" class="btn btn-gray col-xs-12 btn-xs small_button">Deal now</button>
+                          </div>
+                          <div class="col-xs-4" style="padding-left:0px; padding-right: 20px;">
+                            <button type="button" class="btn btn-pink col-xs-12 btn-xs small_button">Donate</button>
+                          </div>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+                <% index++ %>
+             <%}%>
+          <%}else{%>
+              <div align="center" class="none_result_title">
+                <p class="classic_sorry_title">Sorry, we can't find about</p>
+                <p class="classic_search_text">"<%-search%>"</p>
+              </div>
+          <%}%>
+        </div>
+        <div class='row' align="center">
+            <ul id="classic_paginator" class="pagination">
+                  <% if (data) {%>
+                    <% var text = search; var page_index = Number(page); 
+                       var total = Number(data.hits.total)/12
+                       var start_index = (page_index - (page_index%10 == 0 ? 10 : page_index%10)) %>
+                    <% if ( total > start_index &&  start_index > 9) {%>
+                      <%- "<li ><a href='/market/classic/"+text+"/"+(start_index-9)+"'>&laquo;</a></li>" %>
+                    <% } else { %>
+                      <%- "<li><a>&laquo;</a></li>" %>
+                    <% } %>
+                    <% if ( total - start_index > 9 ){ 
+                       size = 10 
+                       } else {
+                       size = total - start_index
+                     } %> 
+                    <% for(var i = 1; i < size+1; i++) {%>
+                      <% if (start_index + i == page_index) {%>
+                        <%- "<li class='active'><a>"+(start_index+i)+"</a></li>" %>
+                      <%} else{%>
+                        <%- "<li><a href='/market/classic/"+text+"/"+(start_index+i)+"'>"+(start_index+i)+"</a></li>" %>
+                      <%}%>
+                      
+                    <% }%>
+                    <% if(total - start_index >= 10){ %>
+                      <%- "<li><a href='/market/classic/"+text+"/"+(start_index+11)+"'>&raquo;</a></li>" %>
+                    <%}else{%>
+                      <%- "<li class='disabled'><a>&raquo;</a></li>" %>
+                    <%}%>
+
+                    
+                  <%}%>
+              </ul>
+          </div>
+      </div>
+
+      <!-- Fixed footer-->
+      <div id="footer" class="hidden">
+        <% include ../footer %> 
+      </div>
+    </div>
+    
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/library/bootstrap/dist/js/bootstrap.min.js"></script>
+    <% include ../project/modal %>
+    <style type="text/css">
+      .search_input_text{
+        border: 0 none;
+        background-color: white;
+        font: 17px "Source Sans Pro";
+        font-weight: 300;
+        padding: 0;
+        padding-left: 30px;
+        height: 40px;
+        width: 100%;
+        float: left;
+      }
+      input[type="search"]:hover, input[type="search"]:focus{
+        outline: 0;
+      }
+      .none_result_title{
+        color: #fff;
+        font-size: 8em;
+      }
+      .search_sort_dropdown{
+        width: auto;
+        display: inline-block;
+        position: absolute;
+        top: 0%;
+        right: 20px;
+        height: auto;
+      }
+      .search_dropdown_button{
+        background-color: white !important;
+        border: 0 none;
+        border-left: 1px #e91e63;
+        border-style: solid;
+        border-radius: 0px;
+        color: #e91e63 !important;
+        font: 17px "Source Sans Pro";
+        height: 40px;
+      }
+      .classic_sorry_title{
+        font-size: 42px;
+      }
+      .classic_search_text{
+        font-size: 60pt;
+        font-family: "MyriadPro-Regular";
+      }
+      .pagination{
+        font-family: "Source Sans Pro";
+        font-weight: 400;
+        font-size: 17px;
+      }
+      .pagination>li>a, .pagination>li>span{
+        border:none;
+        background:transparent;
+        color: gray;
+
+      }
+      .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus{
+        border:none;
+        background:transparent;
+        color: white;
+      }
+      .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus{
+        border:none;
+        background:transparent;
+        color: #e91e63;
+        font-family: "Source Sans Pro";
+        font-weight: 700;
+      }
+
+    </style>
+    
+    <script type="text/javascript">
+      $('#classic_search_input').keydown(function(e){
+        if(e.keyCode == 13){
+          var postdata = {};
+          postdata.msg = $('#classic_search_input').val();
+          postdata.page = 1;
+          if(postdata.msg != ""){
+            $("#search_form").attr('action','/market/classic/'+postdata.msg+'/1');
+            $("#search_form").submit();
+          }
+        }
+      });
+      
+      global_function.long_name_hover_animation();
+    </script>
+
+  </body>
+
+  <div class="modal fade" id="find_pw_modal" tabindex="-1" role="dialog" aria-labelledby="find_pw_modal_label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="find_pw_modal_label">Find User Password</h4>
+        </div>
+        <div class="modal-body">
+          <input class='form-control' id='find_pw_email' placeholder='User email'></input>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="find_pw_send_bt">Send Email</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</html>

@@ -1,0 +1,101 @@
+#main_container .panel{
+	background-color: #f5f5f5;
+	color: black;
+	margin-bottom: 0px;
+}
+
+#main-develop a, #main-market a{
+	text-decoration: none;
+	color: black;
+}
+
+.main-title-market:hover, .main-title-develop:hover {
+	background-color: #959595 !important;
+	color: #ffffff !important;
+	border-color: #959595 !important;	
+}
+
+.panel-main {
+	background-color: #f5f5f5;	
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.main-title-brand{
+	padding: 15px;
+	height: 340px;
+}
+
+.main-title-login{
+	width: 80%;
+}
+
+.main-title-market{
+	height:180px;
+	text-align:center;
+}
+
+.main-title-develop{
+	height:180px;
+	text-align:center;
+}
+
+.main-title-guideline1{
+	height:500px;
+	font-size:15px;
+}
+
+.main-title-guideline2{
+	height:400px;
+	font-size:15px;
+}
+
+.main-input {
+	margin-top: 15px;
+	height: 45px;
+	font-size: 20px;
+}
+.row-margin{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.main-button{
+	background-color: #dfdfdf;
+	color: #959595;
+	border-color: #dfdfdf;
+}
+.main-button:hover, .main-button:active, .active{
+	background-color: #959595;
+	color: #ffffff;
+	border-color: #959595;
+}
+/*btn-primary:active*/
+.main-icon{
+	color: #cfcfcf;
+}
+.main-icon:hover{
+	color: #959595;
+}
+.padding-zero{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.main-button {
+	width: 100%;
+}
+
+.main-title-font {
+	font-size: 60px;
+}
+
+.main-alert {
+	background-color: #f2eeee;
+	border-color: #ebdce1;
+	color: #d96462;
+}
+
+
+/*search result css*/
+

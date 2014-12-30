@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en" style='height:100%'>
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>  
+        Codemellow
+    </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+
+  <!-- commn css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+
+  <!-- market css -->
+  <link href="/stylesheets/market/market.css" rel="stylesheet">  
+  
+  <link href="/stylesheets/market/verification.css" rel="stylesheet">
+  <!-- main beta css -->
+  <!-- <link href="/stylesheets/market/main_beta.css" rel="stylesheet" -->
+ </head>
+
+  <body class="bs-docs-home" style='padding-top:50px;height:100%;overflow-y: scroll;overflow-x:hidden'>    
+
+    <!-- Left side menu -->
+    <div id="sidebar"> 
+      <% include ./left_side_menu %>
+    </div>
+
+    <!-- Right side menu -->
+    <div> 
+      <% include ./right_side_menu %>
+    </div>
+
+    <!-- Fixed navbar -->
+    <div id="header">
+      <% include ./header %> 
+    </div>
+
+    <!-- content -->
+    <div id="content" class='container-fluid full_height' >
+      
+      <div class='row full_height text-center'>
+        <h1 class="pink_str verification_page_title"> Thanks. Verification is completed </h1>
+        <!-- <div style="height:10%;"></div> -->
+        <div id="link_to_main" class="verification_page_icon_div"><img src="/image/email_complete_icon.png"></div>
+      </div>
+
+    </div>
+
+    <!-- Fixed footer-->
+    <div id="footer" class="hidden">
+      <% include ./footer %> 
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+    <script src="/library/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/scripts/market/verification.js"></script>
+  </body>
+
+</html>

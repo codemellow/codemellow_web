@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en" style='height:100%'>
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>  
+        Codemellow
+    </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+
+
+  <!-- commn css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+
+  <!-- market css -->
+  <link href="/stylesheets/market/market.css" rel="stylesheet">  
+  
+
+  <!-- main beta css -->
+  <link href="/stylesheets/market/main_beta.css" rel="stylesheet">
+
+ </head>
+
+  <body class="bs-docs-home" style='padding-top:50px;height:100%;overflow-y: auto;overflow-x:hidden'>    
+
+    <!-- Left side menu -->
+    <div id="sidebar"> 
+      <% include ./left_side_menu %>
+    </div>
+
+    <!-- Right side menu -->
+    <div> 
+      <% include ./right_side_menu %>
+    </div>
+
+    <!-- Fixed navbar -->
+    <div id="header">
+      <% include ./header %> 
+    </div>
+
+    <!-- content -->
+    <div id="content" class='container-fluid full_height' style='overflow-y: auto;overflow-x:hidden' >
+      <div class="main_background active" style="background-image: url('/image/main_codemellow_blur.jpg'); "></div>
+      <div class="main_background non-active hidden" style="background-image: url('/image/adver_blur.jpg'); "></div>
+      <div id="grid_background"></div>
+      <div class='row full_height' style="position:relative;">
+        <div id="main_carousel" class="height_Strech_Animation" style="position:relative;height:50%;" >
+          <div class="full_height">
+            <div id="main_ad" class="item active full_height">
+              <div class="ad_background full_width" style="background-image: url('/image/main_codemellow.jpg'); "></div>
+              <div id="caption" class="carousel-caption">
+                <div id="line1" class="vertical_line height_Strech_Animation hidden"></div>
+                <div id="line2" class="vertical_line height_Strech_Animation hidden"></div>
+                <p style="font-size: 1vw;" class="height_Strech_Animation scroll_up hidden"> SCROLL UP </p>
+              </div>
+            </div>
+            <div class="item non-active full_height hidden">
+              <div class="ad_background full_width" style="background-image: url('/image/adver.jpg');"></div>
+              <div id="caption" class="carousel-caption">
+                <div id="line1" class="vertical_line height_Strech_Animation hidden"></div>
+                <div id="line2" class="vertical_line height_Strech_Animation hidden"></div>
+                <p style="font-size: 1vw;" class="height_Strech_Animation scroll_up hidden"> SCROLL UP </p>
+              </div>
+            </div>
+          </div>
+
+          <a id="carousel_left" class="left carousel-control" role="button" data-slide="prev">
+          </a>
+          <a id="carousel_right" class="right carousel-control" role="button" data-slide="next">
+          </a>
+        </div>
+        <div id="grid_card" class='height_Strech_Animation'>
+          <!-- <div id="grid_background"></div> -->
+          <div id="card_container" class="row">
+          <% 
+            for(var i in best_seller){
+          %>
+          <!-- col-xs-offset-2 col-sm-offset-0 col-xs-8 col-sm-4 col-md-3 col-lg-2 -->
+            <div class="project_container">
+              <a href="/market/<%=best_seller[i].repository_name%>">
+                <div id="entry_<%=i%>" class="project_entry" data-toggle="modal" data-target="#project_desc_modal" data-like-target-id="like_<%=i%>">
+                  <div>
+                    <% if(!best_seller[i].thumbnail_url){ %>
+                        <img src="/image/add_your_img.png" alt="..." class="project_entry_img">
+                    <% }else{ %>
+                        <img src="<%=best_seller[i].thumbnail_url%>" alt="..." class="project_entry_img">
+                    <% } %>
+                  </div>
+                  <% if(user_like){
+                    var flag_like = false;
+                    for (var j in user_like){ 
+                      if(user_like[j].repository_id == best_seller[i].repository_id){
+                        flag_like = true;
+                      }
+                    }
+                  %>
+                    <% if(flag_like){ %>
+                      <span id="like_<%=i%>" class="glyphicon glyphicon-heart card_like_list like" data-repositoryid="<%=best_seller[i].repository_id%>"></span>
+                    <% }else{ %>
+                      <span id="like_<%=i%>" class="glyphicon glyphicon-heart card_like_list" data-repositoryid="<%=best_seller[i].repository_id%>"></span>
+                    <% } %>
+                    
+                    
+                  <% }else{ %>
+                    <span id="like_<%=i%>" class="glyphicon glyphicon-heart card_like_list"></span>
+                  <% } %>
+
+                  <div class="project_info">
+                    <div class="row project_author_row">
+                      <div class="col-xs-7 ">
+                        <p class="card_maintainner_name long_name_overflow">
+                         <%=best_seller[i].repository_name.substring(0, best_seller[i].repository_name.search("/"))%>
+                        </p>
+                      </div>
+                      <div class="col-xs-5">
+                        <div class="card_rating">
+                          <input type="hidden" class="rating" data-show-clear="false" data-show-caption="false" data-size="xxs" value="<%=(best_seller[i].review_point/best_seller[i].review_count)%>">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <h4 class="margin_bottom_10 card_repository_name long_name_overflow"><%=best_seller[i].repository_name.substring(best_seller[i].repository_name.search("/")+1)%></h4>
+                        <p class="card_ellipsis"><%=best_seller[i].repository_description%></p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-4" style="padding-left: 24px; padding-right:0px;">
+                        <button type="button" class="btn btn-gray-alpha add_to_cart col-xs-12 btn-xs small_button" data-repositoryid="<%=best_seller[i].repository_id%>">Add to cart</button>
+                      </div>
+                      <div class="col-xs-4" style="padding-right:8px;padding-left:10px;">
+                        <button type="button" class="btn btn-gray-alpha col-xs-12 btn-xs small_button deal_now_btn">Deal now</button>
+                      </div>
+                      <div class="col-xs-4" style="padding-left:0px; padding-right: 24px;">
+                        <button type="button" class="btn btn-pink-alpha col-xs-12 btn-xs small_button donate_now_btn">Donate</button>
+                      </div>     
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <%
+            }
+          %>
+        </div>
+        </div>
+      </div>
+      
+
+      <!-- fixed header-->
+      
+    </div>
+    <!-- <div id="footer" style="position:fixed;bottom:0px;width:100%;">
+      <% include ./footer %> 
+    </div> -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/library/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/library/bootstrap-imageupload/js/fileinput.min.js"></script>
+    <% include ./project/modal %>  
+    <script src="/scripts/market/main_beta.js"></script>
+
+  </body>
+
+</html>

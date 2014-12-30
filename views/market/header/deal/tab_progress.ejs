@@ -1,0 +1,782 @@
+<div id='header_tab_progress' class='row'>
+	<div class='deal_header_tab_title'>In Progress</div>
+	
+
+
+
+
+
+	<div class='row'>
+		<div id='' class='col-xs-8'>
+			<div class='row'>
+				<div class='col-xs-6'>
+					<div class="navbar-form navbar-left" >
+				        <button id="header_tab_progress_search" class="btn header_deal_search_btn"> <span class="glyphicon glyphicon-search"></span></button>
+				        <div class="form-group">
+							<input id='header_tab_progress_search_input' type="text" class="form-control header_deal_search_input" placeholder="">
+				        </div>
+				  	</div>
+				</div>
+				<div class='col-xs-6' style='text-align:right'>
+
+				  	<button class='btn btn-link pink_color deal_progress_group deal_progress_group_all'>All</button>
+				  	<button class='btn btn-link pink_color deal_progress_group deal_progress_group_seller'>Offered</button>
+				  	<button class='btn btn-link pink_color deal_progress_group deal_progress_group_buyer'>Negotiating</button>
+				  	<button class='btn btn-link pink_color deal_progress_group deal_progress_group_buyer' >Accepted</button>
+				  	<button class='btn btn-link pink_color deal_progress_group deal_progress_group_buyer'>Denied</button>
+				</div>
+			</div>
+
+			<hr>	
+
+			
+
+			<div id="deal_progress_list" class='row no_margin'>
+				
+			</div>
+		</div>
+
+		<div id='deal_progress_pay' class='col-xs-4 text-right'>
+			<div>Payment Method : Paypal</div>
+			<div>Total  : <input id='complete_pay_total' class='' type='number'value='0' readonly /> $</div>
+			<br/><br/>
+			<button id='complete_pay'type='link' class='btn btn-link' style="color:#e91e63">Complete to pay</button>
+		</div>
+
+
+	</div>
+
+
+
+
+</div>
+
+
+
+
+<% include ./modal_deal_cancelled %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style type='text/css'>
+
+	#header_tab_progress {
+		/*font-family: 'MyriadPro-Regular'*/
+	}
+
+
+
+
+
+	.deal_progress_card {
+		align-items: center;
+		/* display: flex; */
+		margin-bottom: 10pt;
+		/* border: 1px solid; */
+	}
+	
+
+	.progress_deal_checkbox{
+		width : 40px;
+		height : 40px;
+	}
+	
+
+	.deal_progress_status_btn{
+		float: right;
+		width: 100%;
+		font-size: 8pt;
+		border: 0;
+		border-radius: 5pt;
+	}
+
+	.deal_progress_status_btn_wrapper {
+		padding: 0;
+	}
+
+
+
+	#complete_pay_total{
+		border : 0 none;
+		text-align: right;
+	}
+
+	.deal_progress_group{
+		padding-right: 0px;
+	}
+
+
+
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type='text/javascript'>
+
+
+function html_progress_deal(deal_info){
+	var ret=" <div  class='col-xs-12 col-sm-12 col-md-6 repository_list_card deal_progress_card deal_progress_"+deal_info.deal_status+" ' > "
+	+"<div class='col-xs-2 no_padding'><img src='[project_img_url]' class='mypage_project_image'/></div> "
+	+"<div class='col-xs-10 no_padding'>"
+	+	"<div class='col-xs-12 no_padding'>[repo_maintainer]</div> "
+	+	"<div class='col-xs-8 no_padding'>[repo_project]</div> "
+	+	"<div class='col-xs-4 deal_progress_status_btn_wrapper'>[status_display]</div>  "
+	+"</div>"
+	+"</div>";
+	
+	var data_deal_id="data-deal_id='"+deal_info.deal_id+"'";
+
+	// var checkbox='<input type="checkbox" class="progress_deal_checkbox" [disabled]/>';
+	// if(deal_info.deal_status!='accepted'){
+	// 	checkbox=checkbox.replace('[disabled]','disabled="disabled"')
+	// }else{
+	// 	checkbox=checkbox.replace('[disabled]','')
+	// }
+
+	var project_img_url = deal_info.thumbnail_url ? deal_info.thumbnail_url : '/image/add_your_img.png';
+
+	var repo_maintainer= '<div class="repository_list_card_maintainer">'+deal_info.repository_name.split('/')[0]+'</div>'
+	var repo_project= 	'<div class="repository_list_card_project_name">'+deal_info.repository_name.split('/')[1]+'</div>'
+	var status_display='<button [data-deal_id] class="deal_progress_status_btn [btn_type] progress_deal_status_btn_'+deal_info.deal_status+'">'+global_function.capitalize_first_letter(deal_info.deal_status)+'</button>'
+	status_display = status_display.replace('[data-deal_id]',data_deal_id);
+
+	switch(deal_info.deal_status){
+		case 'accepted':
+		case 'offered':
+			status_display = status_display.replace("[btn_type]", "pink_btn")
+			break;
+		default :
+			status_display = status_display.replace("[btn_type]", "gray_btn")
+
+	}
+
+	return ret.replace('[project_img_url]',project_img_url).replace('[repo_maintainer]',repo_maintainer).replace('[repo_project]',repo_project).replace('[status_display]',status_display);
+
+
+
+
+	
+
+}
+
+
+
+
+//1.buyer
+//1-1.negotiating
+//1-2.accepted
+//1-3.denied
+
+//2.seller
+//2-1.offered
+
+
+
+
+function ajax_get_buyer_progress_deal(callback){
+	var buyer_progress_req={}
+	buyer_progress_req.op='';
+	buyer_progress_req.buyer_name= (global_user.status!=const_user_code.NOTLOGIN) ? global_user.user_name : '' ;
+
+	buyer_progress_req.seller_name='';
+
+	//progress condition
+	buyer_progress_req.status_condition='( status = "NEGOTIATING" OR status = "DENIED" OR status = "ACCEPTED")'
+
+
+	$.post('/ajax/deal/list', buyer_progress_req, function(buyer_deal_progress_arr){
+		//global_deal.deal_progress_arr=buyer_deal_progress_arr;
+		buyer_deal_progress_arr.forEach(function(el){
+			switch(el.status){
+				case 'NEGOTIATING':
+					el.deal_status='negotiating'
+					break;
+				case 'ACCEPTED':
+					el.deal_status='accepted'
+					break;
+				case 'DENIED':
+					el.deal_status='denied'
+					break;
+				default:
+					el.deal_status='';
+			}
+		})
+
+		if(typeof callback =='function') {
+			callback(buyer_deal_progress_arr);
+		}
+		
+	
+
+
+	});
+
+}
+
+
+function ajax_get_seller_progress_deal(callback){
+	// var list={};
+	// //list.repository_name='simdj/pintos';
+	// list.buyer_name='pcs';
+	// list.status='NEGOTIATING';
+
+
+	var seller_progress_req={}
+	seller_progress_req.op='';
+	seller_progress_req.buyer_name='';
+	seller_progress_req.seller_name=(global_user.status!=const_user_code.NOTLOGIN) ? global_user.user_name : '' ;
+	//seller_progress_req.status_condition='( status = "NEGOTIATING" OR status = "DENIED" OR status = "ACCEPTED")'
+	seller_progress_req.status_condition='( status = "NEGOTIATING")'
+
+	$.post('/ajax/deal/list', seller_progress_req, function(seller_deal_progress_arr){
+		//global_deal.deal_arr=deal_arr;
+
+		seller_deal_progress_arr.forEach(function(el){
+			el.deal_status='offered'
+		})
+		if(typeof callback =='function') {
+			callback(seller_deal_progress_arr);
+		}
+
+		
+		
+
+		
+
+
+
+
+	});
+
+}
+
+
+function ajax_get_progress_deal(user_type, callback){
+	if(user_type=='Seller'){
+		ajax_get_seller_progress_deal(function(seller_deal_progress_arr){
+		
+			global_deal.deal_progress_arr=seller_deal_progress_arr;
+			global_deal.deal_progress_arr.sort(function(a,b){
+				return b.created_date>a.created_date;
+			});
+
+			
+
+			if(typeof callback =='function') {
+				callback();
+			}
+			
+			
+		});
+	}else{
+			
+		ajax_get_buyer_progress_deal(function(buyer_deal_progress_arr){
+
+			global_deal.deal_progress_arr=buyer_deal_progress_arr;
+			global_deal.deal_progress_arr.sort(function(a,b){
+				return b.created_date>a.created_date;
+			});
+
+			if(typeof callback =='function') {
+				callback();
+			}
+
+		});
+	}
+	
+}
+
+function complete_pay(deal_id_arr){
+	if(global_user.status == const_user_code.NOTLOGIN){
+		global_function.login_alert()
+		return false;
+	}
+	if(!deal_id_arr){
+		return false;
+	}
+	var pay_req={};
+	pay_req.buyer_name=global_user.user_name
+	pay_req.buyer_id=global_user.user_id;
+	pay_req.deal_id_arr=deal_id_arr;
+	$.post('/pay/req', pay_req, function(data){
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!
+		//location.href=data.pay_url;
+		console.log(data);
+		window.open(data.pay_url);
+	})
+}
+
+
+function progress_card_event_listen(){
+
+
+	//1. card click -> modal show	
+	$(".progress_deal_status_btn_accepted").off('click');
+	$(".progress_deal_status_btn_accepted").on('click', function(e){
+
+		set_current_deal_info($(this).data('deal_id'), global_deal.deal_progress_arr);
+		fill_modal_accepted(global_deal.current_deal_info);
+		$(".modal_deal_accepted").siblings().css('display','none')
+		$(".modal_deal_accepted").css('display','');
+		$("#modal_deal").modal('show');
+	});
+	
+	$(".progress_deal_status_btn_denied").off('click');
+	$(".progress_deal_status_btn_denied").on('click', function(e){
+
+		set_current_deal_info($(this).data('deal_id'), global_deal.deal_progress_arr);
+		fill_modal_denied(global_deal.current_deal_info);
+		$(".modal_deal_denied").siblings().css('display','none')
+		$(".modal_deal_denied").css('display','');
+		$("#modal_deal").modal('show');
+
+	})
+	
+	$(".progress_deal_status_btn_negotiating").off('click');
+	$(".progress_deal_status_btn_negotiating").on('click', function(e){
+
+		set_current_deal_info($(this).data('deal_id'), global_deal.deal_progress_arr);
+		fill_modal_view_offer(global_deal.current_deal_info);
+		$(".modal_deal_offer").siblings().css('display','none')
+		$(".modal_deal_offer").css('display','');
+		$("#modal_deal").modal('show');
+	});
+	
+	$(".progress_deal_status_btn_offered").off('click');
+	$(".progress_deal_status_btn_offered").on('click', function(e){
+
+
+		set_current_deal_info($(this).data('deal_id'), global_deal.deal_progress_arr);
+		fill_modal_view_offered(global_deal.current_deal_info);
+		$(".modal_deal_offered").siblings().css('display','none')
+		$(".modal_deal_offered").css('display','');
+		$("#modal_deal").modal('show');
+	});
+
+
+	
+
+
+	//2. button event listen	
+	//2-1. pay button
+	$("#modal_deal_accepted_pay").off('click');
+	$("#modal_deal_accepted_pay").on('click', function(){
+		
+		complete_pay([global_deal.current_deal_info.deal_id]);
+	})
+
+
+	//2-2. deny > reoffer
+	$("#modal_deal_denied_reoffer_btn").off('click');
+	$("#modal_deal_denied_reoffer_btn").on('click', function(e){
+		$("#modal_deal_denied_status").val('NEGOTIATING');
+
+		var fd = new FormData();
+		var reoffer_form_data = $('#modal_deal_denied_form').serializeArray(); 
+		
+	    reoffer_form_data.forEach(function(input){
+	    	fd.append(input.name,input.value);
+	    });
+
+
+		$.ajax({
+		    url: '/ajax/deal/'+global_deal.current_deal_info.deal_id+'/update',
+		    data: fd,
+		    contentType: false,
+		    processData: false,
+		    type: 'POST',
+		    success: function(data){
+		        refresh_progress_deal_list(global_user.user_type);
+		    }
+		});
+
+	});
+
+
+	//2-2. deny > cancel
+	$("#modal_deal_denied_cancel_btn").off('click');
+	$("#modal_deal_denied_cancel_btn").on('click', function(e){
+		$("#modal_deal_denied_status").val('CANCELLED');
+
+		var fd = new FormData();
+		var cancel_form_data = $('#modal_deal_denied_form').serializeArray(); 
+		
+	    cancel_form_data.forEach(function(input){
+	    	fd.append(input.name,input.value);
+	    });
+
+
+		$.ajax({
+		    url: '/ajax/deal/'+global_deal.current_deal_info.deal_id+'/update',
+		    data: fd,
+		    contentType: false,
+		    processData: false,
+		    type: 'POST',
+		    success: function(data){
+		        refresh_progress_deal_list(global_user.user_type);
+		    }
+		});
+	});
+
+
+	//2-3. offered > accept!!!
+	$("#modal_deal_view_offered_accept_btn").off('click');
+	$("#modal_deal_view_offered_accept_btn").on('click', function(e){
+
+		$("#modal_deal_action_status").val('accept');	
+
+		$("#modal_deal_view_offered_confirm_btn").text("Confirm accepting")
+		$("#seller_comment_wrapper").css("display","");
+		$("#modal_deal_view_offered_confirm_btn").click();	
+	});
+
+	//2-4. offered > deny
+	$("#modal_deal_view_offered_deny_btn").off('click');
+	$("#modal_deal_view_offered_deny_btn").on('click', function(e){
+
+		$("#modal_deal_action_status").val('deny');
+
+		$("#modal_deal_view_offered_confirm_btn").text("Confirm dening")
+
+		$("#seller_comment_wrapper").css("display","");
+		$("#modal_deal_view_offered_confirm_btn").click();	
+
+	});
+
+
+	//2-5. offered > (accept or deny) > confirm!!!	
+	$("#modal_deal_view_offered_confirm_btn").off('click');
+	$("#modal_deal_view_offered_confirm_btn").on('click', function(e){
+			
+		console.log('Confirm');
+
+		var fd = new FormData();
+		var offered_form_data = $('#modal_deal_view_offered_form').serializeArray(); 
+		
+	    offered_form_data.forEach(function(input){
+	    	fd.append(input.name,input.value);
+	    });
+
+	    //accept or deny
+		$.ajax({
+		    url: '/ajax/deal/'+$("#modal_deal_view_offered_id").val()+'/'+$("#modal_deal_action_status").val(),
+		    data: fd,
+		    contentType: false,
+		    processData: false,
+		    type: 'POST',
+		    success: function(data){
+		        refresh_progress_deal_list(global_user.user_type);
+		    }
+		});
+
+	});
+
+
+	//3-1.
+	$(".deal_progress_accepted input[type='checkbox']").click(function(e){
+		var selected_deal_id=$(this).parent().parent().find('button').data('deal_id');
+		var selected_deal_info=get_deal_info_by_deal_id(selected_deal_id, global_deal.deal_progress_arr);
+		var complete_pay_total=parseInt($("#complete_pay_total").val());
+
+		if( !$(this).hasClass('selected_deal') ){
+			$(this).addClass('selected_deal');
+			$("#complete_pay_total").val(complete_pay_total+parseInt(selected_deal_info.price) )
+
+			global_deal.selected_deal_arr.push(selected_deal_id)
+		}else{
+			$(this).removeClass('selected_deal');
+			$("#complete_pay_total").val(complete_pay_total-parseInt(selected_deal_info.price) )
+			var index=global_deal.selected_deal_arr.indexOf(selected_deal_id)
+			global_deal.selected_deal_arr[index]=-1;
+		}
+		
+		global_deal.selected_deal_arr=	global_deal.selected_deal_arr.filter(function(a){
+			return a!=-1
+		})
+
+		
+		
+	})
+	//3-2. complete to pay
+	$("#complete_pay").off('click');
+	$("#complete_pay").on('click', function(){
+
+		console.log(global_deal.selected_deal_arr)
+
+		complete_pay(global_deal.selected_deal_arr);
+
+	});
+
+	
+
+}
+
+function refresh_progress_deal_list(user_type){
+	if(global_function.is_login()){
+
+		global_deal.deal_progress_arr=[];
+		global_deal.current_deal_info={};
+		$("#deal_progress_list").empty();
+		$(".modal") && $(".modal").modal && $(".modal").modal('hide');
+
+
+		
+
+
+		if(user_type.toLowerCase() =='seller'){
+			$(".deal_progress_group_buyer").css('display','none');
+			$(".deal_progress_group_seller").css('display','');
+			
+			var progress_deal_cnt_req={};
+			progress_deal_cnt_req.seller_id=global_user.user_id;
+			progress_deal_cnt_req.status_condition='status="NEGOTIATING" ';
+
+			$.get('/simdj/deal/cnt',progress_deal_cnt_req, function(data){
+				if(data){
+					$("#in_progress_deal_cnt").text(data);
+				}
+			});
+		}else{
+			$(".deal_progress_group_buyer").css('display','');
+			$(".deal_progress_group_seller").css('display','none');
+
+			var progress_deal_cnt_req={};
+			progress_deal_cnt_req.buyer_id=global_user.user_id;
+			progress_deal_cnt_req.status_condition='status="NEGOTIATING" OR status="ACCEPTED" OR status="DENIED" ' ;
+
+			$.get('/simdj/deal/cnt',progress_deal_cnt_req, function(data){
+				if(data){
+					$("#in_progress_deal_cnt").text(data);
+				}
+			});
+		}
+
+
+
+		ajax_get_progress_deal(user_type, function(){
+			
+			//use [global_deal.deal_progress_arr]
+			global_deal.deal_progress_arr.forEach(function(el, index){
+				
+				$("#deal_progress_list").append( html_progress_deal(el)  )	
+			})
+			progress_card_event_listen();
+
+		});
+	}
+	$(".deal_progress_group").removeClass('semi_bold');
+
+}
+
+
+
+
+
+function fill_modal_accepted(deal_info){
+	$("#deal_modal_maintainer_name").text(deal_info.repository_name.split('/')[0])
+	$("#deal_modal_project_name").text(deal_info.repository_name.split('/')[1])
+	
+
+
+
+
+	$("#modal_deal_accepted_purpose").val(deal_info.purpose)
+	$("#modal_deal_accepted_explanation").val(deal_info.explanation)
+
+
+	var expiration_date=new Date(deal_info.expiration_date);
+	$("#modal_deal_accepted_expiration_date").val(expiration_date.toISOString().slice(0,10))
+
+	$("#modal_deal_accepted_price").val(deal_info.price)
+}
+
+
+
+function fill_modal_denied(deal_info){
+	$("#deal_modal_maintainer_name").text(deal_info.repository_name.split('/')[0])
+	$("#deal_modal_project_name").text(deal_info.repository_name.split('/')[1])
+	
+	$("#modal_deal_denied_status").text(deal_info.status);
+
+	$("#modal_deal_denied_id").val(deal_info.deal_id);
+
+	$("#modal_deal_denied_purpose").val(deal_info.purpose)
+	$("#modal_deal_denied_explanation").val(deal_info.explanation)
+
+
+	var expiration_date=new Date(deal_info.expiration_date);
+	$("#modal_deal_denied_expiration_date").val(expiration_date.toISOString().slice(0,10))
+
+	$("#modal_deal_denied_price").val(deal_info.price)
+
+	$("#modal_deal_denied_seller_comment").val(deal_info.seller_comment)
+}
+
+
+
+function fill_modal_view_offer(deal_info){
+	$("#deal_modal_maintainer_name").text(deal_info.repository_name.split('/')[0]);
+	$("#deal_modal_project_name").text(deal_info.repository_name.split('/')[1]);
+
+
+
+	$("#modal_deal_view_offer_purpose").val(deal_info.purpose);
+	$("#modal_deal_view_offer_explanation").val(deal_info.explanation);
+
+
+	var expiration_date=new Date(deal_info.expiration_date);
+	$("#modal_deal_view_offer_expiration_date").val(expiration_date.toISOString().slice(0,10));
+
+	$("#modal_deal_view_offer_price").val(deal_info.price)
+}
+
+
+function fill_modal_view_offered(deal_info){
+	$("#deal_modal_maintainer_name").text(deal_info.repository_name.split('/')[0])
+	$("#deal_modal_project_name").text(deal_info.repository_name.split('/')[1])
+
+	$("#modal_deal_view_offered_id").val(deal_info.deal_id);
+
+	$("#modal_deal_view_offered_buyer_name").val(deal_info.buyer_name)
+	$("#modal_deal_view_offered_purpose").val(deal_info.purpose);
+	$("#modal_deal_view_offered_explanation").val(deal_info.explanation);
+
+
+	var expiration_date=new Date(deal_info.expiration_date);
+	$("#modal_deal_view_offered_expiration_date").val(expiration_date.toISOString().slice(0,10))
+
+	$("#modal_deal_view_offered_price").val(deal_info.price)
+
+	$("#modal_deal_view_offered_seller_comment").val(deal_info.seller_comment)
+
+	$("#seller_comment_wrapper").css("display","none");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//init rendering
+//refresh_progress_deal_list(global_user.user_type);
+
+
+
+
+
+
+
+$(".deal_progress_group").off('click');
+$(".deal_progress_group").on('click', function(e){
+	$(this).siblings().removeClass('semi_bold');
+	$(this).addClass('semi_bold');
+	if($(this).text().toLowerCase()!=='all'){
+		$('.deal_progress_card').css('display','none');
+		var display_targets='.deal_progress_'+$(this).text().toLowerCase();
+		$(display_targets).css('display','');
+	}else{
+		$('.deal_progress_card').css('display','');
+	}
+});
+
+
+
+function header_tab_progress_search(){
+	//repository name indexof gogogo
+	var str=$("#header_tab_progress_search_input").val().toLowerCase();
+	var targets=$(".deal_progress_card");
+	var len=targets.length;
+	for(var i=0;i<len;i++){
+		if( $(targets[i]).text().toLowerCase().indexOf(str) > -1){
+			$(targets[i]).css('display','');
+		}else{
+			$(targets[i]).css('display','none');
+		}
+	}
+
+
+	$(".deal_progress_group").removeClass('semi_bold')
+}
+
+
+
+$("#header_tab_progress_search").off('click');
+$("#header_tab_progress_search").on('click', header_tab_progress_search);
+$("#header_tab_progress_search_input").on('keyup', function(e){
+	e.keyCode==13 && header_tab_progress_search();
+});
+
+
+
+</script>

@@ -1,0 +1,95 @@
+
+#############################
+# Graph DB Achitecture	    #
+# @author Park, Chun Seong	#
+# @created 2014-03-26	    #
+#############################
+
+#Create Node Tag and project
+MERGE (n:Tag {name: "GPS"})
+CREATE (n:Tag {name:"GPS"})
+CREATE (n:Project {name:"Node.js", project_maintainer:"pcs"})
+
+
+#Create Relation Tag and Project
+CREATE (n)-[r:INCLUDE_PROJECT]->(p) #p include n
+CREATE (n)-[r:SIMILAR]->(p)
+CREATE (t)-[r:TAGGING]->(p)
+
+
+#Create Index to search by name
+CREATE INDEX ON :Project(name)
+CREATE INDEX ON :Tag(name)
+
+#Create Contraint
+CREATE CONSTRAINT ON (t:Tag) ASSERT t.name IS UNIQUE
+CREATE CONSTRAINT ON (p:Project) ASSERT p.name IS UNIQUE
+
+#Find Tag by name using index
+MATCH (n:Tag)
+USING INDEX n:Tag(name)
+WHERE n.name = {'GPS'}
+
+#Find Project by name using index
+MATCH (n:Project)
+USING INDEX n:Project(name)
+WHERE n.name = {'Node.js'}
+
+#Find Project Similar limit length 2 limit 10
+MATCH (n:Project)-[:SIMILAR*..2]-(p:project)
+WHERE n.name = 'Node.js'
+RETURN p
+LIMIT 10
+
+
+#Find Project who Tag both project limit 10 and find similar of that project
+MATCH (n:Tag)-[:TAGGING]->(join)<-[:TAGGING]-(p:Tag)
+OPTIONAL MATCH (join:Project)-[:SIMILAR]-(t:project)
+WHERE n.name = 'Frameworks'AND p.name='Scientific/Engineering'
+RETURN join, t
+LIMIT 10
+
+
+#Find Project who include both project limit 10 and find similar of that project
+MATCH (n:Project)-[:INCLUDE_PROJECT]->(join)<-[:INCLUDE_PROJECT]-(p:project)
+OPTIONAL MATCH (join:Project)-[:SIMILAR]-(t:project)
+WHERE n.name = 'Node.js'AND p.name='Mongodb'
+RETURN join, t
+LIMIT 10
+
+#Find Project who include both project
+MATCH (n:Project)-[:INCLUDE_PROJECT]->(join)<-[:INCLUDE_PROJECT]-(p:project)
+WHERE n.name = 'Node.js'AND p.name='Mongodb'
+RETURN join
+LIMIT 10
+
+
+
+
+
+#UPDATE COUNT ON TAG
+MATCH (m:Tag)-[r]->(n:Project)
+WITH m,count(r) AS p
+MERGE (t:Tag {name: m.name})
+ON CREATE SET t.count=0
+ON MATCH SET t.count=p
+RETURN t
+
+
+
+#DELETE Project and all relations
+
+MATCH (n:Project)
+WHERE n.name='Node.js'
+OPTIONAL MATCH (p:Project)-[r]-()
+WHERE p.name='Node.js'
+DELETE n,p,r
+
+
+#DELETE Tag and all relations
+
+MATCH (n:Tag)
+WHERE n.name='GPS'
+OPTIONAL MATCH (t:Tag)-[r]-()
+WHERE p.name='GPS'
+DELETE n,p, r

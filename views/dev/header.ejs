@@ -1,0 +1,181 @@
+
+<style type="text/css">
+	#header .mint_color{
+	    color : #00bcd4;
+	}
+	.navbar-header .mint_color{
+	    color : #00bcd4;
+	    font-family: 'FuturaStd-Medium';
+	}
+	#header .dropdown-menu{
+		/*background-color: gray;*/
+
+
+
+		position: absolute;
+		margin: 1px 0px;
+		top: 100%;
+		bottom: auto;
+		border-top-width: 0px;
+		border-bottom-width: 1px;
+		border-top-left-radius: 0px;
+		border-top-right-radius: 0px;
+		border-bottom-right-radius: 4px;
+		border-bottom-left-radius: 4px;
+		left: 0px;
+		right: 0px;
+		padding: 15px;
+
+
+		/*max-height : 200px;*/
+		overflow : auto;
+	}
+	#header .navbar-nav .open .dropdown-menu{
+		/*background-color: gray;*/
+		height: 400px;
+
+	}
+	/* ul::-webkit-scrollbar {
+	 	display: none;
+	 }
+
+	 li{
+	 	transition : 1.6s;
+	 	transform-style : preserve-3d;
+	 }*/
+
+	@font-face {
+		font-family: 'FuturaStd-Medium';
+		font-style: normal;
+		src: url(/fonts/FuturaStd-Medium.eot);
+		src: local('FuturaStd-Medium'), url(/fonts/FuturaStd-Medium.woff) format('woff');
+	}
+
+
+	#header  #search_input_box{
+	  border:0px;
+	  /*font-size: 150pt;*/
+	  font-size: 150px;
+	  width: 100%;
+	  /*height: 80%;*/
+	  text-align: center;
+	  border-color: none;
+	  box-shadow: none;
+	  -webket-box-shadow: none;
+	  outline: 0px;
+	  color:aqua !important;
+	}
+
+
+</style>
+
+<nav id='header' class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  	<div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      	
+	      	<a class="navbar-brand mint_color" href="/" >CODEMELLOW</a>
+	      	<a class="navbar-brand mint_color" href="/dev" >DEV</a>	      	
+	    </div>
+
+
+
+
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      	<ul class="nav navbar-nav navbar-right">
+		        
+				<li class='login_user' style="display:none"><a id='header_user_name' href="/dev/simdj" class='mint_color'></a></li>
+		            <li class="dropdown" style="position:static">
+			          	<a id="search" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span> </a>
+			          	<ul class="dropdown-menu" role="menu" style="width:100%">
+				            <li style="height:inherit">
+				            	<form class="navbar-form" role="search" style="height:inherit">
+									<div class="text-center" style="height:inherit">
+										<div style="font-size:35px;margin-top:30px">Hello, what are you looking for?</div>
+										<div style="height:250px">
+											<input  id="search_input_box" type="text"  class="form-control" style="height:100%">
+										</div>
+										<div style="color:#ccc">PRESS ENTER TO BEGIN YOUR SEARCH</div>
+									</div>
+								</form>
+				            </li>
+			          	</ul>
+			        </li>
+				<li><a id="new_project" href="/dev/new_project" ><span class="glyphicon glyphicon-pencil"></span></a></li>
+				<li class='not_login_user' style="display:none"><a id="login" href='/dev' alt='login'><span class="glyphicon glyphicon-log-in"></span></a></li>
+				<li class='login_user'style="display:none" ><a id="logout" href='/dev/logout'><span class="glyphicon glyphicon-log-out"></span></a></li>
+
+	      	</ul>
+	    </div><!-- /.navbar-collapse -->
+  	</div><!-- /.container-fluid -->
+</nav>
+
+
+
+<script>
+
+
+	global_user={};
+
+
+
+	function not_login_user_header(){
+		$('.login_user').css('display','none')
+		$('.not_login_user').css('display','')
+	}
+
+
+
+	function login_user_header(){
+
+
+		global_user.user_id='<%=user_id%>'
+		global_user.user_name='<%=name%>'
+		global_user.user_email='<%=email%>'
+
+
+		$("#header_user_name").text(global_user.user_name);
+		$("#header_user_name").attr('href','/dev/'+global_user.user_name)
+
+		$('.not_login_user').css('display','none')
+		$('.login_user').css('display','')
+	}
+
+
+
+	window.addEventListener("load", function(){
+		$("#search_input_box").keydown(function(e){
+			if(e.keyCode == 13){
+				e.preventDefault();
+				location.href='/dev/classic/'+$("#search_input_box").val()
+				return false;
+			}
+		})
+		$('#header .dropdown').on('show.bs.dropdown', function(e){
+		    
+	    // $(this).find('.dropdown-menu').first().css('transform','rotateX(0deg)')
+	     // $(this).find('.dropdown-menu').first().animate({transform:rotateX(0deg)}, 3000, function(){});
+	     $('#header .dropdown-menu').first().stop(true, true).slideDown();
+
+	  });
+
+	  // ADD SLIDEUP ANIMATION TO DROPDOWN //
+	  $('#header .dropdown').on('hide.bs.dropdown', function(e){
+
+	    // $(this).find('.dropdown-menu').first().css('transform','rotateX(150deg)')
+	    
+
+	    // $(this).find('.dropdown-menu').first().animate({transform:rotateX(180deg)}, 3000, function(){});
+	     $('#header .dropdown-menu').first().stop(true, true).slideUp();
+	  });
+
+		<% if(name){ %>
+			login_user_header();
+		<% }else{ %>
+			not_login_user_header();
+		<% } %>  
+	})
+
+</script>

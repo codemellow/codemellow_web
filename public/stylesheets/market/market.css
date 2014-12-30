@@ -1,0 +1,59 @@
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+
+.btn-circle.btn-xl {
+  width: 100px;
+  height: 100px;
+  padding: 10px 16px;
+  font-size: 15px;
+  line-height: 1.33;
+  border-radius: 50px;
+}
+.attention_project_langugae{
+  border: 0px;
+  background-color:#f3f3f3;
+  color:#aaaaaa;
+  cursor: pointer;
+}
+.attention_project_langugae.active{
+  background-color:#d0d0d0;
+  color:#808080;
+  font-weight: bold;
+}
+.attention_project_category{
+  color: darkgray;
+  cursor: pointer;
+  border-top: 5px solid transparent;
+}
+.above.active{
+  border-top: 5px solid #aaaaaa;
+  border-top-left-radius: 0.2em;
+  border-top-right-radius: 0.2em;
+  color: black;
+  font-weight: bold;
+}
+.bottom.active{
+  border-bottom: 5px solid #aaaaaa;
+  border-bottom-left-radius: 0.2em;
+  border-bottom-right-radius: 0.2em;
+  color: black;
+  font-weight: bold;
+}
+

@@ -1,0 +1,136 @@
+.expandable-line-num{
+	text-align: center;
+	width: 5%;
+}
+.diff-line-originnum {
+	text-align: center;
+	width: 5%;
+}
+.diff-line-newnum {
+	text-align: center;
+	width: 5%;	
+}
+.diff-line-expand .expandable-line-num{
+	background-color: rgba(173, 216, 230, 0.5);
+}
+.diff-line-expand .diff-line-code{
+	color: #bbbbbb;
+	background-color: rgba(173, 216, 230, 0.5);
+	border-left: 1px solid #cccccc;
+	vertical-align: middle;
+}
+
+.diff-line-plus .diff-line-originnum{
+	color: #bbbbbb;
+	background-color: rgba(150, 250, 150, 0.5);
+}
+.diff-line-plus .diff-line-newnum{
+	color: #bbbbbb;
+	background-color: rgba(150, 250, 150, 0.5);
+	border-left: 1px solid #cccccc;
+}
+
+.diff-line-plus .diff-line-code{
+	background-color: rgba(200, 250, 200, 0.5);
+	border-left: 1px solid #cccccc;
+}
+
+.diff-line-minus .diff-line-originnum{
+	color: #bbbbbb;
+	background-color: rgba(200, 200, 230, 0.5);
+}
+.diff-line-minus .diff-line-newnum{
+	color: #bbbbbb;
+	background-color: rgba(200, 200, 230, 0.5);
+	border-left: 1px solid #cccccc;
+}
+
+.diff-line-minus .diff-line-code{
+	background-color: rgba(210, 210, 240, 0.5);
+	border-left: 1px solid #cccccc;
+}
+
+.diff-line-basic .diff-line-originnum{
+	color: #bbbbbb;
+	background-color: rgba(230, 230, 230, 0.5);
+}
+.diff-line-basic .diff-line-newnum{
+	color: #bbbbbb;
+	background-color: rgba(230, 230, 230, 0.5);
+	border-left: 1px solid #cccccc;
+}
+
+.diff-line-basic .diff-line-code{
+	background-color: rgba(250, 250, 250, 0.5);
+	border-left: 1px solid #cccccc;
+}
+
+.diff-line-appended .diff-line-originnum{
+	color: #bbbbbb;
+	background-color: rgba(200, 200, 200, 0.5);
+}
+.diff-line-appended .diff-line-newnum{
+	color: #bbbbbb;
+	background-color: rgba(200, 200, 200, 0.5);
+	border-left: 1px solid #cccccc;
+}
+
+.diff-line-appended .diff-line-code{
+	background-color: rgba(230, 230, 230, 0.5);
+	border-left: 1px solid #cccccc;
+}
+table{
+	border: 1px solid #bbbbbb;
+	border-collapse:separate;
+	border-radius: 5px;
+	overflow:hidden;
+}
+table.file-diff tbody tr td{
+	line-height: 0;
+	font-size: 12px;
+	border-top: none;
+	border-bottom: none;
+	
+	
+}
+.file_name{
+	font-size: 13px;
+	color: #333333;
+}
+.expandable-line-num{
+	cursor: pointer;
+	color: #999;
+}
+.expandable-line-num:hover{
+	color: #fff;
+	background-color: #4183c4;
+}
+.expandable-line-num span:hover{
+	color: #fff !important;
+}
+pre{
+	padding: 0px;
+	margin: 0px;
+	background-color: transparent;
+	border: none;
+	overflow: inherit;
+	line-height: inherit;
+}
+.horizontal-space{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+#commit-info>h4, #commit-info>h5{
+	display: inline;
+}
+#commit-info>h5.right{
+	float: right;
+	margin: 0px;
+}
+#change-info>*{
+	display: inline;
+}
+button.selected{
+	color: #3399FF;
+	border-color: #3399FF !important;
+}

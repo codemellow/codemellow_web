@@ -1,0 +1,17 @@
+.pull-request-header {
+	font-size: 15px;
+}
+
+.pull-request-header div {
+	float: left;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.pull-request-header span {
+	padding-right: 10px;
+}
+
+.pull-request-header .pull-open {
+	color: #00bcd4;
+}

@@ -1,0 +1,150 @@
+<link href="/stylesheets/market/header_beta.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<script src="/library/jquery/jquery-2.1.0.min.js"></script>
+<script src="/scripts/market/market_common.js"></script>
+
+
+<div id="header_container" class="navbar navbar-inverse navbar-fixed-top " role="navigation">
+  <div class="mp-pusher" id="mp-pusher">
+      <div class="navbar-header">
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <ul class="nav navbar-nav">
+          <li><button id="trigger_sidemenu" type="button" class="glyphicon glyphicon-align-justify col-vsm-offset btn btn-default navbar-btn ">
+          </button></li>
+          <li><a id="brand" class="navbar-brand codemellow_header_btn" href="/market">Codemellow</a></li>
+        </ul>
+      </div>
+      <div id="header_navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <script>
+            var header_info={user_name:undefined};
+            global_user.status=const_user_code.NOTLOGIN;
+          </script>
+          <% if (name) {%>
+            <script>
+              global_user.status=const_user_code.LOGIN;
+              global_user.user_name=<%- JSON.stringify(name) %>;
+              global_user.user_id=<%- JSON.stringify(user_id) %>;
+              header_info.user_name = <%- JSON.stringify(name) %>;
+            </script>
+            <li class="dropdown">
+              <button class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown"><%=name%><span class="caret"></span></button>
+              <ul id="mypage_logout" class="dropdown-menu" role="menu">
+                <li><a id="mypage" data-load="-1">Mypage</a></li> <!-- href="/mypage" -->
+                <li class="divider"></li>
+                <li><a onclick="logout()">Log out</a></li>
+              </ul>
+            </li>
+          <% } else {%>
+            <li><a id="login" data-load="0">Login / Register</a></li>
+          <% } %>
+          <li><a id="mydeal" data-load="1">My Deal</a></li>
+          <li>
+            <a id="notice" data-load="2"><span class="glyphicon glyphicon-bell"></span></a>
+          </li>
+          <li>
+            <a id="search" data-load="3"><span class="glyphicon glyphicon-search"></span></a>
+          </li>
+          <li>
+            <a id="cart" data-load="4"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+          </li>
+          <li>
+            <a id="interest" data-load="5"><span class="glyphicon glyphicon-heart"></span></a>
+          </li>
+          <li>
+            <a id="new_project" data-load="6"><span class="glyphicon glyphicon-pencil"></span></a>
+          </li>
+          <li>
+            <a id="recentview"><span class="glyphicon glyphicon-eye-open"></span></a>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+</div>
+<div id="utility_container" class='col-xs-12 pt-page-moveFromTop pt-page-moveToBottom hidden'>
+  <div id="utility_content_wrapper" class="height_Strech_Animation">
+    <div id="utility_content_mypage" class='col-sm-6 col-xs-6 utility_menu'>
+      <% include ./header/mypage %> 
+    </div>    
+    <div id="utility_content_login" class='col-sm-6 col-xs-6 utility_menu'>
+      <% include ./header/login %> 
+    </div>
+    <div id="utility_content_deal" class='col-sm-6 col-xs-6 utility_menu'>
+      <% include ./header/deal %>
+    </div>
+    <div id="utility_content_notice" class='col-sm-6 col-xs-6 utility_menu'>
+      <% include ./header/notice %> 
+    </div>
+    <div id="utility_content_search" class='col-sm-6 col-xs-6 utility_menu'>
+      <% include ./header/search %> 
+    </div>
+    <div id="utility_content_cart" class='col-sm-6 col-xs-6 utility_menu'>
+      <% include ./header/cart %> 
+    </div>
+    <div class=" div_align_center cart_donate_all img-circle" id="cart_donate_all_div" style="display:none;height: 70pt;">
+       <p class="cart_donate_p_btn" id="cart_donate_all_p"> Donate<p>
+    </div>
+    <div id="utility_content_interest" class='col-sm-6 col-xs-6 utility_menu'>
+      <% include ./header/interest %> 
+    </div>
+    <div id="utility_content_new_project" class='col-sm-6 col-xs-6 utility_menu'>
+      <% include ./header/new_project %> 
+    </div>
+  </div>
+</div>
+
+<div id="find_password_modal" class="hidden">
+  <div id="find_password_content" class="panel panel-default">
+    <div class="panel-heading" style="position:relative">
+      <h4>Forgot your password?</h4>
+      <a onclick="(function(){$('#find_password_modal').addClass('hidden');})();"><span class="glyphicon glyphicon-remove" style="position:absolute;top:10px;right:10px;"></span></a>
+    </div>
+    <div class="panel-body">
+      <h5>Enter your e-mail address and you will receive an e-mail containg a new password</h5>
+      <input id="find_password_email" type="text" class="form-control" placeholder="E-mail" style="margin-top:20px;margin-bottom:10px">
+      <button id="find_password_button" type="button" class="btn btn-default" style="width:150px;">Send</button>
+    </div>
+  </div>
+</div>
+<div id="loading" class="hidden">
+  <div style="height:40%;"></div>
+  <div style="margin:auto; width:100px;height:100px;">
+    <img src="/image/loading.gif" style="width:100px;"></img>
+  </div>
+</div>
+<script src="/scripts/market/header_beta.js"></script>
+<!-- <script src="/scripts/market/sidepushmenu.js"></script>
+<script>
+      new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger_sidemenu' ) );
+</script>
+ -->
+
+
+
+<!-- Small alerting modal -->
+<!-- <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button> -->
+
+<div id='alert_modal' class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 id='alert_modal_title' class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p id='alert_modal_message'>alert message</p>
+      </div>
+      <div class="modal-footer">
+        <button id='alert_modal_ok_btn' type="button" class="btn btn-primary">Go to Login</button>
+        <button id='alert_modal_no_btn' type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div><!-- /.modal-content -->
+  
+</div>

@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+
+    Codemellow
+
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+
+  <!-- codemirror -->
+  <link rel="stylesheet" href="/library/codemirror/codemirror.css">
+
+  <!-- common css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+  <!-- syntax css -->
+  <link href="/stylesheets/syntax.css" rel="stylesheet">
+
+  <link href="/stylesheets/dev/project/code_edit.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+
+  </head>
+  <body class="bs-docs-home" style='padding-top:100px'>
+
+    <!-- fixed header-->
+    <div id="header">
+      <% include ../header.ejs %>
+    </div>
+
+    <!-- content -->
+    <div> 
+      <% include ./project_header %>
+      <div class='container no_padding'>
+        <div id='project_basic_info' class="row project_body_class" >
+          <% include ./project_body_left %>
+          <div id="project_body_center" class="col-modal-8">
+
+            <div id="project_file_status_bar">
+                <span class="file_path"></span>
+                <input type="text" class="file_name"></input>
+                <a class="btn btn-default clone_file_name"><i class="fa fa-clipboard"></i></a>
+            </div>
+
+            <div id="project_file_content" class="panel">
+              <div id="project_file_header" class="panel-heading row no_margin">
+                <ul class="nav nav-tabs" id="code_or_preview_nav_bar" role="tablist">
+                  <li class="active" id="code_tab"><a href="#code_edit_view" role="tab" data-toggle="tab"><i class="fa fa-pencil"></i> Edit File</a></li>
+                  <li id="preview_tab"><a href="#code_preview" role="tab" data-toggle="tab"><i class="fa fa-eye"></i> Preview changes</a></li>
+                </ul>
+              </div>
+
+              <div id="project_file_body" class="tab-content">
+                <div class="tab-pane active" id="code_edit_view">
+                  <textarea class="panel-body " id="code_viewer"></textarea>
+                </div>
+                <div class="tab-pane markdown-body" id="code_preview">
+                </div>
+              </div>
+            </div>
+
+            <div class="project_commit_propose row">
+              <div class="col-sm-12">
+                Propose File Change
+              </div>
+              <div class="col-sm-12">
+                <div class="project_commit_title">
+                  <input type="text" class="form-control" placeholder="Commit Message">
+                </div>
+              </div>
+
+              <div class="col-sm-12">
+                <div class="project_commit_comment">
+                  <textarea class="form-control" rows="6" placeholder="Add optional extended description"></textarea>
+                </div>
+              </div>
+
+              <div class="col-sm-12">
+                <div class="project_commit_btn_group pull-right">
+                  <button id="commit_change" type="button" class="btn btn-default">Commit Changes</button>
+                  <button id="commit_cancel" type="button" class="btn btn-default">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- fixed footer-->
+    <div id="footer">
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Create a simple CodeMirror instance -->
+    <script src="/library/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+    <script src="/library/extension-bootstrap/js/star-rating.min.js"></script>
+    <script src="/library/codemirror/codemirror.js"></script>
+    <script src="/scripts/dev/project/code_edit.js"></script>
+    <script>
+
+      projectHeaderController.setValue('repository_id', '<%=repository_id%>');
+      projectHeaderController.setValue('repository_name', '<%=repository_name%>');
+      editorController.setValue('file_path', '<%=file_path%>');
+      editorController.setValue('repository_name', '<%=repository_name%>');
+
+      projectHeaderController.init();
+      editorController.init();
+
+    </script>
+  </body>
+</html>

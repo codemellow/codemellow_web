@@ -1,0 +1,88 @@
+#sidebar_big_logo{
+  font-size: 4vw;
+  margin-top: 100px;
+}
+#left_sidebar{
+  position: absolute;
+  width: calc(100% + 250px);
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1031;
+  overflow: hidden;
+  top:0px;
+}
+.category_list_title{
+   color: #FFF;
+   margin-bottom: 10%;
+   background-color: #000;
+   font-family: "MyriadPro-Regular";
+   font-size: 1.8vw;
+}
+.category_list{
+   color: #FFF;
+   background-color: #000 !important;
+   border: 0 none !important;
+   font-family: "MyriadPro-Light";
+   font-size: 1.3vw;
+}
+.category_list >li{
+   color: #FFFFFF;
+   border: 0 none !important;
+   background-color: #000 !important;
+   font-family: "MyriadPro-Light";
+   font-size: 1vw;
+}
+#sidebar_content{
+  background-color: #000;
+  width: 250px;
+  height: 100%;
+  color: #FFFFFF;
+}
+.slidInAnimation{
+  -webkit-animation: slidIn .6s ease both;
+   animation: slidIn .6s ease both;
+}
+@-webkit-keyframes slidIn {
+   from { -webkit-transform: translateX(-250px); }
+   to { -webkit-transform: translateX(0px); }
+}
+@keyframes slidIn {
+    from { -webkit-transform: translateX(-250px); transform: translateX(-250px); }
+    to { -webkit-transform: translateX(0px); transform: translateX(0px); }
+}
+.slidOutAnimation{
+  -webkit-animation: slidOut .6s ease both;
+   animation: slidOut .6s ease both;
+}
+@-webkit-keyframes slidOut {
+   from { -webkit-transform: translateX(0px); }
+   to { -webkit-transform: translateX(-250px); }
+}
+@keyframes slidOut {
+    from { -webkit-transform: translateX(0px); transform: translateX(0px); }
+    to { -webkit-transform: translateX(-250px); transform: translateX(-250px); }
+}
+.slidRightAnimation{
+  -webkit-animation: slidRight .6s ease both;
+   animation: slidRight .6s ease both;
+}
+@-webkit-keyframes slidRight {
+   from { -webkit-transform: translateX(0px); }
+   to { -webkit-transform: translateX(250px); }
+}
+@keyframes slidRight {
+    from { -webkit-transform: translateX(0px); transform: translateX(0px); }
+    to { -webkit-transform: translateX(250px); transform: translateX(250px); }
+}
+.slidLeftAnimation{
+  -webkit-animation: slidLeft .6s ease both;
+   animation: slidLeft .6s ease both;
+}
+@-webkit-keyframes slidLeft {
+   from { -webkit-transform: translateX(250px); }
+   to { -webkit-transform: translateX(0px); }
+}
+@keyframes slidLeft {
+    from { -webkit-transform: translateX(250px); transform: translateX(250px); }
+    to { -webkit-transform: translateX(0px); transform: translateX(0px); }
+}

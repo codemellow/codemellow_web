@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en" style='height:100%'>
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
+  <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+  <title>
+
+    Codemellow
+
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+
+  <!-- commn css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+
+  </head>
+  <body id="mp-pusher" class="bs-docs-home mp-pusher" style='padding-top:50px;height:98%;overflow-y: scroll;'>
+    
+    <!--  if you want to use left_side_menu you have to add left_side_menu -->
+    
+
+    <!-- Left side menu -->
+    <div id="sidebar"> 
+      <% include ../market/left_side_menu %>
+    </div>
+
+    <!-- Right side menu -->
+    <div> 
+      <% include ../market/right_side_menu %>
+    </div>
+
+    <!-- Fixed navbar -->
+    <div id="header">
+      <% include ../market/header %> 
+    </div>
+
+    <!-- content -->
+    <div id="content" class='container-fluid' style='height:100%;overflow-y: scroll;'>
+      <div class="container">
+      <div class="row">
+          <div class="col-sm-7 col-xs-10 col-sm-offset-3 col-xs-offset-1">
+            <h1><strong> Edit profile </strong></h1>
+            <br />
+            <h5> Check and modify your personal details, email address and password. </h5>
+            <br />
+            <bt />
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <div class="col-sm-6">
+                  <input type="email" class="form-control" id="aaa" placeholder="Title">
+                </div>
+              </div>
+              <div class="form-group">
+                
+                <div class="col-sm-6">
+                  <input type="password" class="form-control" id="bbb" placeholder="Name">
+                </div>
+                <div class="col-sm-6">
+                  <input type="password" class="form-control" id="ccc" placeholder="Surname">
+                </div>
+              </div>
+              <br/>
+              <h5><u>Change your e-mail address or your password</u></h5>
+              <br/>
+              <h5>Date of birth</h5>
+              <input type='date'></input>
+              <br />
+              <br />
+              <div class="radio">
+                <label>
+                  <h4 class="no_margin">
+                    <input type="radio" name="optionsRadios" id="private" value="option1" checked>
+                    Private
+                  </h4>
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <h4 class="no_margin">
+                    <input type="radio" name="optionsRadios" id="retailer" value="option2">
+                    Self-employed / Retailer
+                  </h4>
+                </label>
+              </div>
+              <br />
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  Your personal data will be userd by Codeemellow to improve your navigation of the website, to expedite the checkout process, to give you access to restricted areas, to provide you with the Newsletter service (if requested) and in general to improve the level of service we offer.
+                  <br>
+                  Your data are safe with Codemellow.
+                  <br>
+                  Consult our <u>Privacy Policy</u> for further information.
+                </div>
+              </div>
+              <br />
+              <h5>
+                I have read and understood Codemellow`s <u>Privacy Policy</u> about collecting my personal informatio, and I agree to its collection for marketing purposes (newsletters, news and promotions) and profiling.
+              </h5>
+              <br />
+              <div class="checkbox">
+                <label>
+                  <h4 class="no_margin">
+                      <input type="checkbox" value="">
+                  <h4>
+                  <h5 class="no_margin"> 
+                    I agree that Codemellow may collect my personal information for marketing purposes (newsletters, news and promotions).
+                  </h5>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                <h4 class="no_margin">
+                    <input type="checkbox" value="">
+                <h4>
+                <h5 class="no_margin"> 
+                    I agree that Codemellow may collect my personal information for creating a profile of my shopping habits.
+                </h5>
+                </label>
+              </div>
+              <br/>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <button type="submit" class="btn btn-success btn-lg full_width">Save</button>
+                </div>
+              </div>
+            </form>
+            <br />
+          </div>
+                
+      </div> 
+      </div>
+
+      <!-- fixed header-->
+      <div id="footer">
+        <% include ../market/footer %> 
+      </div>
+    </div>
+    
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

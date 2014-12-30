@@ -1,0 +1,68 @@
+<div class="row" style='background-color:#fff'>
+	<dic class='row' align='center'>
+		<div class="notice_title">NOTIFICATION</div>
+	</dic>
+	<div clsss='row' >
+		<div class='col-xs-offset-3 col-xs-6'>
+			<ul id='notice_list_wrapper' class='row'>
+				
+			</ul>
+		</div>
+
+	</div>
+	
+</div>
+
+<style type="text/css">
+    /*.deal_cnt_card {
+      cursor : pointer; cursor : hand;
+    }
+
+    .deal_cnt_card:hover {
+      background: lightskyblue;
+    }*/
+    .notice_title{
+		color: #e91e63;
+		font-family: "FuturaStd-Medium";
+		font-size: 42px;
+		
+		
+    }
+    .notice_list_elem{
+    	color: #000;
+    	font-size: 7pt;
+    	/*font-family: "MyriadPro-Light";*/
+    }
+  </style>
+
+ <script type='text/javascript'>
+
+ 	function notice_append(notice_arr){
+ 		for(var i=0;i<notice_arr.length;i++){
+ 			var notice_html='<li class="notice_list_elem"> msg : [msg] state : [state] <br/> date: [created_date]</li>';
+ 			notice_html=notice_html.replace('[msg]',notice_arr[i].msg)
+ 			notice_html=notice_html.replace('[state]',notice_arr[i].state)
+ 			notice_html=notice_html.replace('[created_date]',notice_arr[i].created_date)
+	 		$("#notice_list_wrapper").append(notice_html);
+	 	}
+
+ 	}
+
+
+
+
+ 	if(header_info){
+ 		 var ajax_get_notice={};
+	 	ajax_get_notice={receiver_name:header_info.user_name}
+	 	console.log(ajax_get_notice)
+
+	 	$.post('/notice/list', ajax_get_notice, function(data){
+	 		console.log('notice',data);
+	 		notice_append(data);
+	 	})
+	 		
+
+ 	}
+
+
+ </script>

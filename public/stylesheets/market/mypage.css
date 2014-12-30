@@ -1,0 +1,37 @@
+
+
+.deal-list {
+	border-right: 1px;
+}
+
+.list-count {
+	font-size: 60px;
+	text-align: center;
+}
+
+.repository-search-field {
+	width: 96%;
+	margin : 20px 10% 15px 2%;
+}
+
+.special-list-group .list-group-item {
+   border: 0px !important;
+}
+
+.list-item-title {
+	font-size: 16px;
+}
+
+.list-item-description {
+	font-size: 12px;
+	color: darkgrey;
+}
+
+.list-item-img {
+	margin-top: 3px;
+}
+
+.list-item-like {
+	font-size: 16px;
+	color: darkgrey;
+}

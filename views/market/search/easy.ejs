@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
+  <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+  <title>
+
+    Codemellow
+
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+
+  <!-- commn css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+  <!-- market css -->
+
+  </head>
+  <body class="bs-docs-home" style='padding-top:100px'>
+ 
+    <!-- Left side menu -->
+    <div id="sidebar"> 
+      <% include ../left_side_menu %>
+    </div>
+
+    <!-- Right side menu -->
+    <div> 
+      <% include ../right_side_menu %>
+    </div>
+
+    <!-- Fixed navbar -->
+    <div id="header">
+      <% include ../header %> 
+    </div>
+
+    <!-- content -->
+    <div> 
+      <div class='container'>
+
+        <div class='row' style='color:darkgray'>
+          <!-- left -->
+           <div class='col-sm-2' style='text-align:center'>
+            <div>
+              <ul class="list-group">
+                <li class="list-group-item" style='background-color:darkgray;'><h2 style='margin-top:1px;margin-bottom:1px;'><span class='glyphicon glyphicon-search' style='color:whitesmoke'></span></h1></li>
+              <a href="easy"><li class="list-group-item" >Easy Search</li></a>
+              <a href="graph"><li class="list-group-item" >Graph Search</li></a>
+              <a href="classic"><li class="list-group-item" >Classic Search</li></a>
+              </ul>
+            </div>
+          </div>
+
+          <!-- center -->
+          <div class='col-sm-10'>
+            <div class='panel panel-default'>
+
+              <div class="panel-heading" style='background-color:darkgray;'>
+                  <div class='row'>
+                    <div class='col-sm-2'>
+                      <h2 style='margin-top:1px;margin-bottom:1px;color:whitesmoke'>Keyword</h1>
+                    </div>
+                      <div class='col-sm-4'>
+                        <div class='input-group' >
+                          <input type='text' class='form-control'>
+                          <span class='input-group-btn'>
+                            <button class='btn btn-defula' type'button'>Go</button>
+                          </span>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              <div class='panel-body' style="padding-top:0px;">
+                  <div class='row' style="background-color: gainsboro; padding-bottom:10px;">
+                    <div class='col-sm-2'>
+                      <h2 style='margin-top:1px;margin-bottom:1px;color:whitesmoke'>Tags</h1>
+                    </div>
+                    <div class='col-sm-8' id="tag_div_esays">
+                    </div>
+                  </div>
+              </div>
+              <div class='panel-body' style="padding-top:0px;">
+                  <div class='row'>
+                    <div class='col-sm-10'>
+                      <h2 style='margin-top:1px;margin-bottom:1px;color:black'>Results</h1>
+                    </div>
+                    <div class='col-sm-2'>
+                      <div class="btn-group">
+                        <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
+                          arrange <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                         <li>Ranking</li>
+                         <li>Date</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+              </div> 
+
+                    <!-- Wrapper for slides -->
+                   
+              <div class='panel-body'>
+                <p>Popular</p>
+                  <div class='row'>
+                    <div class='row'>
+                      <div class='col-sm-3' style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;'>
+                        <div class='project_main_img'>
+                          <img width="100%" height="100%" src="http://cfile1.uf.tistory.com/image/2025FE35514CC53730B732" frameborder="0" allowfullscreen></img>
+                        </div>
+                        <div>
+                          <b class='project_desc_main'>Pintos</b>
+                          <p class='project_desc'>
+                            OS project!!!!!!
+                          </p>
+                          <div class='project_location'>San Fran, CA </div>
+                          <div class='status_wrapper'>
+                            <div class='status_progress'>
+                              <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                  <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='row'>
+                              <div class='col-sm-4'>234%</div>
+                              <div class='col-sm-4'>$123.123</div>
+                              <div class='col-sm-4'>asdf</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                       <div class='col-sm-3' style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;'>
+                        <div class='project_main_img'>
+                          <img width="100%" height="100%" src="http://cfile1.uf.tistory.com/image/2025FE35514CC53730B732" frameborder="0" allowfullscreen></img>
+                        </div>
+                        <div>
+                          <b class='project_desc_main'>Pintos</b>
+                          <p class='project_desc'>
+                            OS project!!!!!!
+                          </p>
+                          <div class='project_location'>San Fran, CA </div>
+                          <div class='status_wrapper'>
+                            <div class='status_progress'>
+                              <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 4%">
+                                  <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='row'>
+                              <div class='col-sm-4'>234%</div>
+                              <div class='col-sm-4'>$123.123</div>
+                              <div class='col-sm-4'>asdf</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                       <div class='col-sm-3' style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;'>
+                        <div class='project_main_img'>
+                          <img width="100%" height="100%" src="http://cfile1.uf.tistory.com/image/2025FE35514CC53730B732" frameborder="0" allowfullscreen></img>
+                        </div>
+                        <div>
+                          <b class='project_desc_main'>Pintos</b>
+                          <p class='project_desc'>
+                            OS project!!!!!!
+                          </p>
+                          <div class='project_location'>San Fran, CA </div>
+                          <div class='status_wrapper'>
+                            <div class='status_progress'>
+                              <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+                                  <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='row'>
+                              <div class='col-sm-4'>234%</div>
+                              <div class='col-sm-4'>$123.123</div>
+                              <div class='col-sm-4'>asdf</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                       <div class='col-sm-3' style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;'>
+                        <div class='project_main_img'>
+                          <img width="100%" height="100%" src="http://cfile1.uf.tistory.com/image/2025FE35514CC53730B732" frameborder="0" allowfullscreen></img>
+                        </div>
+                        <div>
+                          <b class='project_desc_main'>Pintos</b>
+                          <p class='project_desc'>
+                            OS project!!!!!!
+                          </p>
+                          <div class='project_location'>San Fran, CA </div>
+                          <div class='status_wrapper'>
+                            <div class='status_progress'>
+                              <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                  <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='row'>
+                              <div class='col-sm-4'>234%</div>
+                              <div class='col-sm-4'>$123.123</div>
+                              <div class='col-sm-4'>asdf</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class='row'>
+                      <div class='col-sm-3' style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;'>
+                        <div class='project_main_img'>
+                          <img width="100%" height="100%" src="http://cfile1.uf.tistory.com/image/2025FE35514CC53730B732" frameborder="0" allowfullscreen></img>
+                        </div>
+                        <div>
+                          <b class='project_desc_main'>Pintos</b>
+                          <p class='project_desc'>
+                            OS project!!!!!!
+                          </p>
+                          <div class='project_location'>San Fran, CA </div>
+                          <div class='status_wrapper'>
+                            <div class='status_progress'>
+                              <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                  <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='row'>
+                              <div class='col-sm-4'>234%</div>
+                              <div class='col-sm-4'>$123.123</div>
+                              <div class='col-sm-4'>asdf</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                       <div class='col-sm-3' style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;'>
+                        <div class='project_main_img'>
+                          <img width="100%" height="100%" src="http://cfile1.uf.tistory.com/image/2025FE35514CC53730B732" frameborder="0" allowfullscreen></img>
+                        </div>
+                        <div>
+                          <b class='project_desc_main'>Pintos</b>
+                          <p class='project_desc'>
+                            OS project!!!!!!
+                          </p>
+                          <div class='project_location'>San Fran, CA </div>
+                          <div class='status_wrapper'>
+                            <div class='status_progress'>
+                              <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                  <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='row'>
+                              <div class='col-sm-4'>234%</div>
+                              <div class='col-sm-4'>$123.123</div>
+                              <div class='col-sm-4'>asdf</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                       <div class='col-sm-3' style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;'>
+                        <div class='project_main_img'>
+                          <img width="100%" height="100%" src="http://cfile1.uf.tistory.com/image/2025FE35514CC53730B732" frameborder="0" allowfullscreen></img>
+                        </div>
+                        <div>
+                          <b class='project_desc_main'>Pintos</b>
+                          <p class='project_desc'>
+                            OS project!!!!!!
+                          </p>
+                          <div class='project_location'>San Fran, CA </div>
+                          <div class='status_wrapper'>
+                            <div class='status_progress'>
+                              <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                  <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='row'>
+                              <div class='col-sm-4'>234%</div>
+                              <div class='col-sm-4'>$123.123</div>
+                              <div class='col-sm-4'>asdf</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                       <div class='col-sm-3' style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;'>
+                        <div class='project_main_img'>
+                          <img width="100%" height="100%" src="http://cfile1.uf.tistory.com/image/2025FE35514CC53730B732" frameborder="0" allowfullscreen></img>
+                        </div>
+                        <div>
+                          <b class='project_desc_main'>Pintos</b>
+                          <p class='project_desc'>
+                            OS project!!!!!!
+                          </p>
+                          <div class='project_location'>San Fran, CA </div>
+                          <div class='status_wrapper'>
+                            <div class='status_progress'>
+                              <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                  <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='row'>
+                              <div class='col-sm-4'>234%</div>
+                              <div class='col-sm-4'>$123.123</div>
+                              <div class='col-sm-4'>asdf</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class='row'>
+                      <div class='col-sm-3' style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;'>
+                        <div class='project_main_img'>
+                          <img width="100%" height="100%" src="http://cfile1.uf.tistory.com/image/2025FE35514CC53730B732" frameborder="0" allowfullscreen></img>
+                        </div>
+                        <div>
+                          <b class='project_desc_main'>Pintos</b>
+                          <p class='project_desc'>
+                            OS project!!!!!!
+                          </p>
+                          <div class='project_location'>San Fran, CA </div>
+                          <div class='status_wrapper'>
+                            <div class='status_progress'>
+                              <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                  <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='row'>
+                              <div class='col-sm-4'>234%</div>
+                              <div class='col-sm-4'>$123.123</div>
+                              <div class='col-sm-4'>asdf</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                       <div class='col-sm-3' style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;'>
+                        <div class='project_main_img'>
+                          <img width="100%" height="100%" src="http://cfile1.uf.tistory.com/image/2025FE35514CC53730B732" frameborder="0" allowfullscreen></img>
+                        </div>
+                        <div>
+                          <b class='project_desc_main'>Pintos</b>
+                          <p class='project_desc'>
+                            OS project!!!!!!
+                          </p>
+                          <div class='project_location'>San Fran, CA </div>
+                          <div class='status_wrapper'>
+                            <div class='status_progress'>
+                              <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                  <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='row'>
+                              <div class='col-sm-4'>234%</div>
+                              <div class='col-sm-4'>$123.123</div>
+                              <div class='col-sm-4'>asdf</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                       <div class='col-sm-3' style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;'>
+                        <div class='project_main_img'>
+                          <img width="100%" height="100%" src="http://cfile1.uf.tistory.com/image/2025FE35514CC53730B732" frameborder="0" allowfullscreen></img>
+                        </div>
+                        <div>
+                          <b class='project_desc_main'>Pintos</b>
+                          <p class='project_desc'>
+                            OS project!!!!!!
+                          </p>
+                          <div class='project_location'>San Fran, CA </div>
+                          <div class='status_wrapper'>
+                            <div class='status_progress'>
+                              <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                  <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='row'>
+                              <div class='col-sm-4'>234%</div>
+                              <div class='col-sm-4'>$123.123</div>
+                              <div class='col-sm-4'>asdf</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                       <div class='col-sm-3' style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;'>
+                        <div class='project_main_img'>
+                          <img width="100%" height="100%" src="http://cfile1.uf.tistory.com/image/2025FE35514CC53730B732" frameborder="0" allowfullscreen></img>
+                        </div>
+                        <div>
+                          <b class='project_desc_main'>Pintos</b>
+                          <p class='project_desc'>
+                            OS project!!!!!!
+                          </p>
+                          <div class='project_location'>San Fran, CA </div>
+                          <div class='status_wrapper'>
+                            <div class='status_progress'>
+                              <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                  <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='row'>
+                              <div class='col-sm-4'>234%</div>
+                              <div class='col-sm-4'>$123.123</div>
+                              <div class='col-sm-4'>asdf</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="project_desc_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            
+            <div class='modal-title'>
+              <div class='row'>
+                <div class='col-sm-1'>
+                  Favicon
+                </div>
+                <div class='col-sm-7'>
+                  <div class='project_name'>
+                    <h2>Pintos</h2>
+                  </div>
+                  <div class='project_content'>
+                    <div class='download'>
+                      <span class='glyphicon glyphicon-download'></span> 1234 Downloads
+                    </div>
+                    <div class='star'>
+                      <span class='glyphicon glyphicon-star'></span> 5312 Stars
+                    </div>
+                    <div class='last_update'>
+                      <span class='glyphicon glyphicon-calendar'></span> Last Update: 5 days ago
+                    </div>
+                  </div>
+                </div>
+                <div class='col-sm-4'>
+                  <div class='star_img'>
+                    5312
+                  </div>
+                  <div class='download_btn_wrapper'>
+                    <button type='button' class='btn btn-info btn-block'>View detail page</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
+          </div>
+          <div class="modal-body">
+            <label id='project_version_info'>version 2.0</label>
+            <div class='desc_carousel'>
+              <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                  <div class="item active text-center" >
+                     
+                   <iframe width="640" height="360" src="//www.youtube.com/embed/s0HX-NAQyrg" frameborder="0" allowfullscreen></iframe>
+                  </div>
+                  <div class='item text-center'>
+                    <iframe width="640" height="360" src="//www.youtube.com/embed/Fg6Zps-bzV4" frameborder="0" allowfullscreen></iframe>
+                  </div>
+                  <div class='item text-center'>
+                    <iframe width="640" height="360" src="//www.youtube.com/embed/6Dt-JMsYI7c" frameborder="0" allowfullscreen></iframe>
+                  </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+              </div>
+            </div>
+
+            <div class='desc_content'>
+              <p>
+                <h2>Description</h2>
+               Want to know what is the score of the team that you follow? You love sports and you want to get all the updates and information in real time? Download 365scores Notifier to start getting all the scores in your chrome browser!
+              </p>
+              <p>
+                <h2>Featues</h2>
+                <ul>
+                  <li> Live Scores</li>
+                  <li> News</li>
+                  <li> Notifications</li>
+                </ul>
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fixed footer -->
+    <div id="footer">
+      <% include ../footer %> 
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/library/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+
+    <script>
+      $(".repo-name").click(function(){
+       $("#project_desc_modal").modal();
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+
+
+<div id="project_modal_donate_now">
+	<div class="row">
+		<div class='col-sm-12'>
+			
+
+			<div class='col-sm-6'><div class='project_modal_donate_value' id='project_modal_donate_now_pledged' >$0</div>pledged</div>
+			<div class='col-sm-6'><div class='project_modal_donate_value' id='project_modal_donate_now_backers' >0</div>backers</div>
+
+		</div>	
+  	</div>
+
+
+	<hr/>
+
+	<div class="row">
+		<div id='project_donate_readme' class='col-sm-12'>
+			Donate Now!
+		</div>
+	</div>
+	<hr/>
+
+
+	<div class='row'>
+		<div class='col-sm-12'>
+
+			<div class="row modal_deal_margin_bottom">
+			    <label for="project_desc_modal_donate_amount" class="col-sm-2 modal_deal_label">Amount ($)</label>
+			    <div class="col-sm-10">
+			      <input type="number" class="input_only_bottom_line" name="price" id="project_desc_modal_donate_amount" placeholder="100" required="" />
+			    </div>
+			</div>
+			
+			
+
+		</div>
+	</div>
+
+
+
+	<div class='row'>
+		<div class='col-sm-12'>
+
+			<div class="form-group text-right">
+				
+				
+				<button type="button" class="btn gray_btn modal_deal_right_btn modal_deal_right_bottom_btn"  >Cancel</button>
+				<button id='project_desc_modal_donate_now_btn' type="button" class="btn pink_btn modal_deal_right_btn modal_deal_right_bottom_btn" >Donate</button>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>
+
+
+
+
+
+
+<script>
+	//1. funded (??)
+	//2. pledged (sum)
+	//3. backer (count)
+	function get_donate_now_info(){
+		if(global_repository.current_repository_info 
+			&& global_repository.current_repository_info.repository_id)
+		{
+			var donate_info_req={};
+			donate_info_req.repository_id=global_repository.current_repository_info.repository_id;
+
+
+			//console.log('/ajax/'+global_repository.current_repository_info.repository_name+'/donate_info')
+			$.get('/ajax/'+global_repository.current_repository_info.repository_name+'/donate_info', donate_info_req, function(data){
+				//console.log('donate', data);
+
+				var pledged= data[0].pledged  ? data[0].pledged : 0;
+				var backers= data[0].backers ? data[0].backers :0;
+
+				$("#project_modal_donate_now_pledged").text('$'+pledged)
+				$("#project_modal_donate_now_backers").text(backers)
+			});
+		}	
+	}
+	$("#project_desc_modal_donate_now_btn").off('click')
+	$("#project_desc_modal_donate_now_btn").on('click', donate_now_btn_click)
+
+
+	function donate_now_btn_click(){
+		global_function.donate_now(
+			[
+				{
+					repository_id:global_repository.current_repository_info.repository_id,
+					 amount : $('#project_desc_modal_donate_amount').val()
+				}
+			]
+		)
+	}
+	
+
+	
+</script>

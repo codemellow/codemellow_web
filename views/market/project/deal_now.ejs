@@ -1,0 +1,51 @@
+ <form id='project_desc_modal_deal_offer_form' name='project_desc_modal_deal_offer_form' method='POST' class="form-horizontal text-right" role="form">
+              
+  <input type='text'  name='repository_id'  hidden required/>
+  <input type='text'  name='seller_id'  hidden required/>
+  <input type='text'  name='buyer_id'  hidden required />
+  <input type='text'  name='buyer_name'  hidden required />
+
+
+
+
+  <div class="row modal_deal_margin_bottom">
+    <label for="project_desc_modal_deal_offer_purpose" class="col-sm-2 modal_deal_label">Purpose</label>
+    <div class="col-sm-10">
+      <input type="text" class="input_only_bottom_line" name='purpose' id="project_desc_modal_deal_offer_purpose" placeholder="What is your purpose? (ex) I will use this to develop mobile app for iOS"  required />
+    </div>
+  </div>
+  
+  <div class="row modal_deal_margin_bottom">
+    <label for="project_desc_modal_deal_offer_explanation" class="col-sm-2 modal_deal_label">Detail</label>
+    <div class="col-sm-10">
+    <textarea class="input_only_bottom_line" name='explanation' id="project_desc_modal_deal_offer_explanation" placeholder="What is your detail?" required></textarea>
+    </div>
+  </div>
+
+  <div class="row modal_deal_margin_bottom">
+    <label for="project_desc_modal_deal_offer_expiration_date" class="col-sm-2 modal_deal_label">Expire</label>
+    <div class="col-sm-10">
+      <input type="date" class="input_only_bottom_line" name='expiration_date' id="project_desc_modal_deal_offer_expiration_date" placeholder="" required />
+    </div>
+  </div>
+
+
+  <div class="row modal_deal_margin_bottom">
+    <label for="project_desc_modal_deal_offer_price" class="col-sm-2 modal_deal_label">Price($)</label>
+    <div class="col-sm-10">
+      <input type="number" class="input_only_bottom_line" name='price' id="project_desc_modal_deal_offer_price" placeholder="100" required />
+    </div>
+  </div>
+
+
+
+  <button class="btn gray_btn modal_deal_right_btn modal_deal_right_bottom_btn" >Cancel</button>
+  <button id='project_desc_modal_deal_offer_btn'  class="btn pink_btn modal_deal_right_btn modal_deal_right_bottom_btn"  >Offer</button>
+
+
+</form>
+
+
+
+
+

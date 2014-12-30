@@ -1,0 +1,264 @@
+#project_commit_list {
+
+}
+
+#project_content_commits {
+	padding:15px;
+}
+
+#project_content_commits .col-sm-12{
+	padding : 0px;
+}
+
+#project_page_mover .btn{
+  margin-left : 15px;
+  font-size : 20px;
+  border-color : rgb(0,200,200);
+  color : rgb(0,200,200);
+  border-width :2px;
+  font-weight: 600;
+}
+
+#project_content_bottom {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.commit_content {
+	border-bottom: 1px solid rgb(230,230,230);
+	background-color: white;
+}
+
+.commit_content .commit_list {
+	padding: 15px;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.commit_date {
+	padding-bottom: 10px;
+	font-size : 20px;
+	color : darkgray;
+}
+
+.commit_content .img_and_msg {
+	width: calc(100% - 240px);
+}
+
+.img_and_msg .commiter_img {
+	height:40px;
+	width:40px;
+	border-radius:8px;
+	margin-right: 20px;
+}
+
+.commit_content .option_btn {
+	width:240px;
+	text-align:right;
+}
+
+.img_and_msg h4 {
+	margin: 0px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;	
+	font-weight: 600;
+	padding-bottom: 8px;
+}
+
+.img_and_msg h5 {
+	margin: 0px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 12px;
+	color : darkgray;
+}
+
+.commit_msg {
+	color : black;
+}
+
+.option_btn button {
+	height: 40px;
+	border-radius : 8px;
+	margin-left : 8px;
+	font-size : 16px;
+	color: darkgray;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.commit_container {
+	margin-bottom: 25px;
+}
+
+.commit_hash {
+	padding : 6px 20px;
+	width: 100px;
+}
+
+.commit_content .option_btn .commit_evaluation {
+	margin-left : 30px;
+	width: 40px;
+	color: white;
+	font-size : 20px;
+	font-weight : 600;
+	background-color : #00bcd4;
+	border-color: #00bcd4;
+}
+
+
+.commit_content.active .commit_list{
+	background-color: #00bcd4;
+	color: white !important;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.commit_content.active .btn {
+	background-color: #00bcd4;
+	color: white;
+	border : 1px solid white;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.commit_content.active .option_btn .commit_evaluation {
+	background-color: white !important;
+	color: #00bcd4 !important;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.commit_content.active .commit_msg h4, .commit_content.active .commit_msg h5 {
+	color : white;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.commit_content.active .evaluation_container {
+	display: block;
+	padding-top : 30px;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.commit_content .evaluation_container {
+	display: none;
+}
+
+.evaluation_content {
+	padding : 10px 15px 10px 15px;
+	background-color: white;
+}
+
+.evaluation_content .img_and_msg {
+	width: 100%;
+}
+
+.evaluation_content .img_and_msg i{
+	position : relative;
+	top : -34px;
+	left : calc(100% - 44px);
+	font-size: 24px;
+	color: #00bcd4;
+}
+
+.img_and_msg .evaluation_img {
+	height:40px;
+	width:40px;
+	border-radius:8px;
+	margin-right: 20px;
+}
+
+.evaluation_msg {
+	color: black;
+}
+
+.my_evaluation_content textarea {
+	width:calc(100% - 70px);
+	height:150px;
+	border: 2px solid #00bcd4;
+	border-radius: 10px;
+	margin-left: 60px;
+}
+
+.my_evaluation_content input {
+	width:calc(100% - 70px);
+	height: 40px;
+	border: 2px solid #00bcd4;	
+	border-radius: 10px;
+	margin-bottom: 15px;
+}
+
+.evaluation_progress_bar {
+	padding-bottom: 15px;
+}
+
+.evaluation_progress_bar .progress {
+	width: calc(100% - 150px);
+	margin: 0px;
+	height: 35px
+}
+
+.progress_text {
+	width: 150px;
+	text-align: right;
+	font-size : 20px;
+	color : #00bcd4;
+}
+
+.commit_info_bar span{
+	color : black;
+}
+
+.commit_info_bar {
+	color : darkgray;
+	padding-bottom: 10px;
+}
+
+.commit_info_bar .authored_info {
+	font-size: 20px;
+}
+
+.point_info_bar {
+	font-size : 20px;
+}
+
+.point_info_bar .evaluation_point_name {
+	padding-right : 10px;
+}
+
+.point_info_bar .evaluation_point {
+	padding-right : 25px;
+	color : darkgray;
+}
+
+.evaluation_body {
+	padding : 15px;
+}
+
+.evaluation_body .commit_description {
+	font-size: 20px;
+	padding-bottom : 15px;
+}
+
+.evaluation_container hr {
+	margin-top : 20px;
+	margin-bottom : 5px;
+}

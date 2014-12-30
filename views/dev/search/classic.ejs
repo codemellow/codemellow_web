@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+
+    Codemellow
+
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  
+
+  <!-- common css -->
+  <link href="/stylesheets/common.css" rel="stylesheet">
+  
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<style type="text/css">
+#search_header_input{
+  border: 0;
+border-bottom: black 1px solid;
+display: block;
+width: 100%;
+height: 56px;
+padding: 6px 12px;
+font-size: 25px;
+font-weight: 300;
+line-height: 1.42857143;
+color: #555;
+background-color: #fff;
+background-image: none;
+
+}
+#search_header_input:focus{
+  outline: 0;
+}
+#search_header_btn{
+  color: #00bcd4;
+  border: #00bcd4 2px solid;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.list-group-item{
+  font-size: 20px;
+  font-weight: 300;
+  color : #555 !important;
+}
+.list-group-item.active{
+  background-color: #00bcd4 !important;
+  border: 1px solid #ddd !important;
+  color : #fff !important;
+  font-weight: 600;
+}
+
+.category_cnt{
+  font-weight: 400;
+}
+
+
+
+.lang_unit{
+  margin-bottom: 10px;
+  padding: 0px 15px;
+  color : #555;
+  font-size: 17px;
+font-weight: 300;
+}
+.lang_cnt{
+  font-weight: 600;
+}
+
+
+
+.result_unit{
+  color : #aaa;
+  margin-bottom: 40px;
+}
+.result_unit_repository_name{
+  font-size: 20px;  
+  font-weight: 600;
+}
+.result_unit_desc, .result_meta  {
+  font-size: 15px;
+}
+.result_date{
+  margin-top: 10px;
+}
+.result_meta_data{
+  margin-left: 10px;
+}
+.pagination>li>a{
+  border : 0 !important;
+}
+</style>
+</head>
+
+<body class="bs-docs-home" style='padding-top:100px'>
+
+    <!-- fixed header-->
+    <div id="header">
+      <% include ../header.ejs %>
+    </div>
+
+    <!-- content -->
+    <div class='container no_padding'>
+      <div id='search_header' class='row'>
+        <div class='col-sm-3 mint_color' style="font-size: 40px;font-weight: 600;">
+          Search
+        </div>
+        <div class='col-sm-8'>
+          <input id="search_header_input" type="text" class="">
+        </div>
+        <div class='col-sm-1'>
+          <button id='search_header_btn' type="button" class="btn btn-link">SEARCH</button>
+        </div>
+
+      </div>
+      
+      <hr>
+
+      <div class='row'>
+        <div id='search_left' class='col-sm-3'>
+          <div class="list-group">
+            <a href="#" class="list-group-item active">
+              <span>Repository</span> <span class='category_cnt' style='float:right'>234</span>
+            </a>
+            <a href="#" class="list-group-item">
+              <span>Code</span> <span class='category_cnt' style='float:right'>2421</span>
+            </a>
+            <a href="#" class="list-group-item">
+              <span>Issues</span> <span class='category_cnt' style='float:right'>81</span>
+            </a>
+            <a href="#" class="list-group-item">
+              <span>Users</span> <span class='category_cnt' style='float:right'>24</span>
+            </a>
+          </div>
+
+
+          <div id='language_category_list'>
+            <div style="font-size: 25px;margin-bottom: 30px;">
+              Language
+            </div>
+            <div class='lang_unit row'>
+              <div class='lang_name col-sm-6 text-left'>Java</div>
+              <div class='lang_cnt col-sm-6 text-right'>732</div>
+            </div>
+
+            <div class='lang_unit row'>
+              <div class='lang_name col-sm-6 text-left'>Javascript</div>
+              <div class='lang_cnt col-sm-6 text-right'>721</div>
+            </div>
+            <div class='lang_unit row'>
+              <div class='lang_name col-sm-6 text-left'>Ruby</div>
+              <div class='lang_cnt col-sm-6 text-right'>421</div>
+            </div>
+            <div class='lang_unit row'>
+              <div class='lang_name col-sm-6 text-left'>Shell</div>
+              <div class='lang_cnt col-sm-6 text-right'>105</div>
+            </div>
+            <div class='lang_unit row'>
+              <div class='lang_name col-sm-6 text-left'>Python</div>
+              <div class='lang_cnt col-sm-6 text-right'>97</div>
+            </div>
+          </div>
+          <!-- language_category_list end -->
+
+          <hr>
+          <div class='row'>
+            <div class='col-sm-6 text-center'>
+              <a href='#' class='mint_color' style="font-size:16px">Advanced search</a>
+            </div>
+            <div class='col-sm-6 text-center'>
+              <a href='#' class='mint_color' style="font-size:16px">Cheet sheet</a>
+            </div>
+          </div>
+
+
+        </div>
+        <!--search_left end-->
+
+        <div id='search_right' class='col-sm-9'>
+          <div style="font-size:28px;font-weight:400;">
+            We've found <span id='result_total_num_desc'>total</span> repository results
+            <span style='float:right'>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-expanded="false" 
+                  style="border: #ccc 2px solid;border-radius: 10px;">
+                  Sort : Best match <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Action</a></li>
+                </ul>
+              </div>
+            </span>
+          </div>
+          <br>
+
+          <div id='result_list'>
+            <!-- <div class='result_unit'>
+              <hr>
+              <div class='result_unit_repository_name'>
+                azendal/elastic
+              </div>
+              
+              <div class='row'>
+                <div class='result_unit_desc col-sm-6 text-left' >
+                  a layout framework
+                </div>
+                <div class='result_meta col-sm-6 text-right'>
+                  Javascript 2514 35
+                </div>
+              </div>
+
+              <div class='result_date'>
+                Updated on 18 Jun
+              </div>
+
+            </div> -->
+          </div>
+
+          <div id='result_pagination' class='text-center'>
+            <nav>
+              <ul class="pagination">
+                <li><a id='previous_search_page' href="#">Previous</a></li>
+                <!-- <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li> -->
+                <li><a id='next_search_page' href="#">Next</a></li>
+              </ul>
+            </nav>
+          </div>
+
+
+        </div>
+      </div>
+
+
+
+
+    </div>
+      
+      
+
+    <!-- fixed footer-->
+    <div id="footer">
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="/library/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+    <script type="text/javascript">
+      var data=JSON.parse('<%-JSON.stringify(data)%>')
+      
+      console.log( data);
+
+      var result_unit= "";
+      result_unit+="        <div class='result_unit'> ";
+      result_unit+="          <hr> ";
+      result_unit+="          <div class='result_unit_repository_name '> ";
+      result_unit+="              <a href='[repository_url]' class='mint_color'>[result_unit_repository_name] </a>";
+      result_unit+="          </div> ";
+      result_unit+="          <div class='row'> ";
+      result_unit+="            <div class='result_unit_desc col-sm-6 text-left' > ";
+      result_unit+="                [result_unit_desc] ";
+      result_unit+="            </div> ";
+      result_unit+="            <div class='result_meta col-sm-6 text-right'> ";
+      result_unit+="              <span class='result_meta_data'>[result_meta] </span> " 
+      result_unit+="              <span class='result_meta_data'><i class='fa fa-heart'></i> &nbsp [heart_cnt]  </span> "
+      result_unit+="              <span class='result_meta_data'><i class='fa fa-code-fork'></i> &nbsp [fork_cnt] </span>"
+      result_unit+="            </div> ";
+      result_unit+="          </div> ";
+      result_unit+="          <div class='result_date'> ";
+      result_unit+="            [result_date]";
+      result_unit+="          </div> ";
+      result_unit+="        </div> ";
+
+      var result_arr=data.hits.hits
+
+      for(var i=0;i<result_arr.length;i++){
+        $("#result_list").append(
+          result_unit
+          .replace('[repository_url]', '/'+result_arr[i]._source.repository_name)
+          .replace('[result_unit_repository_name]', result_arr[i]._source.repository_name)
+          .replace('[result_unit_desc]', result_arr[i]._source.project_name)
+          .replace('[result_meta]', result_arr[i]._source.repository_description)
+          .replace('[result_date]', result_arr[i]._source.last_commit_date)
+          .replace('[heart_cnt]', result_arr[i]._source.repository_like_count)
+          .replace('[fork_cnt]', result_arr[i]._source.commit_count+100)
+
+          )
+
+      }
+
+
+      $("#search_header_input").keydown(function(e){
+        if(e.keyCode == 13){
+          e.preventDefault();
+          location.href='/dev/classic/'+$("#search_header_input").val()
+          return false;
+        }
+      })
+
+      $("#search_header_btn").click(function(){
+          location.href='/dev/classic/'+$("#search_header_input").val()
+      })
+
+
+
+      //pagination part
+      var total_hits=data.hits.total;
+      $("#result_total_num_desc").text(total_hits);
+
+      var search_state=location.href.split('/dev/classic/').pop();
+      var search_state_arr=search_state.split('/');
+
+      if(search_state_arr.length==1 || search_state_arr[1]=='1'){
+        var current_page=1;
+        var query=search_state_arr.pop();
+        $("#previous_search_page").parent().addClass('disabled')
+        $("#next_search_page").attr('href','/dev/classic/'+query+'/'+(current_page+1) );
+      }else{
+        var current_page=parseInt(search_state_arr.pop());
+        var query=search_state_arr.pop();
+
+        $("#previous_search_page").attr('href','/dev/classic/'+query+'/'+(current_page-1) );
+        $("#next_search_page").attr('href','/dev/classic/'+query+'/'+(current_page+1) );
+      }
+
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
+        <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+        <title>
+            Codemellow
+        </title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/library/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="/library/bootstrap/docs/assets/css/justified-nav.css" rel="stylesheet">
+
+        <!-- commn css -->
+        <link href="/stylesheets/common.css" rel="stylesheet">
+        <!-- search css -->
+        <link href="/stylesheets/dev/project/visualization.css" rel="stylesheet">
+        <script>
+            if(localStorage.getItem("skip")=='true'){
+                location.href = "/"+"<%=repository_name%>/dir/master";
+                getElementById('never_see_btn_container').hidden = true;
+            }
+        </script>
+    </head>
+
+    <body class="bs-docs-home" style='padding-top:50px;'>
+
+        <!-- fixed header-->
+        <div id="header">
+            <% include ../header %> 
+        </div>
+
+        <div id="visualization-container">
+            <div id="left-side-bar" class="div_align_center">
+                <div class="name_content">
+                    <div class="project_name">
+                        <%=project_name%>
+                    </div>
+                    <div class="user_name">
+                        <%=user_name%>
+                    </div>
+                </div>
+
+                <div id="project_info">
+                    <ul class="nav project_info_content">
+                        <li class="project_info_list">
+                            <div class="row no_margin">
+                                <div class="info_name">Commits</div><div class="info_value commits">0</div>
+                            </div>
+                        </li>
+                        <li class="project_info_list">
+                            <div class="row no_margin">
+                                <div class="info_name">Branches</div><div class="info_value branches">0</div>
+                            </div>
+                        </li>
+                        <li class="project_info_list">
+                            <div class="row no_margin">
+                                <div class="info_name">Releases</div><div class="info_value releases">0</div>
+                            </div>      
+                        </li>
+                        <li class="project_info_list">
+                            <div class="row no_margin">
+                                <div class="info_name">Contributors</div><div class="info_value contributors">0</div>
+                            </div>
+                        </li>
+                        <li class="project_info_list">
+                            <div class="row no_margin">
+                               <div class="info_name">Income</div><div class="info_value income">0</div> 
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="button-container" class="row no_margin">
+                    <button type="button" class="btn btn_about">About</button>
+                    <button type="button" class="btn btn_view_all">View all</button>
+                </div>
+            </div>
+            <div id="body-center">
+                <div class="">
+                    <div id="income-txt">
+                        <p id="income-amount"></p>
+                    </div>
+                    <canvas id="myCanvas" width="900" height="900"></canvas>
+                </div>                
+            </div>
+            <div id="right-side-bar">
+                <div id="title_content" class="row no_margin">
+                    <span class="title_ranking">Ranking</span><span class="title_income">Income</span>
+                </div>
+                <div id="ranking" class="row no_margin">
+                    <ul class="nav ranking_list">
+                        <li class="ranking_list_content first">
+                            <div class="row no_margin">
+                                <div class="ranking_index">1st</div><div class="contributor_name">Sim DJ</div>
+                            </div>                            
+                        </li>
+                        <li class="ranking_list_content">
+                            <div class="row no_margin">
+                                <div class="ranking_index">2nd</div><div class="contributor_name">Linus Torvalds</div>
+                            </div>                            
+                        </li>
+                        <li class="ranking_list_content">
+                            <div class="row no_margin">
+                                <div class="ranking_index">3nd</div><div class="contributor_name">Vlad Gorodetsky</div>
+                            </div>                            
+                        </li>
+                        <li class="ranking_list_content">
+                            <div class="row no_margin">
+                                <div class="ranking_index">4th</div><div class="contributor_name">Byeonguk Bae</div>
+                            </div>                            
+                        </li>
+                        <li class="ranking_list_content">
+                            <div class="row no_margin">
+                                <div class="ranking_index">5th</div><div class="contributor_name">Yeo Yungsuck</div>
+                            </div>                            
+                        </li>
+                    </ul>
+                </div>
+                <div id="never_see_btn_container">
+                    <button type="button" class="btn never_see_btn">Never see this page</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+
+        <script src="/library/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/library/bootstrap/js/bootstrap.min.js" ></script>
+        <script src="/scripts/dev/project/visualization.js"></script>
+        <script>
+            visualController.setValue("repository_name", "<%=repository_name%>");
+            visualController.init();
+        </script>
+    </body>
+</html>
